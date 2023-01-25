@@ -14,12 +14,6 @@ const root = createRoot(document.getElementById('root'));
 // USING IMAGES:
 // <img src={hello} alt='hello world animated' />
 
-<<<<<<< HEAD
-const App = () => {
-  return (
-    <h1>Hello World testing here</h1>
-  )
-=======
 function App() {
   return (
     <div>
@@ -29,7 +23,6 @@ function App() {
       <Related />
     </div>
   );
->>>>>>> 153210443295f121e63d35ae2a3c7bdc8f644b6f
 }
 
 root.render(<App />);
