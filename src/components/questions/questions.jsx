@@ -1,8 +1,14 @@
 import React from 'react';
+import Search from './search.jsx'
+import Qlist from './qlist.jsx'
+import './questions.scss';
 
 function Questions() {
   return (
-    <p> Questions</p>
+    <div className="floatingbox">
+      <Search />
+      <Qlist />
+    </div>
   );
 }
 
