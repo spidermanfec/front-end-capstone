@@ -1,12 +1,11 @@
 import React from 'react';
 import Qentry from './qentry.jsx'
 
-function Qlist() {
+function Qlist({ questionList }) {
   return (
     <p className="floatingbox">
       QUESTION LIST:
-      <Qentry />
-      <Qentry />
+      {questionList.map((item) => <Qentry question={item} key={item.question_id} />)}
     </p>
   );
 }

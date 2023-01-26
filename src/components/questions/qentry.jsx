@@ -1,10 +1,10 @@
 import React from 'react';
 import Alist from './alist.jsx'
 
-function Qentry() {
+function Qentry({ question }) {
   return (
     <p className="floatingbox">
-      QUESTION ENTRY:
+      {question.question_body}
       <Alist />
     </p>
   )
