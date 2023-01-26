@@ -1,8 +1,10 @@
 import React from 'react';
 
-function Aentry() {
+function Aentry({ answer }) {
   return (
-    <p className="floatingbox">ANSWER ENTRY</p>
+    <div className="floatingbox">
+      A: {answer.body}
+    </div>
   );
 }
 

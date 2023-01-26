@@ -3,10 +3,10 @@ import Alist from './alist.jsx'
 
 function Qentry({ question }) {
   return (
-    <p className="floatingbox">
-      {question.question_body}
-      <Alist />
-    </p>
+    <div className="floatingbox">
+      Q: {question.question_body}
+      <Alist answers={question.answers}/>
+    </div>
   )
 }
 

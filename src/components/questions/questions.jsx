@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import Search from './search.jsx'
 import Qlist from './qlist.jsx'
 import './questions.scss';
 
-function Questions({products}) {
+function Questions({ products }) {
   const [questionList, setQuestionList] = useState([]);
   axios.get(`http://localhost:1100/questions/?product_id=${products[4].id}`)
     .then((results) => {
@@ -16,7 +15,6 @@ function Questions({products}) {
 
   return (
     <div className="floatingbox">
-      <Search />
       <Qlist questionList={questionList}/>
     </div>
   );

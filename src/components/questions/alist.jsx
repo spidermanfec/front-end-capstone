@@ -1,13 +1,11 @@
 import React from 'react';
-import Aentry from './aentry.jsx'
+import Aentry from './aentry.jsx';
 
-function Alist() {
+function Alist({ answers }) {
   return (
-    <p className="floatingbox">
-      ANSWER LIST:
-      <Aentry />
-      <Aentry />
-    </p>
+    <div className="floatingbox">
+      {Object.values(answers).map((item) => <Aentry answer={item} key={item.id} />)}
+    </div>
   );
 }
 
