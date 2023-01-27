@@ -8,6 +8,7 @@
 .oppositeInline {
   display: flex;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .biggerBolder {
@@ -18,21 +19,21 @@
 .smallText {
   font-size: 12px;
   font-weight: 200;
+  margin-top: 20px;
 }
 
 .outerWrap {
-  //border-style:  soli
   background-color: #ffffff;
   color: #3f3f3f;
   font-family: 'Inter';
   border-width: 2px;
-  padding: 5px;
   display: flex;
   justify-content: center;
 }
 
 .innerWrap {
   display: flex;
+  padding: 0px;
   flex-direction: column;
   width: 60%
 }
@@ -40,7 +41,17 @@
 .aListWrap {
   display: flex;
   flex-direction: column;
-  margin-left: 1%
+  margin-left: 1%;
+  padding: 5px;
+}
+
+.aListEntry {
+  padding: 5px;
+  margin-top: 10px;
+}
+
+b {
+  font-weight: bold;
 }
 
 h2 {
@@ -49,14 +60,83 @@ h2 {
   font-weight: lighter;
 }
 
+.rightSideQ {
+  font-size: 14px;
+}
+
+// ALL this stuff imported button stuff.
+.qbutton {
+  background-color: #ffffff;
+  border: solid;
+  border-width: 1px;
+  border-color: #3f3f3f;
+  color: #3f3f3f;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.qbutton:hover {
+  background-color: #3f3f3f;
+  border: solid;
+  border-width: 1px;
+  border-color: #3f3f3f;
+  color: #ffffff;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.abutton {
+  background-color: #ffffff;
+  border: none;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.abutton:hover {
+  text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+}
+
+.abutton::before {
+  display: block;
+  content: attr(gtitle);
+  font-weight: bold;
+  height: 1px;
+  color: transparent;
+  overflow: hidden;
+  visibility: hidden;
+}
 
 // All this is imported searchbar stuff.
 .search {
   width: 100%;
   position: relative;
   display: flex;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
+div + div {
+  margin-left: 0px;
+}
 .searchTerm {
   width: 100%;
   border: 1px solid #6e6e6e;

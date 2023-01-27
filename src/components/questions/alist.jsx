@@ -5,22 +5,19 @@ function Alist({ answers }) {
   const answersList = Object.values(answers);
   const [loadableAs, setLoadableAs] = useState(2);
   const loadableAsArray = [];
-  console.log(answers);
 
   if (answersList.length > 0) {
     for (let i = 0; i < loadableAs; i++) {
       loadableAsArray.push(<Aentry answer={answersList[i]} key={answersList[i].id} />);
     }
   }
+  console.log(loadableAsArray);
 
   return (
     <div className="aListWrap">
-      <p>
-        {loadableAsArray}
-      </p>
+      {loadableAsArray}
       <div>
-        <input type="button" value="MORE ANSWERS" onClick={() => { setLoadableAs(loadableAs + 2); }} />
-        <input type="button" value="ADD AN ANSWER +" />
+        <input className="abutton" type="button" value="Show more answers..." onClick={() => { setLoadableAs(loadableAs + 2); }} />
       </div>
     </div>
   );

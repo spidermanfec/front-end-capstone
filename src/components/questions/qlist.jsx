@@ -22,8 +22,8 @@ function Qlist({ questionList }) {
         {loadableQsArray}
       </p>
       <div>
-        <input type="button" value="MORE ANSWERED QUESTIONS" onClick={() => { setLoadableQs(loadableQs + 2); }} />
-        <input type="button" value="ADD A QUESTION +" />
+        <input className="qbutton" type="button" value="MORE ANSWERED QUESTIONS" onClick={() => { setLoadableQs(loadableQs + 2); }} />
+        <input className="qbutton" type="button" value="ADD A QUESTION +" />
       </div>
     </div>
   );
