@@ -1,34 +1,25 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Card from './card.jsx';
 
-export default function RelatedCarousel() {
+const { sampleData } = require('/sampledata.js');
+
+export default function RelatedCarousel({ category }) {
   return (
     <div className="card-carousel related-products">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {sampleData.filter((prodInfo) => prodInfo.category === category)
+        .map((prod) => (
+          <Card
+            listType="related"
+            category={category}
+            name={prod.name}
+            defaultPrice={prod.default_price}
+          />
+        ))}
     </div>
   );
 };
 
-// CardCarousel.propTypes = {
-// };
+RelatedCarousel.propTypes = {
+  category: PropTypes.string.isRequired,
+};
