@@ -1,9 +1,17 @@
 import React from 'react';
+import RelatedCarousel from './relatedCarousel.jsx';
+import OutfitCarousel from './outfitCarousel.jsx';
 
-function Related() {
+export default function Related() {
   return (
-    <p> Related</p>
+    <div className="related-n-outfits">
+      <RelatedCarousel />
+      <br />
+      <hr />
+      <br />
+      <OutfitCarousel />
+    </div>
   );
 }
 
-export default Related;
+// export default Related;
