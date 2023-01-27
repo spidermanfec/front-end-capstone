@@ -1,0 +1,23 @@
+$widthProd: percentage($number: 70);
+$widthProdInfo: percentage($number: 30);
+
+.overviewContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+
+.gallery {
+  width: $widthProd;
+  position: relative;
+}
+
+.prodInfo {
+  width: $widthProdInfo;
+  margin-top: 60px;
+}
+
+.quantity {
+  list-style-type: none;
+}
