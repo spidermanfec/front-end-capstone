@@ -138,7 +138,6 @@ div + div {
 .searchTerm {
   width: 100%;
   border: 1px solid #6e6e6e;
-  border-right: none;
   padding: 5px;
   height: 10px;
   outline: none;
@@ -149,17 +148,4 @@ div + div {
 
 .searchTerm:focus{
   color: #2b2b2b;
-}
-
-.searchButton {
-  width: 90px;
-  height: 52px;
-  border: 1px solid #6e6e6e;
-  background: #ffffff;
-  border-left: 0px;
-  text-align: left;
-  color: #6e6e6e;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
 }
