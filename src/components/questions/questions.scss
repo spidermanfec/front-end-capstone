@@ -56,12 +56,15 @@
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #6e6e6e;
+  border: 1px solid #6e6e6e;
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 10px;
   outline: none;
   color: #6e6e6e;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 20px;
 }
 
 .searchTerm:focus{
@@ -70,11 +73,12 @@
 
 .searchButton {
   width: 90px;
-  height: 36px;
-  border: 3px solid #6e6e6e;
-  background: #6e6e6e;
+  height: 52px;
+  border: 1px solid #6e6e6e;
+  background: #ffffff;
+  border-left: 0px;
   text-align: center;
-  color: #fff;
+  color: #6e6e6e;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
 }
