@@ -8,7 +8,6 @@ function Questions({ products }) {
   axios.get(`http://localhost:1100/questions/?product_id=37360`)
     .then((results) => {
       if (results.data.length > questionList.length) {
-        console.log(results.data)
         setQuestionList(results.data);
       }
     });

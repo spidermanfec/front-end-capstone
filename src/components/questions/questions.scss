@@ -22,6 +22,8 @@
 
 .outerWrap {
   //border-style:  soli
+  background-color: #ffffff;
+  color: #3f3f3f;
   font-family: 'Inter';
   border-width: 2px;
   padding: 5px;
@@ -41,9 +43,10 @@
   margin-left: 1%
 }
 
-.h2 {
-  font-size: 25px;
+h2 {
+  font-size: 18px;
   font-family: 'Inter';
+  font-weight: lighter;
 }
 
 
@@ -77,8 +80,9 @@
   border: 1px solid #6e6e6e;
   background: #ffffff;
   border-left: 0px;
-  text-align: center;
+  text-align: left;
   color: #6e6e6e;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: bold;
 }
