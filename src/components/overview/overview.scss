@@ -21,3 +21,25 @@ $widthProdInfo: percentage($number: 30);
 .quantity {
   list-style-type: none;
 }
+
+#sizeList {
+    font-weight: bold;
+    height: 60px;
+    width: 140px;
+    // border-radius: 8px;
+    background-color: white;
+    box-sizing: border-box;
+    transition: border-color 200ms ease-out 0s, box-shadow 200ms ease-out 0s;
+    border: solid;
+}
+
+#quantityList {
+    font-weight: bold;
+    height: 60px;
+    width: 54px;
+    // border-radius: 8px;
+    background-color: white;
+    box-sizing: border-box;
+    transition: border-color 200ms ease-out 0s, box-shadow 200ms ease-out 0s;
+    border: solid;
+}
