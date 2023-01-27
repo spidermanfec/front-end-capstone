@@ -4,32 +4,52 @@ import axios from 'axios';
 function Cart({ styles }) {
   const [open, setOpen] = React.useState(false);
 
-  let infos = Object.keys(styles.skus);
+  const [sizeSelected, setSizeSelected] = React.useState(false);
+
+  const [sku, setSku] = React.useState('');
+  const [size, setSize] = React.useState('');
+  const [quantity, setQuantity] = React.useState([]);
+
+  const infos = Object.keys(styles.skus);
 
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(!open);
   };
 
-  const clickSize = (e) => {
+  const handleChangeSize = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-  }
+    let size = e.target.value;
+    setSku(styles.skus[size])
+    setSizeSelected(true);
+  };
+
+  const handleSelectQuantity = () => {
+    let items = [];
+    for (let i = 1; i <= sku.quantity; i++) {
+      items.push(<option value={sku.quantity}>{i}</option>);
+    }
+    return items;
+  };
+
+  // handle submitting to cart here
+  // const handleSubmiit = (e) => {
+  //   e.preventDefault();
+  // };
 
   return (
-    <div className="dropdown">
-      <form>
-        <button onClick={(e) => handleOpen(e)}>Select Size</button>
-        {open ? (
-          <ul>
-            {infos.map((info) => {
-              return <li className="quantity"><button>{styles.skus[info].size}</button></li>;
-            })}
-          </ul>
-        ) : null}
-        {/* <button onClick={(e) => handleOpen(e)}>Quantity</button> */}
-      </form>
-    </div>
+    <form>
+      <select name="sizeList" id="sizeList" onClick={(e) => handleOpen(e)} onChange={handleChangeSize}>
+        <option value="" disabled selected>Select Size</option>
+      {infos.map((info) => <option value={info}>{styles.skus[info].size}</option>)}
+      </select>
+      <select name="quantityList" id="quantityList" onClick={sizeSelected}>
+      {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
+      </select>
+      <input type="submit" value="Add to Cart" onClick={((e) => {
+        handleSubmiit(e);
+      })}/>
+    </form>
   );
 }
 
