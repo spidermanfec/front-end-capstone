@@ -64,6 +64,29 @@ h2 {
   font-size: 14px;
 }
 
+.qHelpful {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-decoration: underline;
+}
+
+.qAddA {
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
+.qHelpful:hover {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+  cursor: pointer;
+}
+
+.qAddA:hover {
+  margin-left: 5px;
+  text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+  cursor: pointer;
+}
 // ALL this stuff imported button stuff.
 .qbutton {
   background-color: #ffffff;

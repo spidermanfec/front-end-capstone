@@ -9,7 +9,14 @@ function Qentry({ question }) {
           Q: {question.question_body}
         </span>
         <span className="rightSideQ">
-          Helpful? Yes (#) | Add Answer
+          Helpful?
+          <span className="qHelpful">
+            Yes ({question.question_helpfulness})
+          </span>
+          |
+          <span className="qAddA">
+           Add Answer
+          </span>
         </span>
       </div>
       <Alist answers={question.answers}/>
