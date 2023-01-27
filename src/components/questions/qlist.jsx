@@ -4,14 +4,18 @@ import Search from './search.jsx'
 
 function Qlist({ questionList }) {
   return (
-    <div className="floatingbox">
-      QUESTION and ANSWERS
+    <div className="innerWrap">
+      <h2>
+        QUESTION & ANSWERS
+      </h2>
       <p>
         <Search />
       </p>
       {questionList.map((item) => <Qentry question={item} key={item.question_id} />)}
-      <input type="button" value="MORE ANSWERED QUESTIONS" />
-      <input type="button" value="ADD A QUESTION +" />
+      <div>
+        <input type="button" value="MORE ANSWERED QUESTIONS" />
+        <input type="button" value="ADD A QUESTION +" />
+      </div>
     </div>
   );
 }

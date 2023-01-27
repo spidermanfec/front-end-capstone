@@ -5,9 +5,76 @@
   font-style: normal;
 }
 
-.floatingbox {
+.oppositeInline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.biggerBolder {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.smallText {
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.outerWrap {
   //border-style:  soli
   font-family: 'Inter';
   border-width: 2px;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.innerWrap {
+  display: flex;
+  flex-direction: column;
+  width: 60%
+}
+
+.aListWrap {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1%
+}
+
+.h2 {
+  font-size: 25px;
+  font-family: 'Inter';
+}
+
+
+// All this is imported searchbar stuff.
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #6e6e6e;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  outline: none;
+  color: #6e6e6e;
+}
+
+.searchTerm:focus{
+  color: #2b2b2b;
+}
+
+.searchButton {
+  width: 90px;
+  height: 36px;
+  border: 3px solid #6e6e6e;
+  background: #6e6e6e;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
 }

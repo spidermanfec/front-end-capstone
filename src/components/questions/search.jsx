@@ -2,7 +2,10 @@ import React from 'react';
 
 function Search() {
   return (
-    <input className="floatingbox" defaultValue="Search questions..." />
+    <div className="search">
+      <input className="searchTerm" defaultValue="Search questions for..." />
+      <button type="submit" className="searchButton"><i className="fa fa-search">Search</i></button>
+    </div>
   );
 }
 

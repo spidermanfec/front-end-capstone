@@ -5,16 +5,16 @@ import './questions.scss';
 
 function Questions({ products }) {
   const [questionList, setQuestionList] = useState([]);
-  axios.get(`http://localhost:1100/questions/?product_id=${products[4].id}`)
+  axios.get(`http://localhost:1100/questions/?product_id=37360`)
     .then((results) => {
       if (results.data.length > questionList.length) {
-        console.log(results.data);
+        console.log(results.data)
         setQuestionList(results.data);
       }
     });
 
   return (
-    <div className="floatingbox">
+    <div className="outerWrap">
       <Qlist questionList={questionList}/>
     </div>
   );
