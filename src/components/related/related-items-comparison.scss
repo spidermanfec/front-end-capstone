@@ -1,0 +1,56 @@
+div + div {
+  margin-left: 2em;
+}
+
+hr {
+  opacity: 30%;
+  width: 80%;
+}
+
+.related-n-outfits {
+  margin: 10%;
+}
+
+.card-carousel {
+  display: flex;
+  overflow-x: auto;
+}
+
+.card-carousel > div {
+  flex-shrink: 0;
+  width: 200px;
+  height: 300px;
+}
+
+.card {
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 200px;
+  height: 300px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-body {
+  padding: 2px 5px;
+  margin: 0;
+}
+
+.card-img {
+  width: 100%;
+  height: 65%;
+  border-radius: 10px 10px 0 0;
+}
+.card-btn {
+  position: absolute;
+  background-color: transparent;
+  border-color: transparent;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
