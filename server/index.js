@@ -2,8 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const qanda = require('./controllers/qanda.js')
-const logger = require('./middleware/logger.js')
+const qanda = require('./controllers/qanda');
+const { getRelatedProductIDs, getRelatedInfo } = require('./controllers/related');
+const logger = require('./middleware/logger');
 
 const app = express();
 
@@ -18,6 +19,16 @@ app.get('/questions', (req, res) => {
   qanda.getQuestionList(req.query.product_id, (results) => {
     res.send(results);
   });
+});
+
+app.get('/products/:product_id/related', (req, res) => {
+  getRelatedProductIDs(req, res)
+    .then((results) => results.data)
+    .then((relatedResults) => getRelatedInfo(relatedResults))
+    .then((results) => Promise.all(results))
+    .then((results) => results.map((result) => result.data))
+    .then((results) => res.send(results).sendStatus(200))
+    .catch(() => res.sendStatus(500));
 });
 
 app.listen(process.env.PORT);

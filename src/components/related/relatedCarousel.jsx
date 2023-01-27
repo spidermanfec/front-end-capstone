@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Card from './card.jsx';
 
-const { sampleData } = require('/sampledata.js');
+export default function RelatedCarousel({ productID }) {
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
-export default function RelatedCarousel({ category }) {
+  useEffect(() => {
+    axios.get(`/products/${productID}/related`)
+      .then((results) => setRelatedProducts(results.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="card-carousel related-products">
-      {sampleData.filter((prodInfo) => prodInfo.category === category)
-        .map((prod) => (
-          <Card
-            listType="related"
-            category={category}
-            name={prod.name}
-            defaultPrice={prod.default_price}
-          />
-        ))}
+      {relatedProducts.map((product) => (
+        <Card
+          listType="related"
+          category={product.category}
+          name={product.name}
+          defaultPrice={product.default_price}
+        />
+      ))}
     </div>
   );
-};
+}
 
 RelatedCarousel.propTypes = {
-  category: PropTypes.string.isRequired,
+  productID: PropTypes.string.isRequired,
 };
