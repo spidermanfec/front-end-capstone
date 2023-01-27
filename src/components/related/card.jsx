@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export default function Card({ listType, rerenderEverything }) {
+export default function Card({
+  listType, category, name, defaultPrice,
+}) {
   const [actionBtn, setActionBtn] = useState(null);
   useEffect(() => {
     if (listType === 'related') {
@@ -14,11 +16,11 @@ export default function Card({ listType, rerenderEverything }) {
   return (
     <div className="card">
       <img className="card-img" src="https://i.ytimg.com/vi/_DEgejL9ap4/maxresdefault.jpg" alt=":(" />
-      <button className="card-btn" type="button">*</button>
+      {actionBtn}
       <div className="card-body">
-        <p>category</p>
-        <p>name</p>
-        <p>price</p>
+        <p>{category}</p>
+        <p>{name}</p>
+        <p>{defaultPrice}</p>
         <p>rating</p>
       </div>
     </div>
@@ -27,5 +29,8 @@ export default function Card({ listType, rerenderEverything }) {
 
 Card.propTypes = {
   listType: PropTypes.string.isRequired,
-  rerenderEverything: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  defaultPrice: PropTypes.string.isRequired,
+  // rerenderEverything: PropTypes.func.isRequired,
 };
