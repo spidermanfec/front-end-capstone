@@ -3,30 +3,20 @@ import React from 'react';
 import Card from './card.jsx';
 import OutfitCard from './outfitCard.jsx';
 
+const { sampleData } = require('/sampledata.js');
+
 export default function OutfitCarousel() {
   return (
-    <div className="card-carousel related-products">
+    <div className="card-carousel outfit-products">
       <OutfitCard />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {sampleData.map((productInfo) => (
+        <Card
+          listType="outfit"
+          category={productInfo.category}
+          name={productInfo.name}
+          defaultPrice={productInfo.default_price}
+        />
+      ))}
     </div>
   );
 };
