@@ -26,7 +26,7 @@ app.get('/products', (req, res) => {
   qanda.getProducts((results) => {
     res.send(results);
   });
-);
+});
 
 app.get('/products/:product_id/related', (req, res) => {
   getRelatedProductIDs(req, res)
