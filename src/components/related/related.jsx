@@ -12,7 +12,7 @@ export default function Related() {
       <br />
       <hr />
       <br />
-      <OutfitCarousel />
+      <OutfitCarousel productID="37313" />
     </div>
   );
 }
