@@ -1,7 +1,3 @@
-div + div {
-  margin-left: 2em;
-}
-
 hr {
   opacity: 30%;
   width: 80%;
@@ -30,6 +26,10 @@ hr {
   border-radius: 10px;
   width: 200px;
   height: 300px;
+}
+
+.card + .card {
+  margin-left: 2em;
 }
 
 .card:hover {
