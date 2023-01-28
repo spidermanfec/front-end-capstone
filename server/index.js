@@ -21,6 +21,17 @@ app.get('/questions', (req, res) => {
   });
 });
 
+app.put('/helpfulq', (req, res) => {
+  qanda.helpfulQuestion(req.query.question_id, (results) => {
+    res.status(204).send();
+  });
+});
+
+app.put('/helpfula', (req, res) => {
+  qanda.helpfulAnswer(req.query.answer_id, (results) => {
+    res.status(204).send();
+  });
+
 app.get('/products/:product_id/related', (req, res) => {
   getRelatedProductIDs(req, res)
     .then((results) => results.data)
