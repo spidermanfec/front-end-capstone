@@ -4,8 +4,10 @@ import React from 'react';
 const SortOptions = () => {
 
 return (
+
   <div>
-   <label for="cars">Choose a car:</label>
+      <h4>Sort Options</h4>
+   <label for="Reviews">Sort By:</label>
   <select name="sortOptions" id="sortOptions">
   <option value="Relevance">Relevance</option>
   <option value="Helpful">Helpful</option>
