@@ -14,9 +14,22 @@ function Overview() {
 
   const [display, setDisplay] = React.useState([selectedProd1, styles.results[0]]);
 
-  const selectHandler = (e) => {
-    const target = e.target.value;
-  };
+  const [newItems, setNewItems] = React.useState([]);
+
+  // const selectHandler = (e) => {
+  //   const target = e.target.value;
+  // };
+
+  React.useEffect(() => {
+    axios.get('/products')
+      .then((result) => {
+        setNewItems(result.data);
+      }).catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log(newItems);
 
   return (
     <div className="overviewContainer">

@@ -27,6 +27,9 @@ function Cart({ styles }) {
 
   const handleSelectQuantity = () => {
     let items = [];
+    if (sku.quantity === undefined) {
+      return <option value="" disabled selected>Out Of Stock</option>;
+    }
     for (let i = 1; i <= sku.quantity; i++) {
       items.push(<option value={sku.quantity}>{i}</option>);
     }
@@ -45,7 +48,7 @@ function Cart({ styles }) {
         <option value="" disabled selected>Select Size</option>
         {infos.map((info) => <option value={info}>{styles.skus[info].size}</option>)}
       </select>
-      <select name="quantityList" id="quantityList" onClick={sizeSelected}>
+      <select name="quantityList" id="quantityList">
         {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
       </select>
       <input type="submit" onClick={((e) => {handleSubmit(e)})} />

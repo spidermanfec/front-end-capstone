@@ -11,3 +11,13 @@ exports.getQuestionList = (id, callback) => {
       callback(results.data.results);
     });
 };
+
+exports.getProducts = (callback) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  }).then((result) => {
+    callback(result.data);
+  });
+};

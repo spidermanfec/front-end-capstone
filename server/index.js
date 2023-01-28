@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const qanda = require('./controllers/qanda');
 const logger = require('./middleware/logger');
+const axios = require('axios');
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
   qanda.getQuestionList(req.query.product_id, (results) => {
+    res.send(results);
+  });
+});
+
+app.get('/products', (req, res) => {
+  qanda.getProducts((results) => {
     res.send(results);
   });
 });
