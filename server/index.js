@@ -20,5 +20,17 @@ app.get('/questions', (req, res) => {
   });
 });
 
+app.put('/helpfulq', (req, res) => {
+  qanda.helpfulQuestion(req.query.question_id, (results) => {
+    res.status(204).send();
+  });
+});
+
+app.put('/helpfula', (req, res) => {
+  qanda.helpfulAnswer(req.query.answer_id, (results) => {
+    res.status(204).send();
+  });
+});
+
 app.listen(process.env.PORT);
 console.log(`Server listening at http://localhost:${process.env.PORT}`);

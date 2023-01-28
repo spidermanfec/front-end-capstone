@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Aentry from './aentry.jsx';
 
 function Alist({ answers }) {
-  const answersList = Object.values(answers); // Convert annoying answers object to array.
+  let answersList = Object.values(answers); // Convert annoying answers object to array.
+  answersList = answersList.sort((a, b) => b.helpfulness - a.helpfulness); // Sort by helpful.
   const [loadableAs, setLoadableAs] = useState(2); // State to hold count of answers shown. Def 2.
   const loadableAsArray = [];
 
