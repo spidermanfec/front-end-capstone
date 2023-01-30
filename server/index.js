@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
   qanda.getQuestionList(req.query.product_id, (results) => {
+    console.log(req.query.product_id);
     res.send(results);
   });
 });
@@ -28,8 +29,20 @@ app.get('/products', (req, res) => {
   });
 });
 
+app.get('/productsid', (req, res) => {
+  qanda.getProductId((results) => {
+    res.send(results);
+  });
+});
+
+app.get('/productstyles', (req, res) => {
+  qanda.getProductsStyle((results) => {
+    res.send(results);
+  });
+});
+
 app.get('/products/:product_id/related', (req, res) => {
-  getRelatedProductIDs(req, res)
+  qanda.getRelatedProductIDs(req, res)
     .then((results) => results.data)
     .then((relatedResults) => getRelatedInfo(relatedResults))
     .then((results) => Promise.all(results))

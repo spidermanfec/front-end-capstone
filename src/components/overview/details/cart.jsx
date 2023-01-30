@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-function Cart({ styles }) {
+function Cart({ styles, selectedStyle, itemStyles }) {
   const [open, setOpen] = React.useState(false);
   const [sizeSelected, setSizeSelected] = React.useState(false);
   const [sku, setSku] = React.useState('');
   const [size, setSize] = React.useState('');
   const [amount, setAmount] = React.useState('');
+  // const [infos, setInfos] = React.useState([]);
+
+  console.log(selectedStyle);
+  console.log(styles);
 
   const infos = Object.keys(styles.skus);
 
@@ -22,8 +26,6 @@ function Cart({ styles }) {
     setSize(styles.skus[size].size)
     setSizeSelected(true);
   };
-
-  console.log(size);
 
   const handleSelectQuantity = () => {
     let items = [];

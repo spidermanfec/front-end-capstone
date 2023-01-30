@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-function Prodinfo({ display }) {
-  console.log(display);
+function Prodinfo({ items, itemsInfo, styles}) {
+
+  console.log(itemsInfo);
+
   return (
     <aside>
-      <h2>{display.name}</h2>
-      <small>{display.category}</small>
+      <h2>{itemsInfo.name}</h2>
+      <small>{itemsInfo.category}</small>
       <p>Ratings</p>
-      <p>{display.default_price || ('insert sale price heere')}</p>
-      <p>{display.description}</p>
+      <p>{styles.sale_price ? `On Sale: ${styles.sale_price}` : styles.original_price}</p>
+      <p>{itemsInfo.description}</p>
       <p>Share on SNS</p>
     </aside>
   );
