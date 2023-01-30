@@ -25,10 +25,10 @@ function App() {
         <Overview />
         <Questions products={products} />
         <Ratings />
-        <Related />
       </div>
     </CookiesProvider>
   );
 }
 
 root.render(<App />);
+//        <Related />
