@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const qanda = require('./controllers/qanda');
-const { getRelatedProductIDs, getRelatedInfo } = require('./controllers/related');
+const { getRelatedProductIDs, getProductsInfo } = require('./controllers/related');
 const logger = require('./middleware/logger');
 
 const app = express();
@@ -36,7 +36,22 @@ app.put('/helpfula', (req, res) => {
 app.get('/products/:product_id/related', (req, res) => {
   getRelatedProductIDs(req, res)
     .then((results) => results.data)
-    .then((relatedResults) => getRelatedInfo(relatedResults))
+    .then((relatedResults) => getProductsInfo(relatedResults))
+    .then((results) => Promise.all(results))
+    .then((results) => results.map((result) => result.data))
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
+});
+
+app.get('/outfit-products/', (req, res) => {
+  // req.query.q
+  // console.log(JSON.parse(req.query.q).map((numStr) => Number.parseInt(numStr, 10)));
+  const outfitIDs = new Promise((resolve, reject) => {
+    resolve(JSON.parse(req.query.q).map((numStr) => Number.parseInt(numStr, 10)));
+  });
+
+  outfitIDs
+    .then((ids) => getProductsInfo(ids))
     .then((results) => Promise.all(results))
     .then((results) => results.map((result) => result.data))
     .then((results) => res.status(200).send(results))
