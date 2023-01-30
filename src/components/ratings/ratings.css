@@ -1,33 +1,54 @@
+.starContainer {
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction:row;
+}
+
 .star {
   /* display: inline-block; */
+  /* flex-basis: 100px; */
+  float: left;
   display: flex;
-  position: relative;
+  /* position: relative; */
   font-size: 100px;
   color: #ddd;
   justify-content: space-around;
 }
 
 .star:after {
-  font-family: FontAwesome;
-  content: "\f005";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #f80;
-}
-
- #mutableStar:after {
-  display: flex;
+  flex-basis: 50px;
+  flex: none;
+  float: left;
   font-family: FontAwesome;
   content: "\f005";
   /* position: absolute; */
   left: 0;
   top: 0;
-  width: 50%;
+  width: 25%;
   overflow: hidden;
-  color: rgb(18, 155, 25);
+  /* color: rgb(255, 0, 0); */
+}
+
+#mutableStar {
+  flex-basis: 15px;
+  float:left;
+  display: flex;
+}
+
+ #mutableStar:after {
+  /* float:left;
+  display: flex; */
+  /* border-style:double; */
+  font-family: FontAwesome;
+  content: "\f005";
+  /* position: absolute; */
+  left: 0;
+  top: 0;
+  width: 40%;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
 }
 
 #reviewList {
@@ -37,6 +58,7 @@
   overflow-y: scroll;
   width: 800px;
   height: 400px;
+  float: right;
   /* color: rgb(18, 155, 25); */
 }
 
@@ -44,7 +66,6 @@
   border: rgb(185, 164, 143);
   border-width:thick;
   border-style:double;
-
 }
 
 .reviewStars {
@@ -81,10 +102,66 @@
 }
 
 .sliderText {
-
-  font-size: small;
+  height: 100%;
+  font-size: medium;
+  font-stretch: extra-expanded;
+  max-width:max-content;
+  border-style: double;
 }
-
 .slider {
  width:max-content;
+}
+.sliderBox {
+  width: 400px;
+}
+
+.RnR {
+  display: flex;
+  /* background-color: rgb(0, 0, 0);
+  color: #ddd;
+  border-style: dashed;
+  margin: 50px; */
+  width: 800px;
+}
+.ratingsCard {
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  text-align: left;
+  float:center;
+  width: 100px;
+}
+
+.reviewBar {
+  color: aqua;
+  accent-color: #15cd71;
+  width: 200px;
+  /* background: #016bff; */
+}
+.reviewBar::after {
+  background-color: #ff0000;
+}
+.recAvg {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ratingsBox {
+  /* background-color: #ff0000; */
+  width: 300px;
+}
+.slider {
+  width: 240px;
+}
+
+.reviewList {
+  width: 800px;
+}
+
+.RnR-header {
+  height: 10px;
+}
+
+.buttons {
+  display:initial
 }

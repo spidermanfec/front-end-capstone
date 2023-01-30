@@ -35,7 +35,7 @@ function RatingsCard() {
       sliderText = 'Runs tight Perfect Runs long'
     }
     // console.log('sliderval', value);
-    slidersArray.push(<div>
+    slidersArray.push(<div className='sliderBox'>
       <div>{key}</div>
       <input className='slider' type="range" value={value} max='5' name={key} disabled></input><br></br>
       <label className='sliderText' for={key}>{sliderText}</label>
@@ -85,13 +85,14 @@ function RatingsCard() {
 // console.log('RATINGAVG', recAvg, metaData.recommended.false, metaData.recommended.true, recTotal);
 
 return (
-  <div>
-  <div>{ratingAvg}</div>
-  <div>{recAvg}% of users recommend this product</div>
-  <div>{starMap}</div>
-  <div>{distributionMap}</div>
+  <div className='ratingsBox'>
+    <div className='ratingsCard'>{ratingAvg}<div className='starContainer'>{starMap}
+    </div>
+  </div>
+  <div className='recAvg'>{recAvg}% of users recommend this product</div>
+  <div className='progressBars'>{distributionMap}</div>
 
-  <div>{slidersArray}</div>
+  <div className='slidersArray'>{slidersArray}</div>
 </div>
 
 )

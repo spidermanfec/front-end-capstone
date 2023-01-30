@@ -25,15 +25,21 @@ const updateReviewArray = () => {
 // console.log('rednered reviews', renderedReviews, reviewsLength);
   return (
     <div>
-    <h4>Ratings & Reviews</h4>
+    <h4 className='RnR-header'>Ratings & Reviews</h4>
+    <div className='RnR'>
     <RatingsCard/>
+    <div className='reviewList'>
     <SortOptions/>
     <ReviewList renderedReviews={renderedReviews}/>
     {/* <ReviewForm/> */}
+      <div className='buttons'>
     <ShowMoreButton totalReviews={reviews} renderedReviews={renderedReviews} updateReviewArray={updateReviewArray}/>
      <button id="AddReview" type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
      <div>{showAddReviewForm ? <ReviewForm/> : ''} </div>
+        </div>
+      </div>
     </div>
+  </div>
   );
 }
 
