@@ -34,6 +34,12 @@ app.put('/helpfula', (req, res) => {
   });
 });
 
+app.put('/reporta', (req, res) => {
+  qanda.reportAnswer(req.query.answer_id, (results) => {
+    res.status(204).send();
+  });
+});
+
 app.get('/products/:product_id/related', (req, res) => {
   getRelatedProductIDs(req, res)
     .then((results) => results.data)

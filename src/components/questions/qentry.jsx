@@ -2,10 +2,13 @@ import axios from 'axios'
 import React, { useState } from 'react';
 import { useCookies } from "react-cookie";
 import Alist from './alist.jsx'
+import EntryModal from './entrymodal.jsx'
+
 
 function Qentry({ question }) {
   const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']);
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
+  const [entryModalState, setEntryModalState] = useState(false);
   let cookieChecker = cookies.helpfulQIDs.includes(question.question_id);
 
   const helpfulClick = () => {
@@ -25,8 +28,13 @@ function Qentry({ question }) {
     }
   };
 
+  const clickAddAnswer = () => {
+    setEntryModalState(true);
+  };
+
   return (
     <>
+      <EntryModal show={entryModalState} setEntryModalState={setEntryModalState} />
       <div className="oppositeInline">
         <span className="biggerBolder">
           Q: {question.question_body}
@@ -37,7 +45,7 @@ function Qentry({ question }) {
             Yes ({helpfulness})
           </span>
           |
-          <span className="qAddA">
+          <span className="qAddA" onClick={clickAddAnswer}>
            Add Answer
           </span>
         </span>

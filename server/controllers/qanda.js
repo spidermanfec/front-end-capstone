@@ -13,7 +13,6 @@ exports.getQuestionList = (id, callback) => {
 };
 
 exports.helpfulQuestion = (id, callback) => {
-  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/helpful`);
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/helpful`, {}, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
@@ -25,7 +24,6 @@ exports.helpfulQuestion = (id, callback) => {
 };
 
 exports.helpfulAnswer = (id, callback) => {
-  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${id}/helpful`);
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${id}/helpful`, {}, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
@@ -35,3 +33,15 @@ exports.helpfulAnswer = (id, callback) => {
       callback(results);
     });
 };
+
+exports.reportAnswer = (id, callback) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${id}/report`, {}, {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  })
+    .then((results) => {
+      callback(results);
+    });
+};
+

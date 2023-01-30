@@ -2,12 +2,13 @@ import Moment from 'moment';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
 import React, { useState } from 'react';
-import Modal from './picturemodal.jsx'
+import ImageModal from './picturemodal.jsx'
+
 
 function Aentry({ answer }) {
   const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']); // Cookie functionality.
   const [helpfulness, setHelpfulness] = useState(answer.helpfulness); // Helpfulness state.
-  const [modalState, setModalState] = useState(false);
+  const [imageModalState, setImageModalState] = useState(false);
   const [modalImage, setModalImage] = useState('');
   const [reported, setReported] = useState(false);
   let cookieChecker = cookies.helpfulQIDs.includes(answer.id); // Check for helpful on current ans.
@@ -30,21 +31,22 @@ function Aentry({ answer }) {
   };
 
   const reportAnswer = () => {
+    axios.put(`http://localhost:1100/reporta/?answer_id=${answer.id}`)
     setReported(true);
   };
 
-  const showModal = (e) => {
-    setModalState(true);
+  const showImageModal = (e) => {
+    setImageModalState(true);
     setModalImage(e.target.currentSrc);
   };
 
   return (
     <div className="aListEntry">
-      <Modal show={modalState} url={modalImage} setModalState={setModalState}/>
+      <ImageModal show={imageModalState} url={modalImage} setImageModalState={setImageModalState}/>
       <b>A: </b>
       {answer.body}
       <div>
-        {answer.photos.map((item, index) => { return <img src={item} key={index} className="croppedPic" onClick={showModal}/> })}
+        {answer.photos.map((item, index) => { return <img src={item} key={index} className="croppedPic" onClick={showImageModal}/> })}
       </div>
       <p className="smallText">
         by {answer.answerer_name}, {Moment.utc(answer.date).format("MMM Do, YYYY")} | Helpful?

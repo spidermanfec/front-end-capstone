@@ -126,7 +126,36 @@ h2 {
   font-size: 40px;
 }
 
-.modal {
+.modalEntry {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  display: flex;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+  backdrop-filter: blur(5px);
+  color: white;
+}
+
+.addAnswerEntry {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40%;
+}
+
+textarea[name="answer"] {
+  height: 30%;
+}
+
+.modalImage {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
