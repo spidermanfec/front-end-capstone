@@ -31,6 +31,7 @@ app.put('/helpfula', (req, res) => {
   qanda.helpfulAnswer(req.query.answer_id, (results) => {
     res.status(204).send();
   });
+});
 
 app.get('/products/:product_id/related', (req, res) => {
   getRelatedProductIDs(req, res)
@@ -38,8 +39,8 @@ app.get('/products/:product_id/related', (req, res) => {
     .then((relatedResults) => getRelatedInfo(relatedResults))
     .then((results) => Promise.all(results))
     .then((results) => results.map((result) => result.data))
-    .then((results) => res.send(results).sendStatus(200))
-    .catch(() => res.sendStatus(500));
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
 });
 
 app.listen(process.env.PORT);
