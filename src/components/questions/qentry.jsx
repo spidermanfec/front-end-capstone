@@ -5,7 +5,7 @@ import Alist from './alist.jsx'
 import EntryModal from './entrymodal.jsx'
 
 
-function Qentry({ question }) {
+function Qentry({ question, pullQuestions }) {
   const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']);
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [entryModalState, setEntryModalState] = useState(false);
@@ -34,7 +34,7 @@ function Qentry({ question }) {
 
   return (
     <>
-      <EntryModal show={entryModalState} setEntryModalState={setEntryModalState} />
+      <EntryModal show={entryModalState} setEntryModalState={setEntryModalState} question={question} pullQuestions={pullQuestions} />
       <div className="oppositeInline">
         <span className="biggerBolder">
           Q: {question.question_body}

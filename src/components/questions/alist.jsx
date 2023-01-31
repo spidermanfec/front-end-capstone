@@ -18,7 +18,7 @@ function Alist({ answers }) {
       {loadableAsArray}
       <div>
         {(loadableAs < answersList.length) && <input className="abutton" type="button" value="Show more answers..." onClick={() => setLoadableAs(answersList.length)} />}
-        {(loadableAs === answersList.length) && <input className="abutton" type="button" value="Collapse answers..." onClick={() => setLoadableAs(2)} />}
+        {(loadableAs === answersList.length && loadableAs !== 2) && <input className="abutton" type="button" value="Collapse answers..." onClick={() => setLoadableAs(2)} />}
       </div>
     </div>
   );

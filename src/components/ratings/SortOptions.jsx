@@ -5,7 +5,7 @@ const SortOptions = () => {
 
 return (
   <div>
-   <label for="cars">Choose a car:</label>
+   <label htmlFor="cars">Choose a car:</label>
   <select name="sortOptions" id="sortOptions">
   <option value="Relevance">Relevance</option>
   <option value="Helpful">Helpful</option>

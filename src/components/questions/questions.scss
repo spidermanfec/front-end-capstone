@@ -119,6 +119,10 @@ h2 {
   cursor: pointer;
 }
 
+.errorText {
+  color: red;
+}
+
 // Imported modal stuff.
 
 .fullPic {
@@ -161,6 +165,11 @@ h2 {
   flex-direction: column;
   justify-content: space-around;
   height: 50%;
+}
+
+.selectPhotoButton {
+  display: flex;
+  justify-content: center;
 }
 
 textarea[name="answer"] {
@@ -224,8 +233,8 @@ textarea[name="answer"] {
   border-width: 1px;
   border-color: #3f3f3f;
   margin: auto;
-  margin-top:  10px;
-  margin-bottom: 10px;
+  margin-top:  5px;
+  margin-bottom: 5px;
   width: 20%;
   color: #3f3f3f;
   text-align: center;

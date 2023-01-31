@@ -17,8 +17,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
   qanda.getQuestionList(req.query.product_id, (results) => {
-    console.log('test');
     res.send(results);
+  });
+});
+
+app.post('/answer', (req, res) => {
+  qanda.submitAnswer(req.query.question_id, req.body, (results) => {
+    res.status(204).send();
   });
 });
 

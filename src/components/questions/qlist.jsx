@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import Qentry from './qentry.jsx'
 import Search from './search.jsx'
 
-function Qlist({ questionList, setQuestionList }) {
+function Qlist({ questionList, setQuestionList, pullQuestions }) {
   const [loadableQs, setLoadableQs] = useState(2); // Use state to hold number of questions.
   const loadableQsArray = [];
-  console.log(questionList); // Console log shows question data.
 
   if (questionList.length > 0) { // Check if questions empty, load # of react comps in an array.
     for (let i = 0; i < loadableQs; i++) {
-      loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} />);
+      loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} pullQuestions={pullQuestions} />);
     }
   }
 
