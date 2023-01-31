@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(logger);
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
@@ -44,8 +44,6 @@ app.get('/products/:product_id/related', (req, res) => {
 });
 
 app.get('/outfit-products/', (req, res) => {
-  // req.query.q
-  // console.log(JSON.parse(req.query.q).map((numStr) => Number.parseInt(numStr, 10)));
   const outfitIDs = new Promise((resolve, reject) => {
     resolve(JSON.parse(req.query.q).map((numStr) => Number.parseInt(numStr, 10)));
   });
