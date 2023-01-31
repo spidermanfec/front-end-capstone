@@ -4,7 +4,6 @@ import { useCookies } from "react-cookie";
 import React, { useState } from 'react';
 import ImageModal from './picturemodal.jsx'
 
-
 function Aentry({ answer }) {
   const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']); // Cookie functionality.
   const [helpfulness, setHelpfulness] = useState(answer.helpfulness); // Helpfulness state.

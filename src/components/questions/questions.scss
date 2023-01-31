@@ -100,6 +100,18 @@ h2 {
   cursor: pointer;
 }
 
+.croppedUpload {
+  height:100px;
+  width: auto;
+}
+
+.photoThumbDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .croppedPic {
   height:100px;
   margin-right: 20px;
