@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Card({
+export default function OutfitCard({
   id, category, name, defaultPrice, setProduct, setOutfitProductsIDs,
 }) {
   return (
@@ -33,7 +33,7 @@ export default function Card({
   );
 }
 
-Card.propTypes = {
+OutfitCard.propTypes = {
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
