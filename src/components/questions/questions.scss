@@ -148,7 +148,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 40%;
+  height: 50%;
 }
 
 textarea[name="answer"] {
@@ -202,6 +202,32 @@ textarea[name="answer"] {
   margin-right: 30px;
   margin-top: 15px;
   cursor: pointer;
+}
+
+.ebutton {
+  background-color: #ffffff;
+  border: solid;
+  display: flex;
+  padding: 5px;
+  border-width: 1px;
+  border-color: #3f3f3f;
+  margin: auto;
+  margin-top:  10px;
+  margin-bottom: 10px;
+  width: 20%;
+  color: #3f3f3f;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ebutton:hover {
+  background-color: #3f3f3f;
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .abutton {

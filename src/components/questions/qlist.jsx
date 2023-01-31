@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Qentry from './qentry.jsx'
 import Search from './search.jsx'
-import Modal from './picturemodal.jsx'
 
 function Qlist({ questionList, setQuestionList }) {
   const [loadableQs, setLoadableQs] = useState(2); // Use state to hold number of questions.

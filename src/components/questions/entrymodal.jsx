@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Modal({ show, url, setEntryModalState }) {
+function Modal({ show, setEntryModalState }) {
   if (!show) { return null; }
+
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const closeModal = () => {
     setEntryModalState(false);
   };
 
   const onChange = (e) => { //Generic onChange function that handles all state based on the form names.
-    e.target.name === 'title' && setTitle(e.target.value)
-    e.target.name === 'image_id' && setImageID(e.target.value)
-    e.target.name === 'content' && setContent(e.target.value)
-    if (e.target.name === 'status') {
-      e.target.checked === true && setStatus('draft')
-      e.target.checked === false && setStatus('public')
-    }
+    e.target.name === 'answer' && setAnswer(e.target.value)
+    e.target.name === 'nickname' && setNickname(e.target.value)
+    e.target.name === 'email' && setEmail(e.target.value)
   }
 
   return (
@@ -24,6 +24,8 @@ function Modal({ show, url, setEntryModalState }) {
         Answer: <textarea className="answerEntry" name="answer" onChange={onChange} placeholder="Your answer..." />
         Nickname : <input className="answerEntry" name="nickname" onChange={onChange} placeholder="Example: jack543!" />
         E-mail : <input className="answerEntry" name="email" onChange={onChange} placeholder="Example: jack@email.com" />
+        <input className="ebutton" type="button" value="UPLOAD PHOTOS" onClick={() => console.log('hi')} />
+        <input className="ebutton" type="button" value="SUBMIT ANSWER" />
       </div>
     </div>
   );
