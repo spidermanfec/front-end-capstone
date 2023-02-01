@@ -22,6 +22,11 @@ function Modal({ question, show, setEntryModalState, pullQuestions }) {
   if (!show) { return null; }
 
   const closeModal = () => {
+    setImages([]);
+    setImageUrls([]);
+    setAnswer('');
+    setEmail('');
+    setNickname('');
     setEntryModalState(false);
   };
 
