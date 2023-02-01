@@ -5,7 +5,7 @@ function Ratings() {
   return (
     <div>
     <p> Ratings</p>
-    <p>penis</p>
+    <p></p>
     <SortOptions/>
     <RatingsCard/>
 

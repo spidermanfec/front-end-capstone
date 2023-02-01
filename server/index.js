@@ -16,13 +16,19 @@ app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
-  qanda.getQuestionList(req.query.product_id, (results) => {
+  qanda.getQuestionList(req.query.product_id, req.query.count, (results) => {
     res.send(results);
   });
 });
 
 app.post('/answer', (req, res) => {
   qanda.submitAnswer(req.query.question_id, req.body, (results) => {
+    res.status(204).send();
+  });
+});
+
+app.post('/question', (req, res) => {
+  qanda.submitQuestion(req.query.product_id, req.body, (results) => {
     res.status(204).send();
   });
 });
@@ -41,6 +47,12 @@ app.put('/helpfula', (req, res) => {
 
 app.put('/reporta', (req, res) => {
   qanda.reportAnswer(req.query.answer_id, (results) => {
+    res.status(204).send();
+  });
+});
+
+app.put('/reportq', (req, res) => {
+  qanda.reportQuestion(req.query.question_id, (results) => {
     res.status(204).send();
   });
 });
