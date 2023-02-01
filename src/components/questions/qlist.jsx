@@ -6,8 +6,9 @@ import QEntryModal from './qentrymodal.jsx'
 function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, pullQuestions, product_name }) {
   const loadableQsArray = [];
   let minimumQListSize = 0;
-  if (questionList.length > 2) { minimumQListSize = 2; }
-  if (questionList.length <= 2) { minimumQListSize = questionList.length; }
+  if (qCount > 2) { minimumQListSize = 2; }
+  if (qCount <= 2) { minimumQListSize = qCount; }
+  const [searchTerm, setSearchTerm] = useState(''); // Hold search term state.
   const [loadableQs, setLoadableQs] = useState(minimumQListSize); // Use state to hold number of questions.
   const [entryModalState, setEntryModalState] = useState(false);
 
@@ -15,15 +16,23 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
     setLoadableQs(minimumQListSize);
   }, [minimumQListSize]);
 
-  if (questionList.length > 0) { // Check if questions empty, load # of react comps in an array.
+  if (qCount > 0 && searchTerm.length < 3) { // Check if questions empty, load # of react comps in an array.
     for (let i = 0; i < loadableQs; i++) {
       loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} pullQuestions={pullQuestions} product_name={product_name}/>);
+    }
+  } else if (qCount > 0 && searchTerm.length >= 3) {
+    for (let i = 0; i < qCount; i++) {
+      if (questionList[i].question_body.includes(searchTerm)) {
+        loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} pullQuestions={pullQuestions} product_name={product_name}/>);
+      }
+    }
+    if (loadableQs !== loadableQsArray.length) {
+      setLoadableQs(loadableQsArray.length);
     }
   }
 
   const moreQsOnClick = () => { // On click function for more qs
-    setQCount(qCount + 2);
-    const difference = questionList.length - loadableQsArray.length;
+    const difference = qCount - loadableQsArray.length;
     if (difference >= 2) { // Adds 2 at a time, or difference to max.
       setLoadableQs(loadableQs + 2);
     } else {
@@ -41,12 +50,12 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
       <h2>
         QUESTIONS & ANSWERS
       </h2>
-      <Search questionList={questionList} setQuestionList={setQuestionList} />
+      <Search questionList={questionList} setQuestionList={setQuestionList} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="questionList">
         {loadableQsArray}
       </div>
       <div>
-        {(loadableQs < questionList.length) && <input className="qbutton" type="button" value="MORE QUESTIONS" onClick={moreQsOnClick} />}
+        {(loadableQs < questionList.length && searchTerm.length < 3) && <input className="qbutton" type="button" value="MORE QUESTIONS" onClick={moreQsOnClick} />}
         <input className="qbutton" type="button" onClick={clickAddQuestion} value="ADD A QUESTION +" />
       </div>
     </div>

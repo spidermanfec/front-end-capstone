@@ -6,22 +6,24 @@ import './questions.scss';
 
 function Questions({ product }) {
   const [questionList, setQuestionList] = useState([]);
-  const [qCount, setQCount] = useState(3);
+  const [qCount, setQCount] = useState(0);
   const product_id = 37360;
-  const product_name = 'Super Nice Shoes'
+  const product_name = 'Super Nice Shoes';
 
   const pullQuestions = () => { // Used to rerender questions when internal stuff changes, passed as prop.
-    axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=${qCount}`)
+    axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`)
       .then((results) => {
         const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+        setQCount(results.data.length);
         setQuestionList(sortedByHelpfulness); // Set question list to the result of the axios.
       });
   };
 
-  axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=${qCount}`) //  Axios get on render. Pass id later.
+  axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`) //  Axios get on render. Pass id later.
     .then((results) => {
       if (results.data.length > questionList.length) { // Ensure it doesn't loop. vvvv sort by helpful
         const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+        setQCount(results.data.length);
         setQuestionList(sortedByHelpfulness); // Set question list to the result of the axios.
       }
     });
