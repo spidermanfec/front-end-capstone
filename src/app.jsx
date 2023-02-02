@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { CookiesProvider } from 'react-cookie';
-import { createRoot } from 'react-dom/client';
 import './index.scss';
 import sampleData from '../sampledata.js'
 import Overview from './components/overview/overview.jsx';
@@ -24,4 +23,3 @@ function App() {
 }
 
 export default App;
-// <Related />
