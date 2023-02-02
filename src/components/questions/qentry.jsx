@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react';
 import { useCookies } from "react-cookie";
 import Alist from './alist.jsx'
-<<<<<<< HEAD
+
 import AEntryModal from './aentrymodal.jsx'
 
 
@@ -11,12 +11,6 @@ function Qentry({ question, pullQuestions, product_name }) {
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [entryModalState, setEntryModalState] = useState(false);
   const [reported, setReported] = useState(false);
-=======
-
-function Qentry({ question }) {
-  const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']);
-  const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
->>>>>>> master
   let cookieChecker = cookies.helpfulQIDs.includes(question.question_id);
 
   const helpfulClick = () => {
@@ -36,7 +30,6 @@ function Qentry({ question }) {
     }
   };
 
-<<<<<<< HEAD
   const clickAddAnswer = () => {
     setEntryModalState(true);
   };
@@ -49,10 +42,6 @@ function Qentry({ question }) {
   return (
     <div className="aListWrapper">
       <AEntryModal show={entryModalState} setEntryModalState={setEntryModalState} question={question} pullQuestions={pullQuestions} product_name={product_name} />
-=======
-  return (
-    <>
->>>>>>> master
       <div className="oppositeInline">
         <span className="biggerBolder">
           Q: {question.question_body}
@@ -63,27 +52,18 @@ function Qentry({ question }) {
             Yes ({helpfulness})
           </span>
           |
-<<<<<<< HEAD
           <span className="qAddA" onClick={clickAddAnswer}>
            Add Answer
           </span>
           |
           <span className="qAddA" onClick={reportQuestion}>
-            {!reported && <span className="reportAnA" onClick={reportQuestion}>Report</span>}{reported && <span className="reportAnA" style={{ fontWeight: 'bold', cursor: 'default' }}>Reported</span>}
+            {!reported && <span className="reportAnA" onClick={reportQuestion}>Report</span>}
+            {reported && <span className="reportAnA" style={{ fontWeight: 'bold', cursor: 'default' }}>Reported</span>}
           </span>
         </span>
       </div>
       <Alist answers={question.answers}/>
     </div>
-=======
-          <span className="qAddA">
-           Add Answer
-          </span>
-        </span>
-      </div>
-      <Alist answers={question.answers}/>
-    </>
->>>>>>> master
   );
 }
 
