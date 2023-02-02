@@ -7,8 +7,12 @@ import ComparisonModal from './comparisonModal.jsx';
 import './related-items-comparison.scss';
 
 export default function Related({ productID, setProduct }) {
-  const [leftID, setLeftID] = useState(productID);
+  const [leftID, setLeftID] = useState('');
   const [rightID, setRightID] = useState('');
+
+  useEffect(() => {
+    setLeftID(productID);
+  }, [productID]);
 
   return (
     <div className="related-n-outfits">
