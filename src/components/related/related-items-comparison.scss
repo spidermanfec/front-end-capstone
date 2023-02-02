@@ -1,3 +1,21 @@
+// ::-webkit-scrollbar{
+//   width: 0px;
+//   background: transparent;
+// }
+// ::-webkit-scrollbar-thumb{
+//   border-radius: 10px;
+//   background-color: #CFCFCF;
+// }
+// ::-webkit-scrollbar-track{
+//   border-radius: 10px;
+//   background-color: #FFFFFF;
+// }
+
+small {
+  font-size: smaller;
+  font-weight: lighter;
+}
+
 hr {
   opacity: 30%;
   width: 80%;
@@ -9,6 +27,8 @@ hr {
 
 .card-carousel {
   display: flex;
+  flex-wrap: nowrap;
+  height: 350px;
   overflow-x: auto;
 }
 
@@ -19,13 +39,15 @@ hr {
 }
 
 .card {
+  flex: 0 0 auto;
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border: 1px solid white;
-  border-radius: 10px;
+  // border: 1px solid white;
+  // border-radius: 10px;
   width: 200px;
   height: 300px;
+  overflow: hidden;
 }
 
 .card + .card {
@@ -42,15 +64,53 @@ hr {
 }
 
 .card-img {
-  width: 100%;
   height: 65%;
-  border-radius: 10px 10px 0 0;
+  width: 100%;
 }
+
 .card-btn {
   position: absolute;
   background-color: transparent;
   border-color: transparent;
   top: 0;
   right: 0;
-  z-index: 1;
+  // z-index: 1;
+}
+
+.comparison-modal {
+  padding: 0;
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  margin: 150px 150px;
+  display: flex;
+  right: 20%;
+  top: 0;
+  width: 500px; /* Full width */
+  height: 200px; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  color: black;
+  background-color: white;
+  border: 1px solid #888;
+}
+
+.cmp-mdl-products {
+  position: relative;
+}
+
+.cmp-mdl-contents {
+  height: 80%;
+  overflow: auto;
+
+}
+
+.cmp-mdl-grid {
+  display: grid;
+  grid-auto-columns: .7fr 2.5fr .7fr;
+  grid-auto-flow: column;
+}
+
+.grid-itm {
+  text-align: center;
+  padding: .5em;
+  white-space: nowrap;
 }
