@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const RatingsCard = () => {
-
-return (
-  <div>
-    placeholder number 4.9
-  </div>
-=======
 import React, { useState, useEffect } from 'react';
 import SampleData2 from './SampleData2.jsx';
 import SampleDataMeta from './SampleDataMeta.jsx';
@@ -104,7 +94,6 @@ return (
   <div>{slidersArray}</div>
 </div>
 
->>>>>>> master
 )
 
 }

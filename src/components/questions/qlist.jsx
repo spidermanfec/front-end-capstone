@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import Qentry from './qentry.jsx'
 import Search from './search.jsx'
@@ -35,29 +34,11 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
     }
     if (loadableQs !== loadableQsArray.length) {
       setLoadableQs(loadableQsArray.length);
-=======
-import React, { useState } from 'react';
-import Qentry from './qentry.jsx'
-import Search from './search.jsx'
-
-function Qlist({ questionList, setQuestionList }) {
-  const [loadableQs, setLoadableQs] = useState(2); // Use state to hold number of questions.
-  const loadableQsArray = [];
-  console.log(questionList); // Console log shows question data.
-
-  if (questionList.length > 0) { // Check if questions empty, load # of react comps in an array.
-    for (let i = 0; i < loadableQs; i++) {
-      loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} />);
->>>>>>> master
     }
   }
 
   const moreQsOnClick = () => { // On click function for more qs
-<<<<<<< HEAD
     const difference = qCount - loadableQsArray.length;
-=======
-    const difference = questionList.length - loadableQsArray.length;
->>>>>>> master
     if (difference >= 2) { // Adds 2 at a time, or difference to max.
       setLoadableQs(loadableQs + 2);
     } else {
@@ -65,7 +46,6 @@ function Qlist({ questionList, setQuestionList }) {
     }
   };
 
-<<<<<<< HEAD
   const clickAddQuestion = () => {
     setEntryModalState(true);
   };
@@ -83,18 +63,6 @@ function Qlist({ questionList, setQuestionList }) {
       <div>
         {(loadableQs < questionList.length && searchTerm.length < 3) && <input className="qbutton" type="button" value="MORE QUESTIONS" onClick={moreQsOnClick} />}
         <input className="qbutton" type="button" onClick={clickAddQuestion} value="ADD A QUESTION +" />
-=======
-  return (
-    <div className="innerWrap">
-      <h2>
-        QUESTION & ANSWERS
-      </h2>
-      <Search questionList={questionList} setQuestionList={setQuestionList} />
-      {loadableQsArray}
-      <div>
-        {(loadableQs < questionList.length) && <input className="qbutton" type="button" value="MORE ANSWERED QUESTIONS" onClick={moreQsOnClick} />}
-        <input className="qbutton" type="button" value="ADD A QUESTION +" />
->>>>>>> master
       </div>
     </div>
   );

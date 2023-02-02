@@ -1,7 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
 
-<<<<<<< HEAD
 exports.getQuestionList = (id, count, callback) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${id}&count=${count}`, {
     headers: {
@@ -39,10 +38,6 @@ exports.submitQuestion = (id, info, callback) => {
     email: info.email,
     product_id: Number(id),
   }, {
-=======
-exports.getQuestionList = (id, callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${id}`, {
->>>>>>> master
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
     },
@@ -53,10 +48,6 @@ exports.getQuestionList = (id, callback) => {
 };
 
 exports.helpfulQuestion = (id, callback) => {
-<<<<<<< HEAD
-=======
-  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/helpful`);
->>>>>>> master
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${id}/helpful`, {}, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
@@ -68,10 +59,6 @@ exports.helpfulQuestion = (id, callback) => {
 };
 
 exports.helpfulAnswer = (id, callback) => {
-<<<<<<< HEAD
-=======
-  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${id}/helpful`);
->>>>>>> master
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${id}/helpful`, {}, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
@@ -81,7 +68,6 @@ exports.helpfulAnswer = (id, callback) => {
       callback(results);
     });
 };
-<<<<<<< HEAD
 
 exports.reportAnswer = (id, callback) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${id}/report`, {}, {
@@ -105,5 +91,3 @@ exports.reportQuestion = (id, callback) => {
     });
 };
 
-=======
->>>>>>> master

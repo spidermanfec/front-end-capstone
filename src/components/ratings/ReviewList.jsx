@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-
-const ReviewList = () => {
-
-
-
-
-=======
 import React, { useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard.jsx';
 import SampleData from './SampleData.jsx';
@@ -48,7 +38,6 @@ const ReviewList = ({renderedReviews}) => {
     {/* <button id="showMore" type="button" onClick={() => {showMoreReviews()}}>Show More</button> */}
     </div>
   )
->>>>>>> master
 }
 
 

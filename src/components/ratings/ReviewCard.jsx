@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-
-const ReviewCard = () => {
-
-
-
-=======
 import React, { useState } from 'react';
 
 
@@ -46,7 +37,6 @@ return (
     <div>Helpfulness Ratings bottom left</div>
   </div>
 )
->>>>>>> master
 }
 
 

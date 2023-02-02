@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import RatingsCard from './RatingsCard.jsx';
-import SortOptions from './SortOptions.jsx';
-=======
 import React, { useState, useEffect } from 'react';
 import RatingsCard from './RatingsCard.jsx';
 import SortOptions from './SortOptions.jsx';
@@ -12,7 +7,6 @@ import './ratings.css';
 import SampleData from './SampleData.jsx';
 import ShowMoreButton from './ShowMoreButton.jsx';
 
->>>>>>> master
 function Ratings() {
 // console.log('showmorebutton', ShowMoreButton)
 var reviews = SampleData().results;
@@ -31,13 +25,6 @@ const updateReviewArray = () => {
 // console.log('rednered reviews', renderedReviews, reviewsLength);
   return (
     <div>
-<<<<<<< HEAD
-    <p> Ratings</p>
-    <p></p>
-    <SortOptions/>
-    <RatingsCard/>
-
-=======
     <h4>Ratings & Reviews</h4>
     <RatingsCard/>
     <SortOptions/>
@@ -46,7 +33,6 @@ const updateReviewArray = () => {
     <ShowMoreButton totalReviews={reviews} renderedReviews={renderedReviews} updateReviewArray={updateReviewArray}/>
      <button id="AddReview" type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
      <div>{showAddReviewForm ? <ReviewForm/> : ''} </div>
->>>>>>> master
     </div>
   );
 }
