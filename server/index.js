@@ -3,7 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const qanda = require('./controllers/qanda');
-const { getRelatedProductIDs, getProductInfo, getProductsInfo, getPreviewImage, getPreviewImages } = require('./controllers/related');
+const {
+  getRelatedProductIDs, getProductInfo, getProductsInfo, getCardStyle,
+} = require('./controllers/related');
 const logger = require('./middleware/logger');
 const axios = require('axios');
 
@@ -91,7 +93,7 @@ app.get('/products/:product_id/details', (req, res) => {
 });
 
 app.get('/products/:product_id/styles', (req, res) => {
-  getPreviewImage(req.params.product_id)
+  getCardStyle(req.params.product_id)
     .then((results) => results.data)
     .then((results) => res.status(200).send(results))
     .catch(() => res.send(500));
