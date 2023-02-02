@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export default function OutfitCard({
-  id, category, name, defaultPrice, salePrice, photo, setProduct, removeProduct,
+export default function RelatedCard({
+  id, category, name, defaultPrice, salePrice, photo, setProduct, setComparison,
 }) {
-  const displayPrice = () => {
-    if (salePrice.length > 0) {
-      return (
-        <div className="card-price">
+  let price = (
+    <div>
+      <p>{defaultPrice}</p>
+    </div>
+  );
+
+  useEffect(() => {
+    if (salePrice.length !== '') {
+      price = (
+        <div>
           <p><s>{defaultPrice}</s></p>
-          <p>{salePrice}</p>
+          <p style={{ color: 'red' }}>{salePrice}</p>
         </div>
       );
     }
-    return (
-      <div className="card-price">
-        <p>{defaultPrice}</p>
-      </div>
-    );
-  };
+  }, []);
 
   return (
     <div
@@ -28,29 +29,28 @@ export default function OutfitCard({
       role="button"
       tabIndex="0"
     >
-      <img className="card-img" src={photo} alt=":(" />
+      <img className="card-img img" src={photo} alt=":(" />
       <button
         className="card-btn rm-outfit-btn"
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          removeProduct(id);
+          setComparison(id);
         }}
-        tabIndex="0"
       >
-        x
+        O
       </button>
       <div className="card-body">
         <p>{category}</p>
         <p>{name}</p>
-        {displayPrice()}
+        {price}
         <p>rating</p>
       </div>
     </div>
   );
 }
 
-OutfitCard.propTypes = {
+RelatedCard.propTypes = {
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -58,5 +58,5 @@ OutfitCard.propTypes = {
   salePrice: PropTypes.string.isRequired,
   photo: PropTypes.string.isRequired,
   setProduct: PropTypes.func.isRequired,
-  removeProduct: PropTypes.func.isRequired,
+  setComparison: PropTypes.func.isRequired,
 };

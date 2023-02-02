@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const qanda = require('./controllers/qanda');
-const { getRelatedProductIDs, getRelatedInfo } = require('./controllers/related');
+const { getRelatedProductIDs, getProductInfo, getProductsInfo, getPreviewImage, getPreviewImages } = require('./controllers/related');
 const logger = require('./middleware/logger');
 
 const app = express();
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(logger);
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
@@ -31,15 +31,40 @@ app.put('/helpfula', (req, res) => {
   qanda.helpfulAnswer(req.query.answer_id, (results) => {
     res.status(204).send();
   });
+});
 
 app.get('/products/:product_id/related', (req, res) => {
   getRelatedProductIDs(req, res)
     .then((results) => results.data)
-    .then((relatedResults) => getRelatedInfo(relatedResults))
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
+});
+
+app.get('/products/:product_id/details', (req, res) => {
+  getProductInfo(req.params.product_id)
+    .then((results) => results.data)
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
+});
+
+app.get('/products/:product_id/styles', (req, res) => {
+  getPreviewImage(req.params.product_id)
+    .then((results) => results.data)
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.send(500));
+});
+
+app.get('/products/id', (req, res) => {
+  const outfitIDs = new Promise((resolve, reject) => {
+    resolve(JSON.parse(req.query.q).map((numStr) => Number.parseInt(numStr, 10)));
+  });
+
+  outfitIDs
+    .then((ids) => getProductsInfo(ids))
     .then((results) => Promise.all(results))
     .then((results) => results.map((result) => result.data))
-    .then((results) => res.send(results).sendStatus(200))
-    .catch(() => res.sendStatus(500));
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
 });
 
 app.listen(process.env.PORT);
