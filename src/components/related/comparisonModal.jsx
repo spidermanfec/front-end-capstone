@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropType from 'prop-types';
 import axios from 'axios';
+import ComparisonModalEntry from './comparisonModalEntry.jsx';
 
 export default function ComparisonModal({ leftID, rightID, setComparison }) {
   const [dataL, setdataL] = useState([]);
   const [dataR, setdataR] = useState([]);
-  const [features, setFeatures] = useState([]);
-  // const [sharedFeatures, setSharedFeatures] = useState([]);
-  // const [uniqFeatures, setUniqFeatures] = useState([]);
   const [isHidden, toggleHidden] = useState(true);
-  // const test = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
   const [leftFeatures, setLeftFeatures] = useState({});
   const [rightFeatures, setRightFeatures] = useState({});
   const [sharedFeatures, setSharedFeatures] = useState({});
@@ -40,47 +39,32 @@ export default function ComparisonModal({ leftID, rightID, setComparison }) {
   }, [rightID]);
 
   useEffect(() => {
-    if (dataL.features !== undefined) {
-      setFeatures(dataL.features);
-    }
-  }, [dataL]);
-
-  useEffect(() => {
-    // test.current = dataL.features;
-    // console.log('USE REF L: ', test.current);
-    // test.current = dataR.features;
-    // console.log('USE REF R: ', test.current);
+    leftRef.current = dataL.features;
     if (dataR.features !== undefined) {
-      setFeatures((oldFeats) => {
-        const leftFeats = {};
-        oldFeats.forEach(
-          (oldFeat) => {
-            leftFeats[oldFeat.feature] = oldFeat.value;
-            return oldFeat;
-          },
-        );
-        const rightFeats = {};
-        dataR.features.forEach(
-          (newFeat) => {
-            rightFeats[newFeat.feature] = newFeat.value;
-          },
-        );
-        console.log('left: ', leftFeats);
-        console.log('right: ', rightFeats);
-        const sharedFeats = {};
-        (Object.keys(leftFeats)).forEach((key) => {
-          console.log(key);
-          if (leftFeats[key] === rightFeats[key]) {
-            sharedFeats[key] = leftFeats.value;
-            delete leftFeats[key];
-            delete rightFeats[key];
-          }
-        });
-        console.log('shared: ', sharedFeats);
-        console.log('left: ', leftFeats);
-        console.log('right: ', rightFeats);
-        return oldFeats;
+      rightRef.current = dataR.features;
+      const leftFeats = {};
+      const rightFeats = {};
+      const sharedFeats = {};
+      leftRef.current.forEach(
+        (leftFeat) => {
+          leftFeats[leftFeat.feature] = leftFeat.value;
+        },
+      );
+      rightRef.current.forEach(
+        (rightFeat) => {
+          rightFeats[rightFeat.feature] = rightFeat.value;
+        },
+      );
+      (Object.keys(leftFeats)).forEach((feat) => {
+        if (leftFeats[feat] === rightFeats[feat]) {
+          sharedFeats[feat] = leftFeats[feat];
+          delete leftFeats[feat];
+          delete rightFeats[feat];
+        }
       });
+      setLeftFeatures(leftFeats);
+      setRightFeatures(rightFeats);
+      setSharedFeatures(sharedFeats);
     }
   }, [dataR]);
 
@@ -96,16 +80,34 @@ export default function ComparisonModal({ leftID, rightID, setComparison }) {
   return (
     <div className="comparison-modal" style={style}>
       <button type="button" className="card-btn" onClick={buttonAction}>x</button>
+      <small className="grid-itm">Comparing</small>
+      <div className="cmp-mdl-grid cmp-mdl-products">
+        <div className="grid-itm">{dataL.name}</div>
+        <div className="grid-itm" />
+        <div className="grid-itm">{dataR.name}</div>
+      </div>
       <div className="cmp-mdl-contents">
-        Comparing
-        <div className="cmp-mdl-grid cmp-mdl-products">
-          <div className="grid-itm">{dataL.name}</div>
-          <div className="grid-itm" />
-          <div className="grid-itm">{dataR.name}</div>
-        </div>
-        <div className="cmp-mdl-grid cmp-mdl-features">
-
-        </div>
+        {(Object.keys(sharedFeatures).map((featName) => (
+          <ComparisonModalEntry
+            name={featName}
+            value={sharedFeatures[featName]}
+            type="shared"
+          />
+        )))}
+        {(Object.keys(leftFeatures).map((featName) => (
+          <ComparisonModalEntry
+            name={featName}
+            value={leftFeatures[featName]}
+            type="left"
+          />
+        )))}
+        {(Object.keys(rightFeatures).map((featName) => (
+          <ComparisonModalEntry
+            name={featName}
+            value={rightFeatures[featName]}
+            type="right"
+          />
+        )))}
       </div>
     </div>
   );
