@@ -10,11 +10,12 @@ import Related from './components/related/related.jsx';
 
 function App() {
   const [products, setProducts] = useState(sampleData);
-
+  const [productID, setProductID] = useState('37315');
   return (
     <CookiesProvider>
       <div>
         <Overview />
+        <Related productID={productID} setProduct={setProductID} />
         <Questions products={products} />
         <Ratings />
       </div>
