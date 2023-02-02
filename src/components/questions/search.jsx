@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-function Search({ questionList, setQuestionList }) {
-  const [searchTerm, setSearchTerm] = useState(''); // Hold search term state.
+function Search({ questionList, setQuestionList, setSearchTerm }) {
   const onChangeSearch = (e) => { // Handler for onchange.
-    console.log(e.target.value);
+    setSearchTerm(e.target.value);
   };
 
   return (
