@@ -7,6 +7,7 @@ const {
   getRelatedProductIDs, getProductInfo, getProductsInfo, getCardStyle,
 } = require('./controllers/related');
 const logger = require('./middleware/logger');
+const axios = require('axios');
 
 const app = express();
 
@@ -19,6 +20,24 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/questions', (req, res) => {
   qanda.getQuestionList(req.query.product_id, req.query.count, (results) => {
+    res.send(results);
+  });
+});
+
+app.get('/products', (req, res) => {
+  qanda.getProducts((results) => {
+    res.send(results);
+  });
+});
+
+app.get('/productsid', (req, res) => {
+  qanda.getProductId((results) => {
+    res.send(results);
+  });
+});
+
+app.get('/productstyles', (req, res) => {
+  qanda.getProductsStyle((results) => {
     res.send(results);
   });
 });
@@ -60,7 +79,7 @@ app.put('/reportq', (req, res) => {
 });
 
 app.get('/products/:product_id/related', (req, res) => {
-  getRelatedProductIDs(req, res)
+  qanda.getRelatedProductIDs(req, res)
     .then((results) => results.data)
     .then((results) => res.status(200).send(results))
     .catch(() => res.status(500));
