@@ -184,6 +184,18 @@ h2 {
   height: 50%;
 }
 
+.addQuestionEntry {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 35%;
+}
+
+.warningInputText {
+  font-size: 12px;
+  font-style: italic;
+}
 .selectPhotoButton {
   display: flex;
   justify-content: center;

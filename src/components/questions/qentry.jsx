@@ -56,8 +56,7 @@ function Qentry({ question, pullQuestions, product_name }) {
           </span>
           |
           <span className="qAddA" onClick={reportQuestion}>
-            {!reported && <span className="reportAnA" onClick={reportQuestion}>Report</span>}
-            {reported && <span className="reportAnA" style={{ fontWeight: 'bold', cursor: 'default' }}>Reported</span>}
+            {!reported && <span className="reportAnA" onClick={reportQuestion}>Report</span>}{reported && <span className="reportAnA" style={{ fontWeight: 'bold', cursor: 'default' }}>Reported</span>}
           </span>
         </span>
       </div>

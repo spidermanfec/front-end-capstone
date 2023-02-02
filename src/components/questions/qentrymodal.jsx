@@ -54,13 +54,15 @@ function Modal({ product_id, show, setEntryModalState, pullQuestions, product_na
         Submit your Question<br /><br />
         About {product_name}
       </div>
-      <div className="addAnswerEntry">
+      <div className="addQuestionEntry">
         {questionAlert && <span className="errorText"> You must enter the following : </span>}
         Question: <textarea className="answerEntry" name="answer" onChange={onChange} placeholder="Your answer..." />
         {nicknameAlert && <span className="errorText"> You must enter the following : </span>}
         Nickname : <input className="answerEntry" name="nickname" onChange={onChange} placeholder="Example: jack543!" />
+        <p className="warningInputText">For privacy reasons, do not use your full name or email address.</p>
         {emailAlert && <span className="errorText"> You must enter the valid following : </span>}
         E-mail : <input className="answerEntry" name="email" onChange={onChange} placeholder="Example: jack@email.com" />
+        <p className="warningInputText">For authentication reasons, you will not be emailed.</p>
         <input className="ebutton" type="button" value="SUBMIT QUESTION" onClick={submitQuestion} />
       </div>
     </div>

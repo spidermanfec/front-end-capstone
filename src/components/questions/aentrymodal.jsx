@@ -76,8 +76,10 @@ function Modal({ question, show, setEntryModalState, pullQuestions, product_name
         Answer: <textarea className="answerEntry" name="answer" onChange={onChange} placeholder="Your answer..." />
         {nicknameAlert && <span className="errorText"> You must enter the following : </span>}
         Nickname : <input className="answerEntry" name="nickname" onChange={onChange} placeholder="Example: jack543!" />
+        <p className="warningInputText">For privacy reasons, do not use your full name or email address.</p>
         {emailAlert && <span className="errorText"> You must enter the valid following : </span>}
         E-mail : <input className="answerEntry" name="email" onChange={onChange} placeholder="Example: jack@email.com" />
+        <p className="warningInputText">For authentication reasons, you will not be emailed.</p>
         <div className="photoThumbDiv">
           {imageUrls.map((url) => { return <img src={url} className="croppedUpload" alt="upload thumb" />; })}
         </div>

@@ -48,7 +48,7 @@ function Aentry({ answer }) {
         {answer.photos.map((item, index) => { return <img src={item} key={index} className="croppedPic" onClick={showImageModal}/> })}
       </div>
       <p className="smallText">
-        by {answer.answerer_name === "Seller" && <b>Seller</b>} {answer.answerer_name !== "Seller" && answer.answerer_name}, {Moment.utc(answer.date).format("MMM Do, YYYY")} | Helpful?
+        by {answer.answerer_name === "Seller" && <b>Seller</b>}{answer.answerer_name !== "Seller" && answer.answerer_name}, {Moment.utc(answer.date).format("MMM Do, YYYY")} | Helpful?
         <span className="qHelpful" onClick={helpfulClick} style={{ fontWeight: cookieChecker ? 'bold' : 'normal' }} >
           Yes ({helpfulness})
         </span>
