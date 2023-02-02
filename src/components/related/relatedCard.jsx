@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function OutfitCard({
-  id, category, name, defaultPrice, setProduct, setOutfitProductsIDs,
+export default function RelatedCard({
+  id, category, name, defaultPrice, setProduct,
 }) {
   return (
     <div
@@ -18,7 +18,7 @@ export default function OutfitCard({
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          setOutfitProductsIDs(id);
+          console.log(id);
         }}
       >
         x
@@ -33,11 +33,11 @@ export default function OutfitCard({
   );
 }
 
-OutfitCard.propTypes = {
+RelatedCard.propTypes = {
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   defaultPrice: PropTypes.string.isRequired,
   setProduct: PropTypes.func.isRequired,
-  setOutfitProductsIDs: PropTypes.func.isRequired,
+  // addToComparison: PropTypes.func.isRequired,
 };

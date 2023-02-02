@@ -9,9 +9,9 @@ const apiHeaders = {
 
 const getRelatedProductIDs = (req, res) => axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}/related`, apiHeaders);
 
-const getRelatedInfo = (relatedResults) => relatedResults.map(
+const getProductsInfo = (productIDs) => productIDs.map(
   (productID) => axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}`, apiHeaders),
 );
 
 exports.getRelatedProductIDs = getRelatedProductIDs;
-exports.getRelatedInfo = getRelatedInfo;
+exports.getProductsInfo = getProductsInfo;
