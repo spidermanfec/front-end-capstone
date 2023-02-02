@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { createRoot } from 'react-dom/client';
 import './index.scss';
@@ -18,14 +18,15 @@ const root = createRoot(document.getElementById('root'));
 
 function App() {
   const [products, setProducts] = useState(sampleData);
+  const [product, setProduct] = useState('37313');
 
   return (
     <CookiesProvider>
       <div>
         <Overview />
+        <Related productID={product} setProduct={setProduct} />
         <Questions products={products} />
         <Ratings />
-        <Related />
       </div>
     </CookiesProvider>
   );
