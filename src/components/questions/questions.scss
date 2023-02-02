@@ -43,6 +43,7 @@
   flex-direction: column;
   margin-left: 1%;
   padding: 5px;
+<<<<<<< HEAD
   max-height: 60vh;
   overflow-y: auto;
 }
@@ -50,6 +51,8 @@
 .questionList{
   max-height: 80vh;
   overflow-y: auto;
+=======
+>>>>>>> master
 }
 
 .aListEntry {
@@ -77,6 +80,7 @@ h2 {
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
 .reportAnA {
   margin-left: 5px;
   cursor: pointer;
@@ -91,6 +95,11 @@ h2 {
   margin-left: 5px;
   text-decoration: underline;
   margin-right: 5px;
+=======
+.qAddA {
+  margin-left: 5px;
+  text-decoration: underline;
+>>>>>>> master
 }
 
 .qHelpful:hover {
@@ -105,6 +114,7 @@ h2 {
   text-shadow: 0 0 .65px #333, 0 0 .65px #333;
   cursor: pointer;
 }
+<<<<<<< HEAD
 
 .croppedUpload {
   height:100px;
@@ -221,6 +231,8 @@ textarea[name="answer"] {
   backdrop-filter: blur(5px);
 }
 
+=======
+>>>>>>> master
 // ALL this stuff imported button stuff.
 .qbutton {
   background-color: #ffffff;
@@ -254,6 +266,7 @@ textarea[name="answer"] {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .ebutton {
   background-color: #ffffff;
   border: solid;
@@ -280,6 +293,8 @@ textarea[name="answer"] {
   color: #ffffff;
 }
 
+=======
+>>>>>>> master
 .abutton {
   background-color: #ffffff;
   border: none;
@@ -332,6 +347,7 @@ div + div {
 .searchTerm:focus{
   color: #2b2b2b;
 }
+<<<<<<< HEAD
 
 // Stuff for scrollbar;
 
@@ -346,3 +362,5 @@ div + div {
   border-radius: 10px;
   background-color: #ffffff;
 }
+=======
+>>>>>>> master

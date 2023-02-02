@@ -1,5 +1,6 @@
 import Moment from 'moment';
 import axios from 'axios';
+<<<<<<< HEAD
 import { useCookies } from "react-cookie";
 import React, { useState } from 'react';
 import ImageModal from './picturemodal.jsx'
@@ -37,10 +38,23 @@ function Aentry({ answer }) {
   const showImageModal = (e) => {
     setImageModalState(true);
     setModalImage(e.target.currentSrc);
+=======
+import React, { useState } from 'react';
+
+function Aentry({ answer }) {
+  const [helpfulness, setHelpfulness] = useState(answer.helpfulness);
+
+  const helpfulClick = () => {
+    axios.put(`http://localhost:1100/helpfula/?answer_id=${answer.id}`) //  Axios get on render. Pass id later.
+      .then((results) => {
+        setHelpfulness(helpfulness + 1);
+      });
+>>>>>>> master
   };
 
   return (
     <div className="aListEntry">
+<<<<<<< HEAD
       <ImageModal show={imageModalState} url={modalImage} setImageModalState={setImageModalState}/>
       <b>A: </b>
       {answer.body}
@@ -55,6 +69,19 @@ function Aentry({ answer }) {
         |
         {!reported && <span className="reportAnA" onClick={reportAnswer}>Report</span>}
         {reported && <span className="reportAnA" style={{ fontWeight: 'bold', cursor: 'default' }}>Reported</span>}
+=======
+      <b>A: </b>
+      {answer.body}
+      <p className="smallText">
+        by {answer.answerer_name}, {Moment.utc(answer.date).format("MMM Do, YYYY")} | Helpful?
+        <span className="qHelpful" onClick={helpfulClick}>
+          Yes ({helpfulness})
+        </span>
+        |
+        <span className="qAddA">
+        Report
+        </span>
+>>>>>>> master
       </p>
     </div>
   );
