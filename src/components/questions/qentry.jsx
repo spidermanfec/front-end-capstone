@@ -5,13 +5,15 @@ import Alist from './alist.jsx'
 
 import AEntryModal from './aentrymodal.jsx'
 
-
 function Qentry({ question, pullQuestions, product_name }) {
   const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']);
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [entryModalState, setEntryModalState] = useState(false);
   const [reported, setReported] = useState(false);
-  let cookieChecker = cookies.helpfulQIDs.includes(question.question_id);
+  console.log('TESTING', cookies);
+  if (cookies.helpfulQIDs) {
+    var cookieChecker = cookies.helpfulQIDs.includes(question.question_id);
+  }
 
   const helpfulClick = () => {
     if (!cookieChecker) {

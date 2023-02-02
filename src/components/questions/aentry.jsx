@@ -10,7 +10,9 @@ function Aentry({ answer }) {
   const [imageModalState, setImageModalState] = useState(false);
   const [modalImage, setModalImage] = useState('');
   const [reported, setReported] = useState(false);
-  let cookieChecker = cookies.helpfulQIDs.includes(answer.id); // Check for helpful on current ans.
+  if (cookies.helpfulQIDs) {
+    var cookieChecker = cookies.helpfulQIDs.includes(answer.id);
+  }
 
   const helpfulClick = () => {
     if (!cookieChecker) {
