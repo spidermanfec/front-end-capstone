@@ -2,8 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function OutfitCard({
-  id, category, name, defaultPrice, setProduct, setOutfitProductsIDs,
+  id, category, name, defaultPrice, salePrice, photo, setProduct, removeProduct,
 }) {
+  const displayPrice = () => {
+    if (salePrice.length > 0) {
+      return (
+        <div className="card-price">
+          <p><s>{defaultPrice}</s></p>
+          <p>{salePrice}</p>
+        </div>
+      );
+    }
+    return (
+      <div className="card-price">
+        <p>{defaultPrice}</p>
+      </div>
+    );
+  };
+
   return (
     <div
       className="card"
@@ -12,21 +28,22 @@ export default function OutfitCard({
       role="button"
       tabIndex="0"
     >
-      <img className="card-img" src="https://i.ytimg.com/vi/_DEgejL9ap4/maxresdefault.jpg" alt=":(" />
+      <img className="card-img" src={photo} alt=":(" />
       <button
         className="card-btn rm-outfit-btn"
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          setOutfitProductsIDs(id);
+          removeProduct(id);
         }}
+        tabIndex="0"
       >
         x
       </button>
       <div className="card-body">
         <p>{category}</p>
         <p>{name}</p>
-        <p>{defaultPrice}</p>
+        {displayPrice()}
         <p>rating</p>
       </div>
     </div>
@@ -38,6 +55,8 @@ OutfitCard.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   defaultPrice: PropTypes.string.isRequired,
+  salePrice: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
   setProduct: PropTypes.func.isRequired,
-  setOutfitProductsIDs: PropTypes.func.isRequired,
+  removeProduct: PropTypes.func.isRequired,
 };

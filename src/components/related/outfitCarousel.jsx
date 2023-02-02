@@ -6,16 +6,25 @@ import OutfitCard from './outfitCard.jsx';
 
 export default function OutfitCarousel({ productID, setProduct }) {
   const [outfitProductsIDs, setOutfitProductsIDs] = useState([]);
-  const [outfitProducts, setOutfitProducts] = useState([]);
+  const [outfitProducts, setOutfitProducts] = useState({});
 
   useEffect(() => {
-    axios.get('/outfit-products/', {
-      params: {
-        q: JSON.stringify(outfitProductsIDs),
-      },
-    })
-      .then((results) => results.data)
-      .then((results) => setOutfitProducts(results))
+    const prod = {};
+    Promise.all(outfitProductsIDs.map((id) => axios.get(`products/${id}/details`)))
+      .then((results) => Promise.all(results))
+      .then((results) => results.map((result) => result.data))
+      .then((results) => results.map((result) => {
+        prod[result.id] = result;
+        return axios.get(`/products/${result.id}/styles`);
+      }))
+      .then((results) => Promise.all(results))
+      .then((results) => results.map((result) => result.data))
+      .then((results) => results.map((product) => {
+        prod[product.product_id].photo = ((product.results)[0].photos)[0].thumbnail_url;
+        prod[product.product_id].sale_price = (product.results)[0].sale_price === null ? '' : (results.results).sale_price;
+        return 'hello';// return prod[product.product_id];
+      }))
+      .then((/* results */) => setOutfitProducts(prod))
       .catch((err) => console.log(err));
   }, [outfitProductsIDs]);
 
@@ -31,16 +40,18 @@ export default function OutfitCarousel({ productID, setProduct }) {
     <div className="card-carousel outfit-products">
       <PlusCard
         productID={productID}
-        setOutfitProductsIDs={setOutfitProductsIDs}
+        addProduct={setOutfitProductsIDs}
         notInList={notInList}
       />
-      {outfitProducts.map((productInfo) => (
+      {(Object.keys(outfitProducts)).map((cID) => (
         <OutfitCard
-          id={`${productInfo.id}`}
-          category={productInfo.category}
-          name={productInfo.name}
-          defaultPrice={productInfo.default_price}
-          setOutfitProductsIDs={removeProduct}
+          id={`${outfitProducts[cID].id}`}
+          category={outfitProducts[cID].category}
+          name={outfitProducts[cID].name}
+          defaultPrice={outfitProducts[cID].default_price}
+          salePrice={outfitProducts[cID].sale_price}
+          photo={outfitProducts[cID].photo}
+          removeProduct={removeProduct}
           setProduct={setProduct}
         />
       ))}
