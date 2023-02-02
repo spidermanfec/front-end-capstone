@@ -1,13 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function OutfitCard({ productID, setOutfitProducts }) {
+export default function OutfitCard({
+  id, category, name, defaultPrice, salePrice, photo, setProduct, removeProduct,
+}) {
+  const displayPrice = () => {
+    if (salePrice.length > 0) {
+      return (
+        <div className="card-price">
+          <p><s>{defaultPrice}</s></p>
+          <p>{salePrice}</p>
+        </div>
+      );
+    }
+    return (
+      <div className="card-price">
+        <p>{defaultPrice}</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="card outfit-card">+</div>
+    <div
+      className="card"
+      onClick={() => setProduct(id)}
+      onKeyPress={() => setProduct(id)}
+      role="button"
+      tabIndex="0"
+    >
+      <img className="card-img" src={photo} alt=":(" />
+      <button
+        className="card-btn rm-outfit-btn"
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          removeProduct(id);
+        }}
+        tabIndex="0"
+      >
+        x
+      </button>
+      <div className="card-body">
+        <p>{category}</p>
+        <p>{name}</p>
+        {displayPrice()}
+        <p>rating</p>
+      </div>
+    </div>
   );
-};
+}
 
 OutfitCard.propTypes = {
-  productID: PropTypes.string.isRequired,
-  setOutfitProducts: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  defaultPrice: PropTypes.string.isRequired,
+  salePrice: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
+  setProduct: PropTypes.func.isRequired,
+  removeProduct: PropTypes.func.isRequired,
 };

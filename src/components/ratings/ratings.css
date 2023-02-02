@@ -1,0 +1,90 @@
+.star {
+  /* display: inline-block; */
+  display: flex;
+  position: relative;
+  font-size: 100px;
+  color: #ddd;
+  justify-content: space-around;
+}
+
+.star:after {
+  font-family: FontAwesome;
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f80;
+}
+
+ #mutableStar:after {
+  display: flex;
+  font-family: FontAwesome;
+  content: "\f005";
+  /* position: absolute; */
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: rgb(18, 155, 25);
+}
+
+#reviewList {
+  border: rgb(255, 1, 153);
+  border-width:thick;
+  border-style:double;
+  overflow-y: scroll;
+  width: 800px;
+  height: 400px;
+  /* color: rgb(18, 155, 25); */
+}
+
+.reviewBox {
+  border: rgb(185, 164, 143);
+  border-width:thick;
+  border-style:double;
+
+}
+
+.reviewStars {
+  display: flex;
+}
+
+.reviewNameDate {
+  display: flex;
+  justify-content:end;
+}
+
+.modal {
+  text-align: center;
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(255, 255, 255); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.758); /* Black w/ opacity */
+}
+
+.modal-content {
+  /* text-align: center; */
+  background-color: #000000;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.sliderText {
+
+  font-size: small;
+}
+
+.slider {
+ width:max-content;
+}
