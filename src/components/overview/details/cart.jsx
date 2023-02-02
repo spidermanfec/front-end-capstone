@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 
-function Cart({ styles, selectedStyle, itemStyles }) {
+function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect }) {
   const [open, setOpen] = React.useState(false);
   const [sizeSelected, setSizeSelected] = React.useState(false);
   const [sku, setSku] = React.useState('');
   const [size, setSize] = React.useState('');
   const [amount, setAmount] = React.useState('');
-  // const [infos, setInfos] = React.useState([]);
 
-  console.log(selectedStyle);
   console.log(styles);
+
+  useEffect(() => {
+    setOpen(false);
+    setSizeSelected(false);
+    // setSku('');
+    // setSize('');
+    setAmount('');
+  }, [handleStyleSelect])
 
   const infos = Object.keys(styles.skus);
 
@@ -33,27 +39,32 @@ function Cart({ styles, selectedStyle, itemStyles }) {
       return <option value="" disabled selected>Out Of Stock</option>;
     }
     for (let i = 1; i <= sku.quantity; i++) {
-      items.push(<option value={sku.quantity}>{i}</option>);
+      items.push(<option value={i}>{i}</option>);
     }
     return items;
   };
+
+  const handleAmount = (e) => {
+    setAmount(e.target.value);
+  }
 
   // handle submitting to cart here
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(size)
+    console.log(amount);
   };
 
   return (
-    <form>
+    <form className="cart">
       <select name="sizeList" id="sizeList" onClick={(e) => handleOpen(e)} onChange={handleChangeSize}>
-        <option value="" disabled selected>Select Size</option>
+        <option value="" disabled selected>SELECT SIZE</option>
         {infos.map((info) => <option value={info}>{styles.skus[info].size}</option>)}
       </select>
-      <select name="quantityList" id="quantityList">
+      <select name="quantityList" id="quantityList" onChange={handleAmount}>
         {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
       </select>
-      <input type="submit" onClick={((e) => {handleSubmit(e)})} />
+      <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>
     </form>
   );
 }

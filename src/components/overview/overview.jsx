@@ -3,10 +3,9 @@ import axios from 'axios';
 import Prodinfo from './details/prodinfo.jsx';
 import Gallery from './details/gallery.jsx';
 import Cart from './details/cart.jsx';
-import styles from '../../../productstyles.json';
-import products from '../../../products.json';
-import productinfo from '../../../productinfo.json';
 import Selector from './details/selector.jsx';
+import Share from './details/share.jsx';
+import Features from './details/features.jsx'
 import './overview.scss';
 
 function Overview() {
@@ -48,19 +47,24 @@ function Overview() {
         return itemStyles.results[i];
       }
     }
-  }
+  };
 
   console.log(tester());
 
   return (
+    <>
     <div className="overviewContainer">
-      <div className="gallery"><Gallery styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/></div>
+      <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/></div>
+      <div className="spacer"></div>
       <div className="prodInfo">
         <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/>
-        <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} handleStyleSelect={handleStyleSelect} /></section>
-        <section className="prodInfo"><Cart styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles}/></section>
+        <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/></section>
+        <section className=""><Cart handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles}/></section>
+        <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles}/></section>
       </div>
     </div>
+      <div className="prodfeatures"><Features items={items} itemsInfo={itemsInfo} itemStyles={itemStyles}/></div>
+    </>
   );
 }
 

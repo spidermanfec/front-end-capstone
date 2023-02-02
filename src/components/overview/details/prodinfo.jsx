@@ -1,18 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Ratings from './ratings.jsx'
 
 function Prodinfo({ items, itemsInfo, styles}) {
-
-  console.log(itemsInfo);
-
   return (
     <aside>
-      <h2>{itemsInfo.name}</h2>
-      <small>{itemsInfo.category}</small>
-      <p>Ratings</p>
-      <p>{styles.sale_price ? `On Sale: ${styles.sale_price}` : styles.original_price}</p>
-      <p>{itemsInfo.description}</p>
-      <p>Share on SNS</p>
+      <p><Ratings /></p>
+      <small className="category">{itemsInfo.category}</small>
+      <h2 className="itemName">{itemsInfo.name}</h2>
+      <p className={`sale ${styles.sale_price ? 'sale--on' : 'sale--off'}`}>{styles.sale_price ? `Sale: $${styles.sale_price}` : `$${styles.original_price}`}</p>
     </aside>
   );
 }
