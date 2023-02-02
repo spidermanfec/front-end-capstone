@@ -16,6 +16,12 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
     setLoadableQs(minimumQListSize);
   }, [minimumQListSize]);
 
+  useEffect(() => {
+    if (searchTerm.length === 2) {
+      setLoadableQs(2);
+    }
+  }, [searchTerm.length]);
+
   if (qCount > 0 && searchTerm.length < 3) { // Check if questions empty, load # of react comps in an array.
     for (let i = 0; i < loadableQs; i++) {
       loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} pullQuestions={pullQuestions} product_name={product_name}/>);
