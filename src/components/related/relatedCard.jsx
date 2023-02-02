@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 export default function RelatedCard({
-  id, category, name, defaultPrice, setProduct,
+  id, category, name, defaultPrice, salePrice, photo, setProduct, setComparison,
 }) {
+  let price = (
+    <div>
+      <p>{defaultPrice}</p>
+    </div>
+  );
+
+  useEffect(() => {
+    if (salePrice.length !== '') {
+      price = (
+        <div>
+          <p><s>{defaultPrice}</s></p>
+          <p style={{ color: 'red' }}>{salePrice}</p>
+        </div>
+      );
+    }
+  }, []);
+
   return (
     <div
       className="card"
@@ -12,21 +29,21 @@ export default function RelatedCard({
       role="button"
       tabIndex="0"
     >
-      <img className="card-img" src="https://i.ytimg.com/vi/_DEgejL9ap4/maxresdefault.jpg" alt=":(" />
+      <img className="card-img img" src={photo} alt=":(" />
       <button
         className="card-btn rm-outfit-btn"
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          console.log(id);
+          setComparison(id);
         }}
       >
-        x
+        O
       </button>
       <div className="card-body">
         <p>{category}</p>
         <p>{name}</p>
-        <p>{defaultPrice}</p>
+        {price}
         <p>rating</p>
       </div>
     </div>
@@ -38,6 +55,8 @@ RelatedCard.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   defaultPrice: PropTypes.string.isRequired,
+  salePrice: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
   setProduct: PropTypes.func.isRequired,
-  // addToComparison: PropTypes.func.isRequired,
+  setComparison: PropTypes.func.isRequired,
 };

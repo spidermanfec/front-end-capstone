@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+// import axios from 'axios';
 import RelatedCarousel from './relatedCarousel.jsx';
 import OutfitCarousel from './outfitCarousel.jsx';
+import ComparisonModal from './comparisonModal.jsx';
 import './related-items-comparison.scss';
 
 export default function Related({ productID, setProduct }) {
+  const [leftID, setLeftID] = useState(productID);
+  const [rightID, setRightID] = useState('');
+
   return (
     <div className="related-n-outfits">
-      <RelatedCarousel productID={productID} setProduct={setProduct} />
+      <ComparisonModal leftID={leftID} rightID={rightID} setComparison={setRightID} />
+      <RelatedCarousel
+        productID={productID}
+        setProduct={setProduct}
+        setComparison={setRightID}
+      />
       <br />
-      <hr />
       <br />
       <OutfitCarousel productID={productID} setProduct={setProduct} />
     </div>
