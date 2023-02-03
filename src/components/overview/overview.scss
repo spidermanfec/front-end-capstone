@@ -1,8 +1,6 @@
 $widthProd: percentage($number: 67);
 $widthSpacer: percentage($number: 3);
 $widthProdInfo: percentage($number: 30);
-// $widthProd: calc(100% - 456px);
-// $widthProdInfo: calc(100% - 600px);
 
 .overviewContainer {
   max-width: 1180px;
@@ -16,7 +14,7 @@ $widthProdInfo: percentage($number: 30);
   width: $widthProd;
   height: 650px;
   position:relative;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .prodInfo {
@@ -338,6 +336,14 @@ $widthProdInfo: percentage($number: 30);
   box-sizing: border-box;
 }
 
+.layover {
+  // z-index: 1;
+  position: absolute;
+  display: flex;
+  align-self: flex-start;
+  margin-left: -60px;
+}
+
 .selectorGrid {
   display: flex;
   flex-wrap: wrap;
@@ -350,6 +356,10 @@ $widthProdInfo: percentage($number: 30);
   height: 75px;
 }
 
+.cheka {
+
+}
+
 .check {
   display: inline-block;
   transform: rotate(45deg);
@@ -359,26 +369,33 @@ $widthProdInfo: percentage($number: 30);
   border-right: var(--borderWidth) solid var(--borderColor);
 }
 
-.cart {
-  // padding: 10px;
-}
 
 #sizeList {
-    font-weight: bold;
-    height: 60px;
-    width: 229px;
-    border: none;
-    // border-radius: 8px;
-    // box-sizing: border-box;
-    margin-bottom: 20px;
-    margin-right: 25px;
+  font-weight: bold;
+  height: 60px;
+  width: 229px;
+  border: solid;
+  border-width: .5px;
+  // border-radius: 8px;
+  // box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-right: 25px;
+}
+
+#sizeList .outofstock {
+  pointer-events: none;
+}
+
+.cats {
+  margin-bottom: 10px;
 }
 
 #quantityList {
     font-weight: bold;
     height: 60px;
     width: 100px;
-    border: none;
+    border: solid;
+    border-width: .5px;
     // border-radius: 8px;
     background-color: white;
     box-sizing: border-box;
@@ -389,7 +406,8 @@ $widthProdInfo: percentage($number: 30);
   width: 100%;
   height: 60px;
   background: white;
-  border: none;
+  border: solid;
+  border-width: .5px;
   padding: 18px 24px;
   font-size: 0.9rem;
   font-weight: bold;

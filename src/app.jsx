@@ -13,7 +13,7 @@ function App() {
   return (
     <CookiesProvider>
       <div>
-        <Overview />
+        <Overview productID={productID} setProductID={setProductID} />
         <Questions products={products} />
         <Ratings />
         <Related productID={productID} setProduct={setProductID} />

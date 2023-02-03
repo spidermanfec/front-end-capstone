@@ -1,21 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect }) {
-  const [open, setOpen] = React.useState(false);
-  const [sizeSelected, setSizeSelected] = React.useState(false);
-  const [sku, setSku] = React.useState('');
-  const [size, setSize] = React.useState('');
-  const [amount, setAmount] = React.useState('');
-
-  console.log(styles);
+  const [open, setOpen] = useState(false);
+  const [sizeSelected, setSizeSelected] = useState(false);
+  const [sku, setSku] = useState('');
+  const [size, setSize] = useState('');
+  const [amount, setAmount] = useState('');
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setOpen(false);
     setSizeSelected(false);
-    // setSku('');
-    // setSize('');
-    setAmount('');
   }, [handleStyleSelect])
 
   const infos = Object.keys(styles.skus);
@@ -51,20 +46,22 @@ function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect }) {
   // handle submitting to cart here
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(size)
+    console.log(size);
     console.log(amount);
   };
 
   return (
     <form className="cart">
       <select name="sizeList" id="sizeList" onClick={(e) => handleOpen(e)} onChange={handleChangeSize}>
-        <option value="" disabled selected>SELECT SIZE</option>
+        {infos[0] === 'null' && <option className="outofstock" disabled selected>OUT OF STOCK</option>}
+        {!sizeSelected && <option value="default" disabled selected>SELECT SIZE</option>}
         {infos.map((info) => <option value={info}>{styles.skus[info].size}</option>)}
       </select>
       <select name="quantityList" id="quantityList" onChange={handleAmount}>
         {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
       </select>
-      <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>
+      {infos[0] === 'null' && null}
+      {infos[0] !== 'null' && <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>}
     </form>
   );
 }

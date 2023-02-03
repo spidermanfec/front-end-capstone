@@ -18,19 +18,25 @@ function Gallery({ styles, handleStyleSelect }) {
     setImageModal(!imageModal);
   };
 
+
   useEffect(() => {
     setCurrentPhoto(0);
   }, [handleStyleSelect]);
+
+  if (styles.photos[currentPhoto].url === null) {
+    return <div className="urlpic" onClick={toggleModal}><img className="urlpic" src="https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png" /></div>;
+  }
 
   return (
     <>
       <div id="slider">
         {styles.photos.map((photo) => (
           <div key={`${photo.url}`} className={styles.photos[currentPhoto].url === photo.url ? 'fade' : 'slide fade'}>
+            {/* {styles.photos[currentPhoto].url === null && <div className="urlpic" onClick={toggleModal}><img className="urlpic" src="https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png" /></div>} */}
             {!imageModal && <div className="urlpic" onClick={toggleModal}><img className="urlpic" src={`${photo.url}`} /></div>}
             {imageModal && (
             <div className="modal-lg">
-              <img className="img-responsive" src={`${photo.url}`} onClick={toggleModal} />
+              <img className="img-responsive" src={`${photo.url}`} onDoubleClick={toggleModal} />
               <div id="modalimagelist">
                   {styles.photos.map((photo) => (
                     <>

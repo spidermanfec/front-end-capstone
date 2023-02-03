@@ -28,16 +28,16 @@ exports.getProducts = (callback) => {
     });
 };
 
-exports.getProductId = (callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311`, apiHeaders)
+exports.getProductId = (id, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, apiHeaders)
     .then((result) => {
       console.log('here', result.data);
       callback(result.data);
     });
 };
 
-exports.getProductsStyle = (callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/styles`, apiHeaders)
+exports.getProductsStyle = (id, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, apiHeaders)
     .then((result) => {
       callback(result.data);
     });
