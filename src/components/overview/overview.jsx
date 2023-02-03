@@ -57,8 +57,8 @@ function Overview() {
       <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/></div>
       <div className="spacer"></div>
       <div className="prodInfo">
-        <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/>
-        <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/></section>
+        <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
+        <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
         <section className=""><Cart handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles}/></section>
         <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles}/></section>
       </div>

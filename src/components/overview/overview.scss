@@ -350,6 +350,10 @@ $widthProdInfo: percentage($number: 30);
   height: 75px;
 }
 
+.cheka {
+  border:yellow
+}
+
 .check {
   display: inline-block;
   transform: rotate(45deg);
@@ -367,7 +371,7 @@ $widthProdInfo: percentage($number: 30);
     font-weight: bold;
     height: 60px;
     width: 229px;
-    border: none;
+    border: solid;
     // border-radius: 8px;
     // box-sizing: border-box;
     margin-bottom: 20px;
@@ -378,7 +382,7 @@ $widthProdInfo: percentage($number: 30);
     font-weight: bold;
     height: 60px;
     width: 100px;
-    border: none;
+    border: solid;
     // border-radius: 8px;
     background-color: white;
     box-sizing: border-box;
@@ -389,7 +393,7 @@ $widthProdInfo: percentage($number: 30);
   width: 100%;
   height: 60px;
   background: white;
-  border: none;
+  border: solid;
   padding: 18px 24px;
   font-size: 0.9rem;
   font-weight: bold;
