@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
-function Selector({ items, itemsInfo, itemStyles, handleStyleSelect, styles, selectedStyle }) {
+function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle }) {
   const [currentThumbnail, setCurrentThumbnail] = useState(0);
-  const [currentSelected, setCurrentSelected] = useState(itemStyles.results[0].style_id)
-
-  let temp = selectedStyle || itemStyles.results[0].style_id
+  const temp = selectedStyle || itemStyles.results[0].style_id
 
   console.log(temp);
 
@@ -14,12 +12,11 @@ function Selector({ items, itemsInfo, itemStyles, handleStyleSelect, styles, sel
       <div className="styletext">STYLE &#5171; {styles.name}</div>
       <p className="selectorGrid">
         {itemStyles.results.map((itemStyle, index) => {
-          console.log(itemStyle);
-          console.log(selectedStyle)
-          console.log(itemStyle.photos.indexOf(itemStyle.photos[index]));
           return <button className={itemStyle.photos[currentThumbnail].thumbnail_url === itemStyle.photos[index].thumbnail_url ? 'selecStyleon' : 'selecStyleoff '} onClick={() => setCurrentThumbnail(itemStyle.photos.indexOf(itemStyle.photos[index]))} onClick={(e) => handleStyleSelect(e)}
-          type="submit" value={itemStyle.style_id} key={index}>
-            <div className={itemStyle.style_id === temp && index ? 'cheka' : null}></div>
+            type="submit" value={itemStyle.style_id} key={index}>
+            <div className='layover'>
+              {itemStyle.style_id === temp && '✅'}
+            </div>
             <img className="thumbnail"
               src={itemStyle.photos[currentThumbnail].thumbnail_url}
             />
