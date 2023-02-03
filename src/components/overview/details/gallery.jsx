@@ -30,7 +30,7 @@ function Gallery({ styles, handleStyleSelect }) {
             {!imageModal && <div className="urlpic" onClick={toggleModal}><img className="urlpic" src={`${photo.url}`} /></div>}
             {imageModal && (
             <div className="modal-lg">
-              <img className="img-responsive" src={`${photo.url}`} onClick={toggleModal} />
+              <img className="img-responsive" src={`${photo.url}`} onDoubleClick={toggleModal} />
               <div id="modalimagelist">
                   {styles.photos.map((photo) => (
                     <>
