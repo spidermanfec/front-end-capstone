@@ -369,20 +369,25 @@ $widthProdInfo: percentage($number: 30);
   border-right: var(--borderWidth) solid var(--borderColor);
 }
 
-.cart {
-  // padding: 10px;
-}
 
 #sizeList {
-    font-weight: bold;
-    height: 60px;
-    width: 229px;
-    border: solid;
-    border-width: .5px;
-    // border-radius: 8px;
-    // box-sizing: border-box;
-    margin-bottom: 20px;
-    margin-right: 25px;
+  font-weight: bold;
+  height: 60px;
+  width: 229px;
+  border: solid;
+  border-width: .5px;
+  // border-radius: 8px;
+  // box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-right: 25px;
+}
+
+#sizeList .outofstock {
+  pointer-events: none;
+}
+
+.cats {
+  margin-bottom: 10px;
 }
 
 #quantityList {

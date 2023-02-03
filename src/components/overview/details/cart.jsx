@@ -53,13 +53,15 @@ function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect }) {
   return (
     <form className="cart">
       <select name="sizeList" id="sizeList" onClick={(e) => handleOpen(e)} onChange={handleChangeSize}>
+        {infos[0] === 'null' && <option className="outofstock" disabled selected>OUT OF STOCK</option>}
         {!sizeSelected && <option value="default" disabled selected>SELECT SIZE</option>}
         {infos.map((info) => <option value={info}>{styles.skus[info].size}</option>)}
       </select>
       <select name="quantityList" id="quantityList" onChange={handleAmount}>
         {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
       </select>
-      <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>
+      {infos[0] === 'null' && null}
+      {infos[0] !== 'null' && <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>}
     </form>
   );
 }

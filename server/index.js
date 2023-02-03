@@ -31,13 +31,13 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/productsid', (req, res) => {
-  qanda.getProductId((results) => {
+  qanda.getProductId(req.query.product_id, (results) => {
     res.send(results);
   });
 });
 
 app.get('/productstyles', (req, res) => {
-  qanda.getProductsStyle((results) => {
+  qanda.getProductsStyle(req.query.product_id, (results) => {
     res.send(results);
   });
 });
