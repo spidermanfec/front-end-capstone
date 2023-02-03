@@ -19,8 +19,8 @@ time, mark, audio, video {
 	// margin: 0;
 	padding: 0;
 	border: 0;
-	// font-size: 100%;
-	font-family: "adobe-clean", sans-serif;
+	font-size: 100%;
+	font-family: 'Inter';
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -49,8 +49,8 @@ table {
 ////////////////////////////////// end reset
 
 @font-face {
-  font-family: 'Prototype Regular';
-  src: url('./fonts/prototype.regular.ttf') format("truetype");
+  font-family: 'Inter';
+  src: url('./inter.ttf') format("truetype");
   font-weight: 400;
   font-style: normal;
 }
