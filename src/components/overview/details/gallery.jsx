@@ -8,6 +8,10 @@ function Gallery({ styles, handleStyleSelect, productID }) {
 
   const [expandedModal, setExpandedModal] = useState(false);
 
+  const [scrollView, setScrollView] = useState(styles.photos.length > 7);
+
+  console.log(scrollView);
+
   useEffect(() => {
     setCurrentPhoto(0);
   }, [handleStyleSelect, productID]);
@@ -85,18 +89,30 @@ function Gallery({ styles, handleStyleSelect, productID }) {
           </button>
         )}
       </div>
-      <div id="imagelist">
+      {scrollView && <div id="imagelist">
         {styles.photos.map((photo) => (
           <>
             {' '}
             {!imageModal && (
-              <span key={`${photo.url}`} className={styles.photos[currentPhoto].url === photo.url ? 'image active' : 'image'} onClick={() => setCurrentPhoto(styles.photos.indexOf(photo))}>
+              <span key={`${photo.url}`} className={styles.photos[currentPhoto].url === photo.url ? 'image active' : 'image'} onClick={() => setCurrentPhoto(styles.photos.indexOf(photo))} >
                 <img className="listpic" src={`${photo.url}`} />
               </span>
             )}
           </>
         ))}
-      </div>
+      </div>}
+      {!scrollView && <div id="imagelist">
+        {styles.photos.map((photo) => (
+          <>
+            {' '}
+            {!imageModal && (
+              <span key={`${photo.url}`} className={styles.photos[currentPhoto].url === photo.url ? 'image active' : 'image'} onClick={() => setCurrentPhoto(styles.photos.indexOf(photo))} >
+                <img className="listpic" src={`${photo.url}`} />
+              </span>
+            )}
+          </>
+        ))}
+      </div>}
     </>
   );
 }
