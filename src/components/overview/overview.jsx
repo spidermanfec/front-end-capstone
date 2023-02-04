@@ -19,15 +19,8 @@ function Overview({ productID }) {
 
   const [selectedStyle, setSelectedStyle] = useState();
 
-  const handleStyleSelect = (e) => {
-    e.preventDefault();
-    let select = e.currentTarget.value;
-    console.log(select);
-    setSelectedStyle(Number(select));
-  };
 
   // const [display, setDisplay] = React.useState([selectedProd1, styles.results[0]]);
-
   useEffect(() => {
     Promise.all([axios.get('/products'), axios.get(`/productsid/?product_id=${productID}`), axios.get(`/productstyles/?product_id=${productID}`)]).then(([resProds, resIds, resStyles]) => {
       setItems(resProds.data);
@@ -36,6 +29,13 @@ function Overview({ productID }) {
       setLoading(false);
     });
   }, [productID]);
+
+  const handleStyleSelect = (e) => {
+    e.preventDefault();
+    let select = e.currentTarget.value;
+    console.log(select);
+    setSelectedStyle(Number(select));
+  };
 
   if (loading) {
     return (<div>Loading item</div>);
@@ -53,17 +53,17 @@ function Overview({ productID }) {
 
   return (
     <>
-    <div className="overviewContainer">
-      <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()}/></div>
-      <div className="spacer"></div>
-      <div className="prodInfo">
-        <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
-        <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
-        <section className=""><Cart handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles}/></section>
-        <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles}/></section>
+      <div className="overviewContainer">
+        <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} productID={productID} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></div>
+        <div className="spacer"></div>
+        <div className="prodInfo">
+          <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
+          <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
+          <section className=""><Cart productID={productID} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
+          <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} /></section>
+        </div>
       </div>
-    </div>
-      <div className="prodfeatures"><Features items={items} itemsInfo={itemsInfo} itemStyles={itemStyles}/></div>
+      <div className="prodfeatures"><Features items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} /></div>
     </>
   );
 }

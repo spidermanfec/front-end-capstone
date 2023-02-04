@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle }) {
+function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, productID }) {
   const [currentThumbnail, setCurrentThumbnail] = useState(0);
   const temp = selectedStyle || itemStyles.results[0].style_id
+
+  useEffect(() => {
+    setCurrentThumbnail(0);
+  }, [productID, productID])
 
   console.log('here', itemStyles, styles);
   if (styles.photos[0].thumbnail_url === null) {
