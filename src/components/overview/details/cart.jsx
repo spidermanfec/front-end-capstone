@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect }) {
+function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect, productID}) {
   const [open, setOpen] = useState(false);
   const [sizeSelected, setSizeSelected] = useState(false);
   const [sku, setSku] = useState('');
@@ -11,7 +11,7 @@ function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect }) {
 
   useEffect(() => {
     setSizeSelected(false);
-  }, [handleStyleSelect])
+  }, [handleStyleSelect, productID])
 
   const infos = Object.keys(styles.skus);
 
