@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import Qlist from './qlist.jsx'
 import './questions.scss';
 
-function Questions({ product }) {
+function Questions({ productID }) {
   const [questionList, setQuestionList] = useState([]);
   const [qCount, setQCount] = useState(0);
-  const product_id = 37360;
+  const product_id = productID;
   const product_name = 'Super Nice Shoes';
 
   const pullQuestions = () => { // Used to rerender questions when internal stuff changes, passed as prop.
