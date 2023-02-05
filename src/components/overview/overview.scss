@@ -44,7 +44,11 @@ $widthProdInfo: percentage($number: 30);
 
 .description {
   white-space: pre-wrap;
-  width: $widthProd;
+    /* display: flex; */
+    width: 5000%;
+    margin-left: auto;
+    /* width: auto; */
+    margin-right: auto;
 }
 
 .slogantext {
@@ -54,8 +58,12 @@ $widthProdInfo: percentage($number: 30);
   margin-left: 255px;
 }
 
-.descriptiontext {
-  margin-left: 255px;
+.cart1 {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+  content: url(https://img.icons8.com/material-outlined/24/null/shopping-cart.png);
+  cursor:pointer;
 }
 
 .wrapperfeatures {
@@ -131,12 +139,18 @@ $widthProdInfo: percentage($number: 30);
 }
 
 .img-responsive {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  object-fit:contain;
-  transform: scale(.8);
-  cursor: url(https://img.icons8.com/material-outlined/24/null/plus-math.png), auto;
+  position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    object-fit: contain;
+    transform: scale(0.9);
+    cursor: url(https://img.icons8.com/material-outlined/24/null/plus-math.png), auto;
 }
 
 .fade {
@@ -270,15 +284,15 @@ $widthProdInfo: percentage($number: 30);
 	justify-content: center;
 	z-index: 1;
   bottom: 0;
-  height: 110px;
+  // height: 110px;
   align-self: center;
 }
 
 .modalimage .modallistpic {
   border: .5px solid #fff;
     background: none;
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     margin: 5px;
     // opacity: 0.6;
@@ -316,11 +330,28 @@ $widthProdInfo: percentage($number: 30);
 .img-larger {
   margin: 10px;
   overflow: hidden;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .zoom {
   width: 100%;
   height: 100%;
+}
+
+.checkedBox {
+  width: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .zoom:hover {

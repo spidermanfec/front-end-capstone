@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect, productID}) {
+function Cart({ styles, tester, handleStyleSelect, productID}) {
   const [open, setOpen] = useState(false);
   const [sizeSelected, setSizeSelected] = useState(false);
   const [sku, setSku] = useState('');
@@ -46,8 +46,13 @@ function Cart({ styles, selectedStyle, itemStyles, handleStyleSelect, productID}
   // handle submitting to cart here
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios.post('/cart', {
+      h: 1,
+    });
     console.log(size);
     console.log(amount);
+    console.log(tester().style_id);
+    console.log(tester().photos[0].thumbnail_url);
   };
 
   return (

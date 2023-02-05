@@ -42,6 +42,10 @@ app.get('/productstyles', (req, res) => {
   });
 });
 
+app.post('/cart', (req, res) => {
+  console.log(req.body);
+})
+
 app.post('/answer', (req, res) => {
   qanda.submitAnswer(req.query.question_id, req.body, (results) => {
     res.status(204).send();

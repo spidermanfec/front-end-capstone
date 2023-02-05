@@ -49,6 +49,10 @@ function Overview({ productID }) {
     }
   };
 
+  const cartHandler = () => {
+    console.log('hi');
+  }
+
   console.log(tester());
 
   return (
@@ -57,9 +61,10 @@ function Overview({ productID }) {
         <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} productID={productID} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></div>
         <div className="spacer"></div>
         <div className="prodInfo">
+          <section className="cart1" onClick={cartHandler}></section>
           <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
           <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
-          <section className=""><Cart productID={productID} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
+          <section className=""><Cart productID={productID} tester={tester}handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
           <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} /></section>
         </div>
       </div>
