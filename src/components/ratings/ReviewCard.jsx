@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 const ReviewCard = ({review}) => {
@@ -24,6 +25,17 @@ const ReviewCard = ({review}) => {
   }
  }
   // console.log('STARMAP', starMap, review.response);
+
+  const addHelpfulness = (reviewId) => {
+
+    axios.put('/helpfulR').then(results => {
+      console.log('successful put, son', results);
+    }).catch(err => {
+      console.log('god damn err son', err);
+    })
+    console.log('SUCCESSFUL CLICK')
+  }
+
 return (
 
   <div className="reviewBox">
@@ -34,7 +46,7 @@ return (
     <div>{recText}</div>
     <div>{review.response}</div>
     <div>{reviewPhotos}</div>
-    <div>Helpfulness Ratings bottom left</div>
+    <div className='helpfulDiv' onClick={() => {addHelpfulness}}>Helpful? <u>Yes</u> ({review.helpfulness})</div>
   </div>
 )
 }
