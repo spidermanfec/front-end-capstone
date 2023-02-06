@@ -35,8 +35,6 @@ function Overview({ productID, ratingRef }) {
     });
   }, [productID]);
 
-  console.log(reviews);
-
   const handleStyleSelect = (e) => {
     e.preventDefault();
     let select = e.currentTarget.value;

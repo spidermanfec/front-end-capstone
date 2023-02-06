@@ -10,8 +10,6 @@ function Gallery({ styles, handleStyleSelect, productID }) {
 
   const [scrollView, setScrollView] = useState(styles.photos.length > 7);
 
-  console.log(scrollView);
-
   useEffect(() => {
     setCurrentPhoto(0);
   }, [handleStyleSelect, productID]);

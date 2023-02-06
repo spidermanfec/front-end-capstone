@@ -9,7 +9,6 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
     setCurrentThumbnail(0);
   }, [productID, productID])
 
-  console.log('here', itemStyles, styles);
   if (styles.photos[0].thumbnail_url === null) {
     return <div className="cats">Cool cat</div>;
   }
@@ -19,7 +18,7 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
       <div className="styletext">STYLE &#5171; {styles.name}</div>
       <p className="selectorGrid">
         {itemStyles.results.map((itemStyle, index) => {
-          console.log(itemStyle.photos[index].thumbnail_url);
+          console.log(itemStyle.photos[currentThumbnail])
           return <button className={itemStyle.photos[currentThumbnail].thumbnail_url === itemStyle.photos[index].thumbnail_url ? 'selecStyleon' : 'selecStyleoff '} onClick={() => setCurrentThumbnail(itemStyle.photos.indexOf(itemStyle.photos[index]))} onClick={(e) => handleStyleSelect(e)}
             type="submit" value={itemStyle.style_id} key={index}>
             <div className='layover'>
