@@ -79,7 +79,7 @@ app.put('/reportq', (req, res) => {
 });
 
 app.get('/products/:product_id/related', (req, res) => {
-  qanda.getRelatedProductIDs(req, res)
+  getRelatedProductIDs(req, res)
     .then((results) => results.data)
     .then((results) => res.status(200).send(results))
     .catch(() => res.status(500));
