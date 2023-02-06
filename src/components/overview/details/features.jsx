@@ -14,12 +14,12 @@ function Features({ items, itemsInfo, styles}) {
       <div className="wrapperfeatures">
         {itemsInfo.features.map(feature => {
           if (feature.value === null) {
-            return <div className="features">&#x2713; {`${feature.feature}`}</div>
+            return <div className="features"><img src="https://img.icons8.com/material-outlined/24/null/checkmark--v1.png"/> {`${feature.feature}`}</div>
           }
           if (feature.feature === null) {
-            return <div className="features">&#x2713; {`${feature.feature}`}</div>
+            return <div className="features"><img src="https://img.icons8.com/material-outlined/24/null/checkmark--v1.png"/> {`${feature.feature}`}</div>
           }
-          return <div className="features">&#x2713; {`${feature.value} ${feature.feature}`}</div>
+          return <div className="features"><img src="https://img.icons8.com/material-outlined/24/null/checkmark--v1.png"/> {`${feature.value} ${feature.feature}`}</div>
         })}
       </div>
     </div>

@@ -7,7 +7,7 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   const [sku, setSku] = useState('');
   const [size, setSize] = useState('');
   const [amount, setAmount] = useState('');
-  const [items, setItems] = useState([]);
+  const [skus, setSkus] = useState('');
 
   useEffect(() => {
     setSizeSelected(false);
@@ -23,6 +23,7 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   const handleChangeSize = (e) => {
     e.preventDefault();
     let size = e.target.value;
+    setSkus(size);
     setSku(styles.skus[size])
     setSize(styles.skus[size].size)
     setSizeSelected(true);
@@ -46,13 +47,12 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   // handle submitting to cart here
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(skus, size, amount);
     axios.post('/cart', {
-      h: 1,
+      skus,
+      size,
+      amount,
     });
-    console.log(size);
-    console.log(amount);
-    console.log(tester().style_id);
-    console.log(tester().photos[0].thumbnail_url);
   };
 
   return (

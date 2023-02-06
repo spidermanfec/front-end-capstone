@@ -43,6 +43,32 @@ exports.getProductsStyle = (id, callback) => {
     });
 };
 
+exports.postCart = (info, callback) => {
+  console.log(info);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
+    sku_id: info.skus,
+    count: info.amount,
+    size: info.size,
+  }, apiHeaders)
+    .then(result => {
+      console.log(result.data);
+    });
+};
+
+exports.getCart = (callback) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', apiHeaders)
+    .then(result => {
+      callback(result.data);
+    });
+};
+
+exports.getRevs = (id, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}`, apiHeaders)
+    .then((result) => {
+      callback(result.data);
+    });
+};
+
 const getRelatedProductIDs = (req, res) => axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.params.product_id}/related`, apiHeaders);
 
 const getRelatedInfo = (relatedResults) => relatedResults.map(

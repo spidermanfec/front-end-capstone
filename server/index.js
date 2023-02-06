@@ -43,8 +43,22 @@ app.get('/productstyles', (req, res) => {
 });
 
 app.post('/cart', (req, res) => {
-  console.log(req.body);
-})
+  qanda.postCart(req.body, (result) => {
+    res.sendStatus(201).send();
+  });
+});
+
+app.get('/cart', (req, res) => {
+  qanda.getCart((results) => {
+    res.send(results);
+  });
+});
+
+app.get('/revs', (req, res) => {
+  qanda.getRevs(req.query.product_id, (results) => {
+    res.send(results);
+  });
+});
 
 app.post('/answer', (req, res) => {
   qanda.submitAnswer(req.query.question_id, req.body, (results) => {
