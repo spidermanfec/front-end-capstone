@@ -28,16 +28,42 @@ exports.getProducts = (callback) => {
     });
 };
 
-exports.getProductId = (callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311`, apiHeaders)
+exports.getProductId = (id, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, apiHeaders)
     .then((result) => {
       console.log('here', result.data);
       callback(result.data);
     });
 };
 
-exports.getProductsStyle = (callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/styles`, apiHeaders)
+exports.getProductsStyle = (id, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, apiHeaders)
+    .then((result) => {
+      callback(result.data);
+    });
+};
+
+exports.postCart = (info, callback) => {
+  console.log(info);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
+    sku_id: info.skus,
+    count: info.amount,
+    size: info.size,
+  }, apiHeaders)
+    .then(result => {
+      console.log(result.data);
+    });
+};
+
+exports.getCart = (callback) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', apiHeaders)
+    .then(result => {
+      callback(result.data);
+    });
+};
+
+exports.getRevs = (id, callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}`, apiHeaders)
     .then((result) => {
       callback(result.data);
     });

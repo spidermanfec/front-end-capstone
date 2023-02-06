@@ -6,14 +6,20 @@ function Features({ items, itemsInfo, styles}) {
   console.log(itemsInfo);
   return (
     <div className="descriptionWrapper">
-        <div className="description">
-          <div className="slogantext">{itemsInfo.slogan}</div>
-          <div className="descriptiontext">{itemsInfo.description} </div>
-          </div>
-     <div className="wrapperdivider"></div>
+      <div className="description">
+        <div className="slogantext">{itemsInfo.slogan}</div>
+        <div className="descriptiontext">{itemsInfo.description} </div>
+      </div>
+      <div className="wrapperdivider"></div>
       <div className="wrapperfeatures">
         {itemsInfo.features.map(feature => {
-          return <div className="features">&#x2713; {`${feature.value} ${feature.feature}`}</div>
+          if (feature.value === null) {
+            return <div className="features"><img src="https://img.icons8.com/material-outlined/24/null/checkmark--v1.png"/> {`${feature.feature}`}</div>
+          }
+          if (feature.feature === null) {
+            return <div className="features"><img src="https://img.icons8.com/material-outlined/24/null/checkmark--v1.png"/> {`${feature.feature}`}</div>
+          }
+          return <div className="features"><img src="https://img.icons8.com/material-outlined/24/null/checkmark--v1.png"/> {`${feature.value} ${feature.feature}`}</div>
         })}
       </div>
     </div>

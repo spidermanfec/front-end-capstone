@@ -31,13 +31,31 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/productsid', (req, res) => {
-  qanda.getProductId((results) => {
+  qanda.getProductId(req.query.product_id, (results) => {
     res.send(results);
   });
 });
 
 app.get('/productstyles', (req, res) => {
-  qanda.getProductsStyle((results) => {
+  qanda.getProductsStyle(req.query.product_id, (results) => {
+    res.send(results);
+  });
+});
+
+app.post('/cart', (req, res) => {
+  qanda.postCart(req.body, (result) => {
+    res.sendStatus(201).send();
+  });
+});
+
+app.get('/cart', (req, res) => {
+  qanda.getCart((results) => {
+    res.send(results);
+  });
+});
+
+app.get('/revs', (req, res) => {
+  qanda.getRevs(req.query.product_id, (results) => {
     res.send(results);
   });
 });
