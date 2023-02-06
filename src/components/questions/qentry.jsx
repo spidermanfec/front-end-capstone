@@ -5,12 +5,11 @@ import Alist from './alist.jsx'
 
 import AEntryModal from './aentrymodal.jsx'
 
-function Qentry({ question, pullQuestions, product_name }) {
+function Qentry({ question, pullQuestions, product_name, searchTerm }) {
   const [cookies, setCookie, removeCookie] = useCookies(['helpfulQIDs']);
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness)
   const [entryModalState, setEntryModalState] = useState(false);
   const [reported, setReported] = useState(false);
-  console.log('TESTING', cookies);
   if (cookies.helpfulQIDs) {
     var cookieChecker = cookies.helpfulQIDs.includes(question.question_id);
   }
@@ -46,7 +45,7 @@ function Qentry({ question, pullQuestions, product_name }) {
       <AEntryModal show={entryModalState} setEntryModalState={setEntryModalState} question={question} pullQuestions={pullQuestions} product_name={product_name} />
       <div className="oppositeInline">
         <span className="biggerBolder">
-          Q: {question.question_body}
+          Q: <span dangerouslySetInnerHTML={{ __html: question.question_body.replace(searchTerm, `<mark>${searchTerm}</mark>`)}} />
         </span>
         <span className="rightSideQ">
           Helpful?

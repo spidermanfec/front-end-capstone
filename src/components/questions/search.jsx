@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 
 function Search({ questionList, setQuestionList, setSearchTerm }) {
   const onChangeSearch = (e) => { // Handler for onchange.
-    setSearchTerm(e.target.value);
+    if (e.target.value.length >= 3) {
+      setSearchTerm(e.target.value);
+    } else {
+      setSearchTerm('');
+    }
   };
 
   return (
