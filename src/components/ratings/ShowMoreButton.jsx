@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
     //show more will control reviewList
       //by default, showmore will
 
+      console.log('hello from showmore', totalReviews.length, renderedReviews.length);
       const toggleButton = () => {
         if (totalReviews.length - renderedReviews.length > 2) {
           setShowButton(true);
@@ -19,8 +20,9 @@ import React, { useState, useEffect } from 'react';
  // <div>{showButton ? <button id="showMore" type="button" onClick={() => {updateReviewArray(); toggleButton()}}>Show More</button> : ''}</div>
       return (
 
-        <div>
-          <button id="showMore" type="button" onClick={() => {updateReviewArray(); toggleButton()}}>Show More</button>
+        <div className='reviewListButtons'>
+          {showButton ?
+          <button className='reviewListButtons' type="button" onClick={() => {updateReviewArray(); toggleButton()}}>Show More</button> : ''}
         </div>
       )
   }

@@ -2,96 +2,153 @@ import React, { useState, useEffect } from 'react';
 import SampleData2 from './SampleData2.jsx';
 import SampleDataMeta from './SampleDataMeta.jsx';
 import './ratings.css';
+import axios from 'axios';
+import starsMap from './starMap.jsx';
 
-function RatingsCard() {
+  var progFilArray = [];
+
+function RatingsCard({onClickProgressBars}) {
   const [getData, setGetData] = useState(true);
   const [ratingAvg, setRatingAvg] = useState(0);
   const [reviewDistribution, setReviewDistribution] = useState({})
   var data;
   var metaData = SampleDataMeta();
   var metaDataChars = SampleDataMeta().characteristics;
-  console.log('metadata', metaData);
+
+
+  if (getData) {
+    axios.get('/metadata')
+    .then(response => {
+      console.log('successful metadata get', response.data);
+      metaData.ratings = response.data.ratings;
+    })
+    var ratingsSum = 0;
+    var ratingsCount = 0;
+    // data = SampleData2();
+    setGetData(false);
+    // console.log('metadata ratings', metaData.ratings);
+    for (var key in metaData.ratings) {
+      ratingsSum += metaData.ratings[key] * (key)
+      ratingsCount += metaData.ratings[key] * 1;
+    }
+      //calc rating avg and review count & average
+    var avg = (ratingsSum / ratingsCount).toFixed(1);
+    setRatingAvg(avg);
+  }
+
+  //render stars
+
+
+  var starsArray = starsMap(ratingAvg);
+
+  console.log('stars array', starsArray);
+  // var starMap = [];
+  // for (var i = 1; i < 5; i++) {
+  //   var difference = ratingAvg - i;
+  //   console.log('DIFF', difference)
+  //   if (difference >= 0) {
+  //     starMap.push(<i className="fa-solid fa-star"></i>);
+  //   }
+  //   //  COME BACK and render different classnames, for widths, for .25, .50, and .75
+  //   if (difference < 1 && difference > 0) {
+  //     starMap.push(<i id="mutableStar" className="fa-solid fa-star"></i>);
+  //   }
+  //   if (difference <= 0) {
+
+  //     starMap.push(<i className="fa-regular fa-star"></i>);
+  //   }
+  // }
+
+
+  //progress bars to rep review % by stars
+  var distributionMap = [];
+  //find max loop
+  var max = 0;
+  for (var key in metaData.ratings) {
+    if (metaData.ratings[key] * 1 > max) {
+      max = metaData.ratings[key] * 1;
+    }
+  }
+  for (var i = 5; i >= 1; i--) {
+    var num = i;
+    distributionMap.push(
+      <div>
+      <label for={i}>{i} Stars</label>
+      <progress id={i} className="reviewBar" value={metaData.ratings[i] || 0} max={max} onClick={(i) => {progBarFilters(i.target.id)}}></progress>
+      <label for={i}>{metaData.ratings[i] || 0}</label></div>
+    )
+  }
+
+  //calc rev recommend %
+  var recTotal = (metaData.recommended.false * 1 + metaData.recommended.true * 1)
+  var recAvg = ((metaData.recommended.true / recTotal) * 100).toFixed();
+
+  const [progressBarFiltersArray, setProgressBarFiltersArray] = useState([]);
+
+  const progBarFilters = (numToToggle) => {
+    var sliced = progFilArray.slice()
+    var index = sliced.indexOf(numToToggle)
+
+    if (index !== -1) {
+      var newArr = sliced.splice(index, 1);
+      setProgressBarFiltersArray(newArr);
+      // console.log('NEWW ARR', sliced, newArr, index);
+      progFilArray = sliced;
+    } else {
+      setProgressBarFiltersArray(...progressBarFiltersArray, numToToggle);
+      progFilArray.push(numToToggle);
+    }
+    // console.log('onclickprogbars', progFilArray);
+    onClickProgressBars(progFilArray)
+  };
+
 
   var slidersArray = [];
   for (var key in metaDataChars) {
     var value = (metaDataChars[key].value)
     var sliderText;
-    if (key === 'Fit') {
-      sliderText = 'A size too small Perfect A size too wide'
+    if (key === 'Width') {
+      sliderText = 'A size too small  Perfect A  size too wide'
     }
     if (key === 'Size') {
-      sliderText = 'Too narrow Perfect Too wide'
+      sliderText = 'Too narrow  Perfect Too wide'
     }
     if (key === 'Comfort') {
-      sliderText = 'Uncomfortable Ok Perfect';
+      sliderText = <div className='flex'><span className='left' >Uncomfortable </span> <span className='middle' >Ok</span>
+      <span className='right'> Perfect </span>
+      </div>
     }
     if (key === 'Quality') {
-      sliderText = 'Poor What I expected Perfect'
+      sliderText = <div className='flex'><span className='left' >Poor </span> <span className='middle' > Expected </span>
+      <span className='right'> Perfect </span>
+      </div>
     }
     if (key === 'Length') {
-      sliderText = 'Runs short Perfect Runs long'
+      sliderText = <div className='flex'><span className='left' >Runs short </span> <span className='middle' >Perfect </span>
+      <span className='right'> Runs long </span>
+      </div>
     }
     if (key === 'Fit') {
-      sliderText = 'Runs tight Perfect Runs long'
+      sliderText = <div className='flex'><span className='left' >Runs tight </span> <span className='middle' >Perfect </span>
+       <span className='right'> Runs long </span>
+       </div>
     }
     // console.log('sliderval', value);
     slidersArray.push(<div className='sliderBox'>
       <div>{key}</div>
       <input className='slider' type="range" value={value} max='5' name={key} disabled></input><br></br>
-      <label className='sliderText' for={key}>{sliderText}</label>
+      <div className='sliderText' for={key}>{sliderText}  <span> </span></div>
     </div>)
   }
 
-  if (getData) {
-    var ratingsSum = 0;
-    var ratingsCount = 0;
-    data = SampleData2();
-    setGetData(false);
-    for (var key in metaData.ratings) {
-      ratingsSum += metaData.ratings[key] * (key)
-      ratingsCount += metaData.ratings[key] * 1;
-    }
-    console.log(ratingsSum, ratingsCount);
-    var avg = (ratingsSum / ratingsCount).toFixed(2);
-    setRatingAvg(avg);
-  }
-
-
-  var starMap = [];
-  for (var i = 1; i < 5; i++) {
-    var difference = ratingAvg - i;
-    if (difference > 1) {
-     starMap.push(<i className="fa-solid fa-star"></i>);
-   }
-    if (difference < 1 && difference > 0) {
-     starMap.push(<i id="mutableStar" className="fa-solid fa-star"></i>);
-   }
-    if (difference < 0) {
-    starMap.push(<i className="fa-regular fa-star"></i>);
-   }
-  }
-
-  var distributionMap = [];
-  for (var i = 5; i >= 1; i--) {
-    distributionMap.push(
-    <div>
-      <label for={i}>{i} Stars</label>
-      <progress id={i}className="reviewBar" value={metaData.ratings[i] || 0} max='500'> 32% </progress></div>
-    )
-  }
-  var recTotal = (metaData.recommended.false * 1 + metaData.recommended.true * 1)
-  var recAvg = ((metaData.recommended.true / recTotal) * 100).toFixed();
-
-// console.log('RATINGAVG', recAvg, metaData.recommended.false, metaData.recommended.true, recTotal);
-
 return (
   <div className='ratingsBox'>
-    <div className='ratingsCard'>{ratingAvg}<div className='starContainer'>{starMap}
+    <div className='ratingsCard'>{ratingAvg}<div className='starContainer'>{starsArray}
+
     </div>
   </div>
-  <div className='recAvg'>{recAvg}% of users recommend this product</div>
+  <div className='recAvg'>{recAvg}% of reviews recommend this product</div>
   <div className='progressBars'>{distributionMap}</div>
-
   <div className='slidersArray'>{slidersArray}</div>
 </div>
 
