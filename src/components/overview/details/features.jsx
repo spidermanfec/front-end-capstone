@@ -3,7 +3,6 @@ import axios from 'axios';
 import Ratings from './ratings.jsx'
 
 function Features({ items, itemsInfo, styles}) {
-  console.log(itemsInfo);
   return (
     <div className="descriptionWrapper">
       <div className="description">

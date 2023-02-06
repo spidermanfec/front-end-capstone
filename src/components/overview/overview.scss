@@ -44,7 +44,8 @@ $widthProdInfo: percentage($number: 30);
   padding: 15px;
   display: flex;
   justify-content: space-evenly;
-  margin-right: 150px;
+  position: relative;
+  left: 75px;
 }
 
 .wrapperdivider {
@@ -55,11 +56,12 @@ $widthProdInfo: percentage($number: 30);
 
 .description {
   white-space: pre-wrap;
-    /* display: flex; */
+    display: flex;
     width: 5000%;
     margin-left: auto;
-    /* width: auto; */
     margin-right: auto;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 .slogantext {
@@ -104,14 +106,16 @@ $widthProdInfo: percentage($number: 30);
 
 .wrapperfeatures {
   margin-left: 50px;
-  width: $widthProdInfo;
+  width: 3000%;
   font-size: 15px;
   color: gray;
+  display: flex;
+  flex-direction: column;
 }
 
 
 .features {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-left: -10px;
 }
 
