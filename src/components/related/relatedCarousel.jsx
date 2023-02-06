@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import RelatedCard from './relatedCard.jsx';
 
-export default function RelatedCarousel({ productID, setProduct, setComparison }) {
+export default function RelatedCarousel({
+  productID, setProduct, setComparison, carRef, onHover
+}) {
   const [relatedProductsDetails, setRelatedProductsDetails] = useState({});
   useEffect(() => {
     const prod = {};
@@ -29,7 +31,9 @@ export default function RelatedCarousel({ productID, setProduct, setComparison }
   }, [productID]);
 
   return (
-    <div className="card-carousel related-products">
+    <div className="card-carousel related-products"
+      ref={carRef}
+    >
       {(Object.keys(relatedProductsDetails)).map((cID) => (
         <RelatedCard
           id={`${relatedProductsDetails[cID].id}`}
@@ -50,4 +54,5 @@ RelatedCarousel.propTypes = {
   productID: PropTypes.string.isRequired,
   setProduct: PropTypes.func.isRequired,
   setComparison: PropTypes.func.isRequired,
+  setRef: PropTypes.func.isRequired,
 };

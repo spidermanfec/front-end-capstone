@@ -5,17 +5,18 @@ export default function RelatedCard({
   id, category, name, defaultPrice, salePrice, photo, setProduct, setComparison,
 }) {
   let price = (
-    <div>
-      <p>{defaultPrice}</p>
+    <div className="prod-price">
+      <p>{`$${defaultPrice}`}</p>
+      <p />
     </div>
   );
 
   useEffect(() => {
     if (salePrice.length !== '') {
       price = (
-        <div>
-          <p><s>{defaultPrice}</s></p>
-          <p style={{ color: 'red' }}>{salePrice}</p>
+        <div className="prod-price">
+          <p><s>{`$${defaultPrice}`}</s></p>
+          <p style={{ color: 'red' }}>{`$${salePrice}`}</p>
         </div>
       );
     }
@@ -30,19 +31,23 @@ export default function RelatedCard({
       tabIndex="0"
     >
       <img className="card-img img" src={photo} alt=":(" />
-      <button
-        className="card-btn rm-outfit-btn"
-        type="button"
+      <i
+        className="fa-solid fa-magnifying-glass card-btn rm-outfit-btn"
+        role="button"
+        tabIndex="0"
+        alt="compare"
         onClick={(e) => {
           e.stopPropagation();
           setComparison(id);
         }}
-      >
-        O
-      </button>
+        onKeyPress={(e) => {
+          e.stopPropagation();
+          setComparison(id);
+        }}
+      />
       <div className="card-body">
-        <p>{category}</p>
-        <p>{name}</p>
+        <p className="prod-category">{category}</p>
+        <p className="prod-name">{name}</p>
         {price}
         <p>rating</p>
       </div>
