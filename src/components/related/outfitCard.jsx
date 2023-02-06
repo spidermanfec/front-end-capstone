@@ -29,20 +29,23 @@ export default function OutfitCard({
       tabIndex="0"
     >
       <img className="card-img" src={photo} alt=":(" />
-      <button
-        className="card-btn rm-outfit-btn"
-        type="button"
+      <i
+        className="fa-regular fa-circle-xmark card-btn rm-outfit-btn"
+        role="button"
+        tabIndex="0"
+        alt="remove"
         onClick={(e) => {
           e.stopPropagation();
           removeProduct(id);
         }}
-        tabIndex="0"
-      >
-        x
-      </button>
+        onKeyPress={(e) => {
+          e.stopPropagation();
+          removeProduct(id);
+        }}
+      />
       <div className="card-body">
-        <p>{category}</p>
-        <p>{name}</p>
+        <p className="prod-category">{category}</p>
+        <p className="prod-name">{name}</p>
         {displayPrice()}
         <p>rating</p>
       </div>

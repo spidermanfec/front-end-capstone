@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 import RelatedCarousel from './relatedCarousel.jsx';
 import OutfitCarousel from './outfitCarousel.jsx';
 import ComparisonModal from './comparisonModal.jsx';
+import LeftArrow from './leftArrow.jsx';
+import RightArrow from './rightArrow.jsx';
 import './related-items-comparison.scss';
 
 export default function Related({ productID, setProduct }) {
   const [leftID, setLeftID] = useState('');
   const [rightID, setRightID] = useState('');
+  const relatedCarouselRef = useRef(); // React.createRef();
+  const outCarouselRef = React.createRef();
+  const [hiddenRelArrows, sethiddenRelArrows] = useState(true);
+  const [hiddenOutArrows, sethiddenOutArrows] = useState(true);
 
   useEffect(() => {
     setLeftID(productID);
@@ -17,14 +22,35 @@ export default function Related({ productID, setProduct }) {
   return (
     <div className="related-n-outfits">
       <ComparisonModal leftID={leftID} rightID={rightID} setComparison={setRightID} />
-      <RelatedCarousel
-        productID={productID}
-        setProduct={setProduct}
-        setComparison={setRightID}
-      />
-      <br />
-      <br />
-      <OutfitCarousel productID={productID} setProduct={setProduct} />
+      <div
+        className="carousel-outer"
+        onMouseOver={() => sethiddenRelArrows(false)}
+        onMouseOut={() => sethiddenRelArrows(true)}
+      >
+        <LeftArrow carRef={relatedCarouselRef} areVisible={hiddenRelArrows} />
+        <RightArrow carRef={relatedCarouselRef} areVisible={hiddenRelArrows} />
+        <RelatedCarousel
+          productID={productID}
+          setProduct={setProduct}
+          setComparison={setRightID}
+          carRef={relatedCarouselRef}
+          onHover={sethiddenRelArrows}
+        />
+      </div>
+      <div
+        className="carousel-outer"
+        onMouseOver={() => sethiddenOutArrows(false)}
+        onMouseOut={() => sethiddenOutArrows(true)}
+      >
+        <LeftArrow carRef={outCarouselRef} areVisible={hiddenOutArrows} />
+        <RightArrow carRef={outCarouselRef} areVisible={hiddenOutArrows} />
+        <OutfitCarousel
+          productID={productID}
+          setProduct={setProduct}
+          carRef={outCarouselRef}
+          onHover={sethiddenOutArrows}
+        />
+      </div>
     </div>
   );
 }

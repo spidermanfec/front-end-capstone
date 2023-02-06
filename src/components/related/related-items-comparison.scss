@@ -22,36 +22,93 @@ hr {
 }
 
 .related-n-outfits {
-  margin: 10%;
+  // margin: 20%;
+  position: relative;
+}
+
+// .card-carousel {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   height: 500px;
+//   overflow-x: auto;
+// }
+
+// .card-carousel > div {
+//   flex-shrink: 0;
+//   width: 250px;
+//   height: 400px;
+// }
+
+.carousel-outer {
+  width: 100%;
+  height: auto;
+  // background: white;
+  position: relative;
 }
 
 .card-carousel {
+  margin: 5% 20%;
+  // position: relative;
   display: flex;
-  flex-wrap: nowrap;
-  height: 350px;
-  overflow-x: auto;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  // margin-left: -1rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > * {
+    scroll-snap-align: start;
+    // margin-left: 1rem;
+  }
 }
 
-.card-carousel > div {
-  flex-shrink: 0;
-  width: 200px;
-  height: 300px;
+.carousel-nav {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  z-index: 1;
+  // transition: transform 0.1s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.left-arrow {
+  left: 18%;
+  // left: 0;
+  // transform: translate(-100%, -50%);
+
+  // .related-products:hover & {
+  //   transform: translate(0%, -50%);
+  // }
+}
+
+.right-arrow {
+  right: 18%;
 }
 
 .card {
-  flex: 0 0 auto;
+  // flex: 0 0 auto;
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  // border: 1px solid white;
+  border: 1px solid #888;
   // border-radius: 10px;
-  width: 200px;
-  height: 300px;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 400px;
+  max-height: 400px;
   overflow: hidden;
 }
 
 .card + .card {
-  margin-left: 2em;
+  margin-left: 1.5em;
 }
 
 .card:hover {
@@ -61,25 +118,60 @@ hr {
 .card-body {
   padding: 2px 5px;
   margin: 0;
+  // display: grid;
+  // row-gap: 4px;
 }
 
 .card-img {
-  height: 65%;
+  height: 75%;
   width: 100%;
+  object-fit: none;
 }
+
+// .card-img:hover {
+//   height: 100%;
+//   object-fit: contain;
+// }
 
 .card-btn {
   position: absolute;
   background-color: transparent;
   border-color: transparent;
-  top: 0;
-  right: 0;
+  top: 9px;
+  right: 9px;
   // z-index: 1;
+}
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-size: xx-large;
+}
+
+.card p {
+  margin: 0;
+  padding-top: 5px;
+}
+
+.prod-category {
+  text-transform: uppercase;
+  font-size: x-small;
+}
+
+.prod-name {
+  font-size: large;
+}
+
+.prod-price {
+  font-size: small;
 }
 
 .comparison-modal {
   padding: 0;
-  position: absolute; /* Stay in place */
+  position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   margin: 150px 150px;
   display: flex;
