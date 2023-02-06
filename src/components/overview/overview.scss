@@ -113,6 +113,11 @@ $widthProdInfo: percentage($number: 30);
   flex-direction: column;
 }
 
+.origPrice {
+  color: black;
+  text-decoration: line-through;
+}
+
 
 .features {
   margin-bottom: 10px;
