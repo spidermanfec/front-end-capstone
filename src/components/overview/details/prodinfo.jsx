@@ -8,7 +8,7 @@ function Prodinfo({ items, itemsInfo, styles, reviews, ratingRef }) {
       <p><Ratings reviews={reviews} ratingRef={ratingRef}/></p>
       <small className="category">{itemsInfo.category}</small>
       <h2 className="itemName">{itemsInfo.name}</h2>
-      <p className={`sale ${styles.sale_price ? 'sale--on' : 'sale--off'}`}>{styles.sale_price ? `Sale: $${styles.sale_price}` : `$${styles.original_price}`}</p>
+      <p className={`sale ${styles.sale_price ? 'sale--on' : 'sale--off'}`}>{styles.sale_price ? <div>{`Sale: $${styles.sale_price}`} <span className="origPrice">{`$${styles.original_price}`}</span></div> : `$${styles.original_price}`}</p>
     </aside>
   );
 }

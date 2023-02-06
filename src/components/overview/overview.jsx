@@ -53,6 +53,9 @@ function Overview({ productID, ratingRef }) {
     }
   };
 
+  console.log(itemStyles.results);
+  console.log(tester());
+
   const cartHandler = (e) => {
     e.preventDefault();
     setCardModal(!cartModal);
@@ -78,7 +81,7 @@ function Overview({ productID, ratingRef }) {
           </div>
             {/* {cartModal && <div className="cartmodal">{cartItems}</div>} */}
           <Prodinfo ratingRef={ratingRef} items={items} reviews={reviews.results} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
-          <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
+          <section><Selector items={items} productID={productID} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
           <section className=""><Cart productID={productID} tester={tester} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
           <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} /></section>
         </div>
