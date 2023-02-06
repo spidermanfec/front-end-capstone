@@ -1,62 +1,40 @@
+Path: 'src/test/aentry.test.jsx'
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import axios from 'axios';
-import Aentry from '../components/questions/aentry';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import Aentry from '../components/questions/aentry.jsx';
 
-jest.mock('axios');
+const answer = {
+  answerer_name: 'Seller',
+  body: 'This is a test answer',
+  date: '2021-01-01T00:00:00.000Z',
+  helpfulness: 0,
+  id: 1,
+  photos: [],
+};
 
-describe('Aentry component', () => {
-  let answer;
-
-  beforeEach(() => {
-    answer = {
-      id: 1,
-      body: 'Answer body',
-      photos: ['image1', 'image2'],
-      answerer_name: 'Answerer name',
-      date: '2022-01-01T00:00:00.000Z',
-      helpfulness: 0
-    };
+describe('Aentry', () => {
+  test('renders Aentry component', () => {
+    render(<Aentry answer={answer}/>);
+    expect(screen.getByText('A:')).toBeInTheDocument();
   });
 
-  it('renders the answer body and photos', () => {
-    const { getByText, getAllByRole } = render(<Aentry answer={answer} />);
-    expect(getByText('A: Answer body')).toBeInTheDocument();
+  test('renders Aentry component with answer', () => {
+    render(<Aentry answer={answer} />);
+    expect(screen.getByText('This is a test answer')).toBeInTheDocument();
   });
 
-  /* it('increments the helpfulness count and sets a cookie after helpful click', async () => {
-    const { getByText } = render(<Aentry answer={answer} />);
-
-    fireEvent.click(getByText('Yes (0)'));
-
-    expect(axios.put).toHaveBeenCalledWith(`http://localhost:1100/helpfula/?answer_id=${answer.id}`);
-    expect(getByText('Yes (1)')).toBeInTheDocument();
+  test('renders Aentry component with answerer name', () => {
+    render(<Aentry answer={answer} />);
+    expect(screen.getByText('Seller')).toBeInTheDocument();
   });
 
-  it('displays an alert if the user has already voted helpful', async () => {
-    answer.helpfulness = 1;
+  // fireEven tests
 
-    const { getByText } = render(<Aentry answer={answer} />);
-
-    fireEvent.click(getByText('Yes (1)'));
-
-    expect(window.alert).toHaveBeenCalledWith("You've already voted this helpful!");
+  test('renders Aentry component with report click', () => {
+    render(<Aentry answer={answer} />);
+    fireEvent.click(screen.getByText('Report'));
+    expect(screen.getByText('Reported')).toBeInTheDocument();
   });
 
-  it('reports the answer after report click', async () => {
-    const { getByText } = render(<Aentry answer={answer} />);
-
-    fireEvent.click(getByText('Report'));
-
-    expect(axios.put).toHaveBeenCalledWith(`http://localhost:1100/reporta/?answer_id=${answer.id}`);
-    expect(getByText('Reported')).toBeInTheDocument();
-  });
-
-  it('opens the image modal on image click', async () => {
-    const { getAllByRole } = render(<Aentry answer={answer} />);
-
-    fireEvent.click(getAllByRole('img')[0]);
-
-    expect(getAllByRole('img')[0]).toHaveAttribute('src', 'image1');
-  }); */
 });
