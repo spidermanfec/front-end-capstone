@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import Qlist from './qlist.jsx'
 import './questions.scss';
 
-function Questions({ product }) {
+function Questions({ productID, product }) {
   const [questionList, setQuestionList] = useState([]);
   const [qCount, setQCount] = useState(0);
-  const product_id = 37360;
-  const product_name = 'Super Nice Shoes';
+  const product_id = productID;
+  const product_name = product.name;
 
   const pullQuestions = () => { // Used to rerender questions when internal stuff changes, passed as prop.
     axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`)
