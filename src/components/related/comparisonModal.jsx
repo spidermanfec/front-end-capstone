@@ -78,8 +78,14 @@ export default function ComparisonModal({ leftID, rightID, setComparison }) {
   };
 
   return (
-    <div className="comparison-modal" style={style}>
-      <button type="button" className="card-btn" onClick={buttonAction}>x</button>
+    <div
+      className="comparison-modal"
+      style={style}
+      onClick={buttonAction}
+      onKeyPress={buttonAction}
+      tabIndex="0"
+      role="button"
+    >
       <small className="grid-itm">Comparing</small>
       <div className="cmp-mdl-grid cmp-mdl-products">
         <div className="grid-itm">{dataL.name}</div>
