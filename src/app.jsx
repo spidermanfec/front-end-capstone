@@ -10,7 +10,7 @@ import Related from './components/related/related.jsx';
 
 function App() {
   const [products, setProducts] = useState(sampleData);
-  const [productID, setProductID] = useState('37317');
+  const [productID, setProductID] = useState('37315');
   const [product, setProduct] = useState({});
 
   useEffect(() => {
