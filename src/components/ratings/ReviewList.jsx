@@ -31,7 +31,6 @@ const ReviewList = ({renderedReviews}) => {
 
   return (
     <div id="reviewList">
-    <h4>ReviewList</h4>
     {/* <div>{reviewMap}</div> */}
     <div>{reviewMap}</div>
     {/* <div>{showButton ? <button id="showMore" type="button" onClick={() => {showMoreReviews(); toggleButton()}}>Show More</button> : ''}</div> */}

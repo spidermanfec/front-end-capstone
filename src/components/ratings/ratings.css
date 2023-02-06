@@ -1,50 +1,76 @@
+.starContainer {
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction:row;
+}
+
 .star {
   /* display: inline-block; */
+  /* flex-basis: 100px; */
+  float: left;
   display: flex;
-  position: relative;
+  /* position: relative; */
   font-size: 100px;
   color: #ddd;
   justify-content: space-around;
 }
 
 .star:after {
-  font-family: FontAwesome;
-  content: "\f005";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #f80;
-}
-
- #mutableStar:after {
-  display: flex;
+  flex-basis: 50px;
+  flex: none;
+  float: left;
   font-family: FontAwesome;
   content: "\f005";
   /* position: absolute; */
   left: 0;
   top: 0;
-  width: 50%;
+  width: 25%;
   overflow: hidden;
-  color: rgb(18, 155, 25);
+  /* color: rgb(255, 0, 0); */
+}
+
+#mutableStar {
+  flex-basis: 15px;
+  float:left;
+  display: flex;
+
+}
+
+ #mutableStar:after {
+  /* float:left;
+  display: flex; */
+  /* border-style:double; */
+  font-family: FontAwesome;
+  content: "\f005";
+  /* position: absolute; */
+  left: 0;
+  top: 0;
+  /* width: 25%; */
+  overflow: hidden;
+  color: rgb(0, 0, 0);
 }
 
 #reviewList {
-  border: rgb(255, 1, 153);
-  border-width:thick;
-  border-style:double;
+  border: rgb(0, 0, 0);
+  border-width:thin;
+  border-style: none;
   overflow-y: scroll;
   width: 800px;
-  height: 400px;
+  height: 300px;
+  float: right;
   /* color: rgb(18, 155, 25); */
 }
-
+.reviewSummary {
+  font-style: bold;
+  /* font-size: large; */
+}
 .reviewBox {
-  border: rgb(185, 164, 143);
-  border-width:thick;
-  border-style:double;
-
+  border: rgb(0, 0, 0);
+  border-width:thin;
+  border-style:none none double none;
+  height: 150px;
 }
 
 .reviewStars {
@@ -56,6 +82,9 @@
   justify-content:end;
 }
 
+.none {
+  display:none;
+}
 .modal {
   text-align: center;
   display: block; /* Hidden by default */
@@ -67,8 +96,8 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(255, 255, 255); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.758); /* Black w/ opacity */
+  /* background-color: rgb(255, 255, 255); Fallback color */
+  background-color: rgba(232, 232, 232, 0.867); /* Black w/ opacity */
 }
 
 .modal-content {
@@ -81,10 +110,105 @@
 }
 
 .sliderText {
-
+  text-align:justify;
+  width: 240px;
+  /* height: 100%; */
   font-size: small;
+  font-stretch: extra-expanded;
+  /* max-width:max-content;
+  border-style: double; */
 }
+/* span{
+  background-color:red;
+  width:100%;
+  height:1em;
+  display:inline-block;
+} */
 
 .slider {
  width:max-content;
+}
+.sliderBox {
+  width: 400px;
+}
+
+.RnR {
+  display: flex;
+  /* background-color: rgb(0, 0, 0);
+  color: #ddd;
+  border-style: dashed;
+  margin: 50px; */
+  width: 800px;
+}
+.ratingsCard {
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  text-align: left;
+  float:center;
+  width: 100px;
+}
+
+.reviewBar {
+  color: aqua;
+  accent-color: #15cd71;
+  width: 200px;
+  /* background: #016bff; */
+}
+.reviewBar:hover {
+  accent-color: #7bd6a9;
+  /* background: #016bff; */
+}
+
+
+.recAvg {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ratingsBox {
+  /* background-color: #ff0000; */
+  width: 300px;
+}
+.slider {
+  width: 240px;
+}
+
+.reviewList {
+  width: 800px;
+}
+
+.RnR-header {
+  height: 10px;
+}
+
+.buttons {
+  float: left;
+}
+
+.buttonEl {
+  align-content: flex-start;
+  display: flex;
+}
+
+.reviewListButtons {
+display:inline-table;
+position: relative;
+}
+
+.flex {
+  display:flex;
+  gap: 48px;
+}
+.left {
+  text-align: left;
+  justify-content: left;
+}
+.middle {
+  text-align: center;
+  justify-content: center;
+}
+.right {
+  text-align: right;
+  justify-content: right;
 }
