@@ -47,7 +47,6 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   // handle submitting to cart here
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(skus, size, amount);
     axios.post('/cart', {
       skus,
       size,
@@ -57,14 +56,17 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
 
   return (
     <form className="cart">
-      <select name="sizeList" id="sizeList" onClick={(e) => handleOpen(e)} onChange={handleChangeSize}>
-        {infos[0] === 'null' && <option className="outofstock" disabled selected>OUT OF STOCK</option>}
+        {infos[0] === 'null' && <select id="sizeList" disabled selected><option className="outofstock" disabled selected>OUT OF STOCK</option></select>}
+      {infos[0] !== 'null' && <select name="sizeList" id="sizeList" onClick={(e) => handleOpen(e)} onChange={handleChangeSize}>
         {!sizeSelected && <option value="default" disabled selected>SELECT SIZE</option>}
         {infos.map((info) => <option value={info}>{styles.skus[info].size}</option>)}
-      </select>
-      <select name="quantityList" id="quantityList" onChange={handleAmount}>
+      </select>}
+      {infos[0] === 'null' && <select name="quantityList" id="quantityList" onChange={handleAmount} disabled>
         {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
-      </select>
+      </select>}
+      {infos[0] !== 'null' && <select name="quantityList" id="quantityList" onChange={handleAmount}>
+        {(sizeSelected) ? handleSelectQuantity() : <option value="" disabled selected>--</option>}
+      </select>}
       {infos[0] === 'null' && null}
       {infos[0] !== 'null' && <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>}
     </form>
