@@ -10,7 +10,21 @@ export default function OutfitCarousel({ productID, setProduct, carRef, onHover 
 
   useEffect(() => {
     const prod = {};
-    Promise.all(outfitProductsIDs.map((id) => axios.get(`products/${id}/details`)))
+    Promise.all(outfitProductsIDs.filter((id) => {
+      const storedIDData = JSON.parse(localStorage.getItem(id));
+      if (storedIDData !== null) {
+        prod[id] = storedIDData;
+        return false;
+      }
+      return true;
+    }))
+      .then((results) => {
+        if (results.length === 0) {
+          throw('outs in storage');
+        }
+        return results;
+      })
+      .then((results) => results.map((id) => axios.get(`products/${id}/details`)))
       .then((results) => Promise.all(results))
       .then((results) => results.map((result) => result.data))
       .then((results) => results.map((result) => {
@@ -22,11 +36,10 @@ export default function OutfitCarousel({ productID, setProduct, carRef, onHover 
       .then((results) => results.map((product) => {
         prod[product.product_id].photo = ((product.results)[0].photos)[0].thumbnail_url;
         prod[product.product_id].sale_price = (product.results)[0].sale_price === null ? '' : (results.results).sale_price;
-        // return 'hello';// return prod[product.product_id];
       }))
-      .then((/* results */) => setOutfitProducts(prod))
-      .catch((err) => console.log(err));
-  }, [outfitProductsIDs]);
+      .catch((err) => console.log(err))
+      .finally(() => setOutfitProducts(prod));
+    }, [outfitProductsIDs]);
 
   const notInList = (id) => (
     outfitProductsIDs.indexOf(id)
