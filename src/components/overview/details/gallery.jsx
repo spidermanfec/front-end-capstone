@@ -57,7 +57,7 @@ function Gallery({ styles, handleStyleSelect, productID }) {
             {imageModal && (
               <div className="modal-lg">
                 {/* <div className="expandedView"> */}
-                {!expandedModal && <div><img className="img-responsive" src={`${photo.url}`} onClick={toggleExpandedModdal} /><span onClick={closeModal} class="modalButton"> X </span></div>}
+                {!expandedModal && <div><img className="img-responsive" src={`${photo.url}`} onClick={toggleExpandedModdal} /><span onClick={closeModal} class="modalButton"> <img src="https://img.icons8.com/ios/50/null/cancel.png"/> </span></div>}
                 {expandedModal && <div className="zoomedimage"><div className="img-larger"><img className="zoom" onMouseMove={mouseHandler} src={`${photo.url}`} onClick={toggleExpandedModdal} /></div></div>}
                 {/* </div> */}
                 {!expandedModal && <div id="modalimagelist">

@@ -8,7 +8,7 @@ import Share from './details/share.jsx';
 import Features from './details/features.jsx'
 import './overview.scss';
 
-function Overview({ productID }) {
+function Overview({ productID, ratingRef }) {
   const [items, setItems] = useState([]);
 
   const [itemsInfo, setItemsInfo] = useState([]);
@@ -19,21 +19,27 @@ function Overview({ productID }) {
 
   const [selectedStyle, setSelectedStyle] = useState();
 
+  const [cartModal, setCardModal] = useState(false);
 
-  // const [display, setDisplay] = React.useState([selectedProd1, styles.results[0]]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const [reviews, setReviews] = useState([]);
+
   useEffect(() => {
-    Promise.all([axios.get('/products'), axios.get(`/productsid/?product_id=${productID}`), axios.get(`/productstyles/?product_id=${productID}`)]).then(([resProds, resIds, resStyles]) => {
+    Promise.all([axios.get('/products'), axios.get(`/productsid/?product_id=${productID}`), axios.get(`/productstyles/?product_id=${productID}`), axios.get(`/revs/?product_id=${productID}`)]).then(([resProds, resIds, resStyles, resRevs]) => {
       setItems(resProds.data);
       setItemsInfo(resIds.data);
       setItemStyles(resStyles.data);
+      setReviews(resRevs.data);
       setLoading(false);
     });
   }, [productID]);
 
+  console.log(reviews);
+
   const handleStyleSelect = (e) => {
     e.preventDefault();
     let select = e.currentTarget.value;
-    console.log(select);
     setSelectedStyle(Number(select));
   };
 
@@ -49,17 +55,33 @@ function Overview({ productID }) {
     }
   };
 
-  console.log(tester());
+  const cartHandler = (e) => {
+    e.preventDefault();
+    setCardModal(!cartModal);
+    axios.get('/cart')
+      .then((result) => {
+        setCartItems([result.data]);
+      });
+  };
 
   return (
     <>
       <div className="overviewContainer">
         <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} productID={productID} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></div>
-        <div className="spacer"></div>
+        <div className="spacer" />
         <div className="prodInfo">
-          <Prodinfo items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
+          <div className="cart1" onClick={cartHandler}>
+          <div className="cartmodal">
+          {cartItems.map((item) => {
+            console.log(cartItems);
+            {cartItems.length === 0 ? <div>Cart is empty</div> : <div>{item.sku_id, item.count}</div>}
+          })}
+            </div>
+          </div>
+            {/* {cartModal && <div className="cartmodal">{cartItems}</div>} */}
+          <Prodinfo ratingRef={ratingRef} items={items} reviews={reviews.results} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
           <section><Selector items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
-          <section className=""><Cart productID={productID} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
+          <section className=""><Cart productID={productID} tester={tester} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
           <section><Share items={items} itemsInfo={itemsInfo} itemStyles={itemStyles} /></section>
         </div>
       </div>

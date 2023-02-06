@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import './index.scss';
 import sampleData from '../sampledata.js'
@@ -10,12 +10,13 @@ import Related from './components/related/related.jsx';
 function App() {
   const [products, setProducts] = useState(sampleData);
   const [productID, setProductID] = useState('37315');
+  const ratingRef = useRef();
   return (
     <CookiesProvider>
       <div>
-        <Overview productID={productID} setProductID={setProductID} />
+        <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
         <Questions products={products} />
-        <Ratings />
+        <div ref={ratingRef}><Ratings /></div>
         <Related productID={productID} setProduct={setProductID} />
       </div>
     </CookiesProvider>
