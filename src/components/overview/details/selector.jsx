@@ -7,9 +7,10 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
 
   useEffect(() => {
     setCurrentThumbnail(0);
-  }, [productID, productID])
+  }, [productID])
 
-  console.log('here', itemStyles, styles);
+  console.log(productID)
+
   if (styles.photos[0].thumbnail_url === null) {
     return <div className="cats">Cool cat</div>;
   }
@@ -18,8 +19,9 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
     <div className="styles">
       <div className="styletext">STYLE &#5171; {styles.name}</div>
       <p className="selectorGrid">
-        {itemStyles.results.map((itemStyle, index) => {
-          console.log('THUMB URL', itemStyle.photos[index].thumbnail_url);
+        {itemStyles.results?.map((itemStyle, index) => {
+         
+         
           return <button className={itemStyle.photos[currentThumbnail].thumbnail_url === itemStyle.photos[index].thumbnail_url ? 'selecStyleon' : 'selecStyleoff '} onClick={() => setCurrentThumbnail(itemStyle.photos.indexOf(itemStyle.photos[index]))} onClick={(e) => handleStyleSelect(e)}
             type="submit" value={itemStyle.style_id} key={index}>
             <div className='layover'>

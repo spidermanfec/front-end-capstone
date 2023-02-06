@@ -4,7 +4,7 @@ import axios from 'axios';
 import PlusCard from './plusCard.jsx';
 import OutfitCard from './outfitCard.jsx';
 
-export default function OutfitCarousel({ productID, setProduct }) {
+export default function OutfitCarousel({ productID, setProduct, carRef, onHover }) {
   const [outfitProductsIDs, setOutfitProductsIDs] = useState([]);
   const [outfitProducts, setOutfitProducts] = useState({});
 
@@ -22,7 +22,7 @@ export default function OutfitCarousel({ productID, setProduct }) {
       .then((results) => results.map((product) => {
         prod[product.product_id].photo = ((product.results)[0].photos)[0].thumbnail_url;
         prod[product.product_id].sale_price = (product.results)[0].sale_price === null ? '' : (results.results).sale_price;
-        return 'hello';// return prod[product.product_id];
+        // return 'hello';// return prod[product.product_id];
       }))
       .then((/* results */) => setOutfitProducts(prod))
       .catch((err) => console.log(err));
@@ -37,7 +37,10 @@ export default function OutfitCarousel({ productID, setProduct }) {
   };
 
   return (
-    <div className="card-carousel outfit-products">
+    <div
+      className="card-carousel outfit-products"
+      ref={carRef}
+    >
       <PlusCard
         productID={productID}
         addProduct={setOutfitProductsIDs}

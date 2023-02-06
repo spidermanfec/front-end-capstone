@@ -10,7 +10,7 @@ export default function PlusCard({ productID, addProduct, notInList }) {
 
   return (
     <div
-      className="card outfit-card"
+      className="card add-card"
       onClick={onAdd}
       onKeyPress={onAdd}
       role="button"
