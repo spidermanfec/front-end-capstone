@@ -21,7 +21,17 @@ $widthProdInfo: percentage($number: 30);
   font-size: 12px;
 }
 
-.reviews:hover {
+.reviews1 {
+  font-size: 12px;
+}
+
+.stars {
+  height: 9px;
+    scale: 1.3;
+    margin-left: 1px;
+}
+
+.reviews1:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -157,6 +167,19 @@ $widthProdInfo: percentage($number: 30);
     border-color: lightgrey;
   align-items: center;
   overflow: hidden,
+}
+
+.urlpicoos {
+  height: 100%;
+  width: 100%;
+  object-fit:contain;
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+    border-color: lightgrey;
+  align-items: center;
+  overflow: hidden;
+  cursor:not-allowed;
 }
 
 .urlpic:hover{
