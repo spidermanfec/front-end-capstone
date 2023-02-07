@@ -30,7 +30,7 @@ export default function RelatedCard({
       role="button"
       tabIndex="0"
     >
-      <img className="card-img img" src={photo} alt=":(" />
+      <div className="card-img" style={{backgroundImage: `url('${photo}')`}} />
       <i
         className="fa-solid fa-magnifying-glass card-btn rm-outfit-btn"
         role="button"

@@ -21,7 +21,7 @@ export default function RelatedCarousel({
       }))
       .then((results) => {
         if (results.length === 0) {
-          throw('everything\'s in local storage');
+          throw('rels in storage');
         }
         return results;
       })
