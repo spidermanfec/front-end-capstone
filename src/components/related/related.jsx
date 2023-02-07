@@ -10,13 +10,25 @@ import './related-items-comparison.scss';
 export default function Related({ productID, setProduct }) {
   const [leftID, setLeftID] = useState('');
   const [rightID, setRightID] = useState('');
-  const relatedCarouselRef = useRef(); // React.createRef();
-  const outCarouselRef = React.createRef();
-  const [hiddenRelArrows, sethiddenRelArrows] = useState(true);
-  const [hiddenOutArrows, sethiddenOutArrows] = useState(true);
+  const relCarouselRef = useRef(); // React.createRef();
+  const outCarouselRef = useRef(); // React.createRef();
+  const [cantScrollRelLeft, setCantScrollRelLeft] = useState(true);
+  const [cantScrollRelRight, setCantScrollRelRight] = useState(true);
+  const [cantScrollOutLeft, setCantScrollOutLeft] = useState(true);
+  const [cantScrollOutRight, setCantScrollOutRight] = useState(true);
+
+  const checkBoundary = (side, element) => {
+    const boundary = Math.floor((element.getBoundingClientRect())[side]);
+    const check = (side === 'left') ? Math.floor((element.children[0].getBoundingClientRect())[side])
+      : Math.floor((element.children[element.children.length - 1].getBoundingClientRect())[side]);
+    return (side === 'left') ? (boundary <= check) : (boundary >= check);
+  };
 
   useEffect(() => {
     setLeftID(productID);
+    if (relCarouselRef.current) {
+      relCarouselRef.current.scrollTo(0, 0);
+    }
   }, [productID]);
 
   return (
@@ -24,33 +36,35 @@ export default function Related({ productID, setProduct }) {
       <ComparisonModal leftID={leftID} rightID={rightID} setComparison={setRightID} />
       <div
         className="carousel-outer"
-        onMouseOver={() => sethiddenRelArrows(false)}
-        onMouseOut={() => sethiddenRelArrows(true)}
+        onMouseOver={() => setCantScrollRelRight(checkBoundary('right', relCarouselRef.current))}
       >
         <h2>RELATED PRODUCTS</h2>
-        <LeftArrow carRef={relatedCarouselRef} areVisible={hiddenRelArrows} />
-        <RightArrow carRef={relatedCarouselRef} areVisible={hiddenRelArrows} />
+        <LeftArrow carRef={relCarouselRef} areVisible={cantScrollRelLeft} />
+        <RightArrow carRef={relCarouselRef} areVisible={cantScrollRelRight} />
         <RelatedCarousel
           productID={productID}
           setProduct={setProduct}
           setComparison={setRightID}
-          carRef={relatedCarouselRef}
-          onHover={sethiddenRelArrows}
+          carRef={relCarouselRef}
+          checkBoundary={checkBoundary}
+          scrollLeft={setCantScrollRelLeft}
+          scrollRight={setCantScrollRelRight}
         />
       </div>
       <div
         className="carousel-outer"
-        onMouseOver={() => sethiddenOutArrows(false)}
-        onMouseOut={() => sethiddenOutArrows(true)}
+        onMouseOver={() => setCantScrollOutRight(checkBoundary('right', outCarouselRef.current))}
       >
         <h2>YOUR OUTFIT</h2>
-        <LeftArrow carRef={outCarouselRef} areVisible={hiddenOutArrows} />
-        <RightArrow carRef={outCarouselRef} areVisible={hiddenOutArrows} />
+        <LeftArrow carRef={outCarouselRef} areVisible={cantScrollOutLeft} />
+        <RightArrow carRef={outCarouselRef} areVisible={cantScrollOutRight} />
         <OutfitCarousel
           productID={productID}
           setProduct={setProduct}
           carRef={outCarouselRef}
-          onHover={sethiddenOutArrows}
+          checkBoundary={checkBoundary}
+          scrollLeft={setCantScrollOutLeft}
+          scrollRight={setCantScrollOutRight}
         />
       </div>
     </div>
