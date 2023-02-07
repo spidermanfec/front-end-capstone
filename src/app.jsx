@@ -22,7 +22,7 @@ function App() {
   const ratingRef = useRef();
   return (
     <CookiesProvider>
-      <div>
+      <div className="wholeAppWrapper">
         <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
         <div ref={ratingRef}><Ratings /></div>
         <Related productID={productID} setProduct={setProductID} />
