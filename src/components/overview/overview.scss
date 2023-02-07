@@ -3,7 +3,7 @@ $widthSpacer: percentage($number: 3);
 $widthProdInfo: percentage($number: 30);
 
 .overviewContainer {
-  width: 70%;
+  width: 63%;
   margin: 0 auto;
   padding: 15px;
   display: flex;
@@ -557,7 +557,7 @@ $widthProdInfo: percentage($number: 30);
 #sizeList {
   font-weight: bold;
   height: 60px;
-  width: 260px;
+  width: 219px;
   border: solid;
   border-width: .5px;
   // border-radius: 8px;
