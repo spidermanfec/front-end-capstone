@@ -4,7 +4,7 @@ import axios from 'axios';
 import RelatedCard from './relatedCard.jsx';
 
 export default function RelatedCarousel({
-  productID, setProduct, setComparison, carRef, onHover
+  productID, setProduct, setComparison, carRef, checkBoundary, scrollLeft, scrollRight
 }) {
   const [relatedProductsDetails, setRelatedProductsDetails] = useState({});
   useEffect(() => {
@@ -12,12 +12,12 @@ export default function RelatedCarousel({
     axios.get(`/products/${productID}/related`)
       .then((results) => results.data)
       .then((results) => results.filter((id) => {
-          const storedIDData = JSON.parse(localStorage.getItem(id));
-          if (storedIDData !== null) {
-            prod[id] = storedIDData;
-            return false;
-          }
-          return true;
+        const storedIDData = JSON.parse(localStorage.getItem(id));
+        if (storedIDData !== null) {
+          prod[id] = storedIDData;
+          return false;
+        }
+        return true;
       }))
       .then((results) => {
         if (results.length === 0) {
@@ -46,6 +46,10 @@ export default function RelatedCarousel({
   return (
     <div className="card-carousel related-products"
       ref={carRef}
+      onScroll={() => {
+        scrollLeft(checkBoundary('left', carRef.current));
+        scrollRight(checkBoundary('right', carRef.current));
+      }}
     >
       {(Object.keys(relatedProductsDetails)).map((cID) => (
         <RelatedCard
