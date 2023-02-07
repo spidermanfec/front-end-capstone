@@ -7,6 +7,7 @@ import Overview from './components/overview/overview.jsx';
 import Questions from './components/questions/questions.jsx';
 import Ratings from './components/ratings/ratings.jsx';
 import Related from './components/related/related.jsx';
+import Banner from './banner.jsx'
 
 function App() {
   const [products, setProducts] = useState(sampleData);
@@ -21,13 +22,17 @@ function App() {
   }, [productID]);
 
   const ratingRef = useRef();
+  const relatedRef = useRef();
+  const questionsRef = useRef();
+
   return (
     <CookiesProvider>
       <div className="wholeAppWrapper">
+        <Banner ratingRef={ratingRef} relatedRef={relatedRef} questionsRef={questionsRef}/>
         <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
         <div ref={ratingRef}><Ratings /></div>
-        <Related productID={productID} setProduct={setProductID} />
-        <Questions productID={productID} product={product} />
+        <div ref={relatedRef}><Related productID={productID} setProduct={setProductID} /></div>
+        <div ref={questionsRef}><Questions productID={productID} product={product} /></div>
       </div>
     </CookiesProvider>
   );

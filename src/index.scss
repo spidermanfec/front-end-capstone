@@ -67,3 +67,41 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+.navigator{
+	display: flex;
+	gap: 1em;
+	font-size: 18px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	align-self:flex-end;
+	position: absolute;
+	right: 0;
+}
+
+.cursor{
+	cursor: pointer;
+}
+.bannercontainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+	align-self: baseline;
+	position:sticky;
+	top:0;
+	z-index: 2;
+	width: -webkit-fill-available;
+	background-color: white;
+	flex-direction: column;
+}
+
+.logo {
+	font-size:32px;
+	align-items: center;
+	display: flex;
+}
+
+.scaling {
+ transform: scale(.1);
+}
