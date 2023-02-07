@@ -7,17 +7,22 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
   const [searchTerm, setSearchTerm] = useState('');
   const [loadableQs, setLoadableQs] = useState(3);
   const [entryModalState, setEntryModalState] = useState(false);
+  const [scrollHandler, setScrollHandler] = useState(null);
   const questionListRef = React.useRef(null);
 
   useEffect(() => {
+    if (scrollHandler) {
+      questionListRef.current.removeEventListener('scroll', scrollHandler);
+    }
     const handleScroll = () => {
       if (questionListRef.current.scrollTop + questionListRef.current.clientHeight >= questionListRef.current.scrollHeight) {
         setLoadableQs(prevState => prevState + 2);
       }
-    }
+    };
     questionListRef.current.addEventListener('scroll', handleScroll);
+    setScrollHandler(handleScroll);
     return () => questionListRef.current.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [questionList]);
 
   const filteredQuestionList = questionList.filter((question) =>
     !searchTerm || question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,7 +46,9 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
       <div className="questionList" ref={questionListRef}>
         {loadableQsArray}
       </div>
-      <input className="qbutton" type="button" onClick={clickAddQuestion} value="ADD A QUESTION +" />
+      <div className="qButtonDiv">
+        <input className="qbutton" type="button" onClick={clickAddQuestion} value="ADD A QUESTION +" />
+      </div>
     </div>
   );
 }
