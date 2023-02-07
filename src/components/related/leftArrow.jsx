@@ -13,7 +13,7 @@ export default function LeftArrow({ carRef, areVisible }) {
 
   return (
     <i
-      className="fa-solid fa-arrow-left carousel-nav left-arrow"
+      className="fa-solid fa-angle-left carousel-nav left-arrow"
       role="button"
       tabIndex="0"
       alt="scroll left"

@@ -27,6 +27,7 @@ export default function Related({ productID, setProduct }) {
         onMouseOver={() => sethiddenRelArrows(false)}
         onMouseOut={() => sethiddenRelArrows(true)}
       >
+        <h2>RELATED PRODUCTS</h2>
         <LeftArrow carRef={relatedCarouselRef} areVisible={hiddenRelArrows} />
         <RightArrow carRef={relatedCarouselRef} areVisible={hiddenRelArrows} />
         <RelatedCarousel
@@ -42,6 +43,7 @@ export default function Related({ productID, setProduct }) {
         onMouseOver={() => sethiddenOutArrows(false)}
         onMouseOut={() => sethiddenOutArrows(true)}
       >
+        <h2>YOUR OUTFIT</h2>
         <LeftArrow carRef={outCarouselRef} areVisible={hiddenOutArrows} />
         <RightArrow carRef={outCarouselRef} areVisible={hiddenOutArrows} />
         <OutfitCarousel
