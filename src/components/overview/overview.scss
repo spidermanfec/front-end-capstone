@@ -12,9 +12,8 @@ $widthProdInfo: percentage($number: 30);
 
 .gallery {
   width: $widthProd;
-  height: 650px;
+  height: 800px;
   position:relative;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .reviews {
@@ -26,6 +25,7 @@ $widthProdInfo: percentage($number: 30);
   background-position: center;
   height: 100%;
     width: 100%;
+    border-radius: 25px 25px 25px 25px;
 }
 
 .reviews1 {
@@ -186,7 +186,7 @@ $widthProdInfo: percentage($number: 30);
 }
 
 .modal-lg{
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   top: 0;
   left: 0;
@@ -329,7 +329,7 @@ $widthProdInfo: percentage($number: 30);
   margin-top: -625px;
   margin-left: -185px;
   overflow-y:auto;
-  max-height: 510px;
+  max-height: 500px;
 }
 
 #imagelist::-webkit-scrollbar {
@@ -370,7 +370,7 @@ $widthProdInfo: percentage($number: 30);
 }
 
 .image {
-  // z-index: -1;
+
   position: relative;
   cursor: pointer;
   width: 50px;
@@ -436,7 +436,7 @@ $widthProdInfo: percentage($number: 30);
 .image:hover {
   border: solid;
   border-color: black;
-  border-width: 1px;
+  border-width: 2px;
   opacity: 0.5;
 }
 
@@ -444,6 +444,10 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   justify-content: space-evenly;
   margin-top: 30px;
+}
+
+.modalButton {
+  margin-top: 50px;
 }
 
 .category {
@@ -485,6 +489,8 @@ $widthProdInfo: percentage($number: 30);
   margin: 1px;
   padding: 0;
 }
+
+
 
 .selecStyleoff {
   cursor:pointer;
