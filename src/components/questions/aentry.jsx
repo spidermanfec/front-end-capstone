@@ -14,7 +14,7 @@ function Aentry({ answer }) {
 
   const handleHelpfulClick = () => {
     if (!hasVoted) {
-      axios.put(`http://localhost:1100/helpfula/?answer_id=${answer.id}`)
+      axios.put(`/helpfula/?answer_id=${answer.id}`)
         .then(() => {
           setCookie('helpfulQIDs', [...cookies.helpfulQIDs, answer.id], { path: '/' });
           setHelpfulness(helpfulness + 1);
@@ -25,7 +25,7 @@ function Aentry({ answer }) {
   };
 
   const handleReportAnswer = () => {
-    axios.put(`http://localhost:1100/reporta/?answer_id=${answer.id}`);
+    axios.put(`/reporta/?answer_id=${answer.id}`);
     setReported(true);
   };
 

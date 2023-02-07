@@ -55,6 +55,12 @@ table {
   font-style: normal;
 }
 
+.maxWidth {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
 body {
   margin: 0;
   padding: 0;

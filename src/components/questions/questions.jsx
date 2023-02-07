@@ -10,7 +10,7 @@ function Questions({ productID, product }) {
   const product_name = product.name;
 
   useEffect(() => {
-    axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`)
+    axios.get(`/questions/?product_id=${product_id}&count=999`)
       .then((results) => {
         const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
         setQCount(results.data.length);
@@ -19,7 +19,7 @@ function Questions({ productID, product }) {
   }, [product_id]);
 
   const pullQuestions = () => {
-    axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`)
+    axios.get(`/questions/?product_id=${product_id}&count=999`)
       .then((results) => {
         const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
         setQCount(results.data.length);
