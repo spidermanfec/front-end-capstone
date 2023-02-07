@@ -3,7 +3,7 @@ $widthSpacer: percentage($number: 3);
 $widthProdInfo: percentage($number: 30);
 
 .overviewContainer {
-  max-width: 1180px;
+  width: 63%;
   margin: 0 auto;
   padding: 15px;
   display: flex;
@@ -19,6 +19,13 @@ $widthProdInfo: percentage($number: 30);
 
 .reviews {
   font-size: 12px;
+}
+
+.mainphoto {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+    width: 100%;
 }
 
 .reviews1 {
@@ -494,12 +501,11 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 50%;
+  border: none;
+  background-color: white;
   width: 23%;
   margin: 1px;
   padding: 0;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .selecStyleoff {
@@ -507,12 +513,11 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 50%;
+  border: none;
+  background-color: white;
   width: 23%;
   margin: 1px;
   padding: 0;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .layover {
@@ -552,7 +557,7 @@ $widthProdInfo: percentage($number: 30);
 #sizeList {
   font-weight: bold;
   height: 60px;
-  width: 229px;
+  width: 219px;
   border: solid;
   border-width: .5px;
   // border-radius: 8px;
@@ -573,7 +578,7 @@ $widthProdInfo: percentage($number: 30);
 #quantityList {
     font-weight: bold;
     height: 60px;
-    width: 100px;
+    width: 116px;
     border: solid;
     border-width: .5px;
     // border-radius: 8px;
