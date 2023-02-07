@@ -28,7 +28,8 @@ export default function OutfitCard({
       role="button"
       tabIndex="0"
     >
-      <img className="card-img" src={photo} alt=":(" />
+      <div className="card-img" style={{backgroundImage: `url('${photo}')`}} />
+      {/* <img className="card-img" src={photo} alt=":(" /> */}
       <i
         className="fa-regular fa-circle-xmark card-btn rm-outfit-btn"
         role="button"

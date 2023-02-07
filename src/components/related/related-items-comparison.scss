@@ -67,13 +67,26 @@ hr {
   }
 }
 
+
+.card-carousel:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  // bottom: 0;
+  left: 60%;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1) 95%);
+  width: 20%;
+  height: 100%;
+}
+
 .carousel-nav {
   position: absolute;
   cursor: pointer;
   top: 50%;
   z-index: 1;
   // transition: transform 0.1s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   border: none;
   padding: 0.5rem;
@@ -125,7 +138,9 @@ hr {
 .card-img {
   height: 75%;
   width: 100%;
-  object-fit: none;
+  // object-fit: none;
+  background-size: cover;
+  background-position: center;
 }
 
 // .card-img:hover {
