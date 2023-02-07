@@ -32,6 +32,7 @@ function Overview({ productID, ratingRef }) {
       setItemStyles(resStyles.data);
       setReviews(resRevs.data);
       setLoading(false);
+      setSelectedStyle(resStyles.data.results[0].style_id);
     });
   }, [productID]);
 

@@ -29,7 +29,7 @@ const Banner = ( {ratingRef, questionsRef, relatedRef }) => {
 
   return (
     <div className="bannercontainer">
-    <div className="logo">Spiderman Atelier</div>
+    <div className="logo">S I L K   T H R E A D S</div>
     <li className="navigator">
       <ul className="cursor" onClick={toggleRatings}>Reviews</ul>
       <ul className="cursor" onClick={toggleQA}>QA</ul>
