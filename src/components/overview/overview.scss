@@ -21,6 +21,13 @@ $widthProdInfo: percentage($number: 30);
   font-size: 12px;
 }
 
+.mainphoto {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+    width: 100%;
+}
+
 .reviews1 {
   font-size: 12px;
 }
