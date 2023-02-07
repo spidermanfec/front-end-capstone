@@ -16,7 +16,7 @@ function Qentry({ question, pullQuestions, product_name, searchTerm }) {
 
   const helpfulClick = () => {
     if (!cookieChecker) {
-      axios.put(`http://localhost:1100/helpfulq/?question_id=${question.question_id}`) //  Axios get on render. Pass id later.
+      axios.put(`/helpfulq/?question_id=${question.question_id}`) //  Axios get on render. Pass id later.
         .then((results) => {
           if (!cookies.helpfulQIDs) {
             setCookie('helpfulQIDs', [question.question_id], { path: '/' });
@@ -36,7 +36,7 @@ function Qentry({ question, pullQuestions, product_name, searchTerm }) {
   };
 
   const reportQuestion = () => {
-    axios.put(`http://localhost:1100/reportq/?question_id=${question.question_id}`)
+    axios.put(`/reportq/?question_id=${question.question_id}`)
     setReported(true);
   };
 
