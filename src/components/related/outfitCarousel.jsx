@@ -4,7 +4,9 @@ import axios from 'axios';
 import PlusCard from './plusCard.jsx';
 import OutfitCard from './outfitCard.jsx';
 
-export default function OutfitCarousel({ productID, setProduct, carRef, onHover }) {
+export default function OutfitCarousel({
+  productID, setProduct, carRef, checkBoundary, scrollLeft, scrollRight
+}) {
   const [outfitProductsIDs, setOutfitProductsIDs] = useState([]);
   const [outfitProducts, setOutfitProducts] = useState({});
 
@@ -53,6 +55,10 @@ export default function OutfitCarousel({ productID, setProduct, carRef, onHover 
     <div
       className="card-carousel outfit-products"
       ref={carRef}
+      onScroll={() => {
+        scrollLeft(checkBoundary('left', carRef.current));
+        scrollRight(checkBoundary('right', carRef.current));
+      }}
     >
       <PlusCard
         productID={productID}
