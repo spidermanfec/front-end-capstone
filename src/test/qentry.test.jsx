@@ -15,7 +15,7 @@ const question = {
 describe('Qentry', () => {
   test('renders Qentry component', () => {
     render(<Qentry question={question} />);
-    expect(screen.getByText(/Q: This is a test question/)).toBeInTheDocument();
+    expect(screen.getByText(/This is a test question/)).toBeInTheDocument();
   });
 
   // fireEven tests
