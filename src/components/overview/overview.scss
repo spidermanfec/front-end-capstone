@@ -3,7 +3,7 @@ $widthSpacer: percentage($number: 3);
 $widthProdInfo: percentage($number: 30);
 
 .overviewContainer {
-  max-width: 1180px;
+  width: 70%;
   margin: 0 auto;
   padding: 15px;
   display: flex;
@@ -501,12 +501,11 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 50%;
+  border: none;
+  background-color: white;
   width: 23%;
   margin: 1px;
   padding: 0;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .selecStyleoff {
@@ -514,12 +513,11 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 50%;
+  border: none;
+  background-color: white;
   width: 23%;
   margin: 1px;
   padding: 0;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .layover {
