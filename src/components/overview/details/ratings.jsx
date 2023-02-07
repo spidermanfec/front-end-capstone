@@ -8,6 +8,8 @@ function Ratings({ reviews, ratingRef }) {
 
   const [reviewCount, setReviewCount] = useState(null);
 
+  console.log(rating);
+
   useEffect(() => {
     if (reviews.length === 0) {
       setHasReviews(false);
@@ -20,13 +22,31 @@ function Ratings({ reviews, ratingRef }) {
     setReviewCount(reviews.length);
   });
 
+  const starRatings = (rating) => {
+    const stars = [];
+    let ratingcount = rating;
+    for (let i = 0; i < 5; i++) {
+      console.log(i, ratingcount);
+      if (ratingcount === 0) {
+        stars.push(<span>☆</span>);
+      } else if (ratingcount >= 1) {
+        stars.push(<span>★</span>);
+        ratingcount --;
+      } else if (ratingcount > 0 && ratingcount <= 0.99) {
+        stars.push(<img className="stars" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Star_solid_left.svg/15px-Star_solid_left.svg.png"></img>)
+        ratingcount = ratingcount - ratingcount;
+      }
+    }
+    return stars;
+  }
+
   const toggleView = () => {
     ratingRef.current.scrollIntoView( {behavior: "smooth"});
   };
 
   return (
     <>
-      {hasReviews && <div className="reviews" onClick={toggleView}>Read all {reviewCount} reviews</div>}
+      {hasReviews && <div className="reviews" onClick={toggleView}>{starRatings(rating)} <a className="reviews1">Read all {reviewCount} reviews </a></div>}
     </>
   );
 }

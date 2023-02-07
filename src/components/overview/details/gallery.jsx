@@ -43,7 +43,7 @@ function Gallery({ styles, handleStyleSelect, productID }) {
   };
 
   if (styles.photos[currentPhoto].url === null) {
-    return <div className="urlpic" onClick={toggleModal}><img className="urlpic" src="https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png" /></div>;
+    return <div className="urlpic" onClick={toggleModal}><img className="urlpicoos" src="https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png" /></div>;
   }
 
   return (

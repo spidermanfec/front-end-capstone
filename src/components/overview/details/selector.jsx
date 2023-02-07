@@ -12,7 +12,7 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
   console.log(productID)
 
   if (styles.photos[0].thumbnail_url === null) {
-    return <div className="cats">Cool cat</div>;
+    return <div className="cats">SOLD OUT</div>;
   }
 
   for (let i = 0; i < itemStyles.results.length; i++) {
