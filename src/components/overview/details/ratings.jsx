@@ -8,8 +8,6 @@ function Ratings({ reviews, ratingRef }) {
 
   const [reviewCount, setReviewCount] = useState(null);
 
-  console.log(rating);
-
   useEffect(() => {
     if (reviews.length === 0) {
       setHasReviews(false);
