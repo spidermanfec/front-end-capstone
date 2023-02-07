@@ -22,7 +22,7 @@ import React, { useState, useEffect } from 'react';
 
         <div className='reviewListButtons'>
           {showButton ?
-          <button className='reviewListButtons' type="button" onClick={() => {updateReviewArray(); toggleButton()}}>Show More</button> : ''}
+          <button className='reviewListButtons buttonboy' type="button" onClick={() => {updateReviewArray(); toggleButton()}}>Show More</button> : ''}
         </div>
       )
   }

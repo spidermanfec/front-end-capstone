@@ -5,28 +5,11 @@ import SampleData from './SampleData.jsx';
 const ReviewList = ({renderedReviews}) => {
 
   console.log('hello from reviewlist', renderedReviews)
-  // const [changingReviewList, setChangingReviewList] = useState(initialReviewList);
-  // const [showButton, setShowButton] = useState(true);
-  // const reviewArray = SampleData().results;
 
-  // const toggleButton = () => {
-  //   if (reviewMap.length - sliceTo > 2) {
-  //     setShowButton(true);
-  //   } else {
-  //     setShowButton(false);
-  //   }
-  // }
-
-  // const showMoreReviews = () => {
-  //   setSliceTo(sliceTo + 2);
-  //   setChangingReviewList(initialReviewList);
-  // }
 
   const reviewMap = renderedReviews.map(review => {
     return <ReviewCard review={review}/>
   });
-  // const [sliceTo, setSliceTo] = useState(2);
-  // const initialReviewList = reviewMap.slice(0, sliceTo);
 
 
   return (
@@ -44,9 +27,3 @@ const ReviewList = ({renderedReviews}) => {
 
 export default ReviewList;
 
-
-//intake amt of reviews
-//render at most 2 reviews,
-//if more than 2, render a 'show more' button
-//untoggle when all reviews are shown
-//implement scroll bar

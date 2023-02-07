@@ -24,7 +24,6 @@ const ReviewCard = ({review}) => {
     starMap.push(<i className="fa-regular fa-star"></i>)
   }
  }
-  // console.log('STARMAP', starMap, review.response);
 
   const addHelpfulness = (reviewId) => {
 
@@ -54,12 +53,3 @@ return (
 
 export default ReviewCard;
 
-
-// Star Rating -
-// Date of review - The date the review was written should appear in the format “Month DD, YYYY”
-// Review Summary -
-// Review Body -
-// Recommend -
-// Reviewer name -
-// Response to Review -
-// Rating Helpfulness -

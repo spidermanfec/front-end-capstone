@@ -4,7 +4,7 @@ import axios from 'axios';
 const starsMap = (ratingAvg) => {
 
   const [initialRender, setInitialRender] = useState(true);
-  var metaData;
+  var metaData = {};
 
   if (initialRender) {
     axios.get('/metadata')
