@@ -26,17 +26,19 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
       <div className="styletext">STYLE &#5171; {styles.name}</div>
       <p className="selectorGrid">
         {itemStyles.results?.map((itemStyle, index) => {
-          console.log(itemStyle, index);
-          console.log('thumb url', itemStyle.photos[currentThumbnail].thumbnail_url, 'curr:', itemStyle.photos[index].thumbnail_url)
-          return <button className={itemStyle.photos[currentThumbnail].thumbnail_url === itemStyle.photos[index].thumbnail_url ? 'selecStyleon' : 'selecStyleoff '} onClick={() => setCurrentThumbnail(itemStyle.photos.indexOf(itemStyle.photos[index]))} onClick={(e) => handleStyleSelect(e)}
-            type="submit" value={itemStyle.style_id} key={index}>
-            <div className='layover'>
-              {itemStyle.style_id === temp && <img className="checkedBox" src="https://img.icons8.com/material-outlined/512/checked--v1.png" />}
-            </div>
-            <img className="thumbnail"
-              src={itemStyle.photos[currentThumbnail].thumbnail_url}
-            />
-          </button>;
+          if(itemStyle && itemStyle.photos[index]) {
+            console.log(itemStyle, index);
+            console.log('thumb url', itemStyle.photos[currentThumbnail].thumbnail_url, 'curr:', itemStyle.photos[index].thumbnail_url)
+            return <button className={itemStyle.photos[currentThumbnail].thumbnail_url === itemStyle.photos[index].thumbnail_url ? 'selecStyleon' : 'selecStyleoff '} onClick={() => setCurrentThumbnail(itemStyle.photos.indexOf(itemStyle.photos[index]))} onClick={(e) => handleStyleSelect(e)}
+              type="submit" value={itemStyle.style_id} key={index}>
+              <div className='layover'>
+                {itemStyle.style_id === temp && <img className="checkedBox" src="https://img.icons8.com/material-outlined/512/checked--v1.png" />}
+              </div>
+              <img className="thumbnail"
+                src={itemStyle.photos[currentThumbnail].thumbnail_url}
+              />
+            </button>;
+          }
         })}
       </p>
     </div>
