@@ -13,7 +13,7 @@ export default function RightArrow({ carRef, areVisible }) {
 
   return (
     <i
-      className="fa-solid fa-arrow-right carousel-nav right-arrow"
+      className="fa-solid fa-angle-right carousel-nav right-arrow"
       role="button"
       tabIndex="0"
       alt="scroll right"
