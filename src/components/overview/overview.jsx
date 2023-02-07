@@ -53,33 +53,12 @@ function Overview({ productID, ratingRef }) {
     }
   };
 
-  console.log(itemStyles.results);
-  console.log(tester());
-
-  const cartHandler = (e) => {
-    e.preventDefault();
-    setCardModal(!cartModal);
-    axios.get('/cart')
-      .then((result) => {
-        setCartItems([result.data]);
-      });
-  };
-
   return (
     <>
       <div className="overviewContainer">
         <div className="gallery"><Gallery handleStyleSelect={handleStyleSelect} productID={productID} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></div>
         <div className="spacer" />
         <div className="prodInfo">
-          <div className="cart1" onClick={cartHandler}>
-          <div className="cartmodal">
-          {cartItems.map((item) => {
-            console.log(cartItems);
-            {cartItems.length === 0 ? <div>Cart is empty</div> : <div>{item.sku_id, item.count}</div>}
-          })}
-            </div>
-          </div>
-            {/* {cartModal && <div className="cartmodal">{cartItems}</div>} */}
           <Prodinfo ratingRef={ratingRef} items={items} reviews={reviews.results} itemsInfo={itemsInfo} itemStyles={itemStyles} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} />
           <section><Selector items={items} productID={productID} itemsInfo={itemsInfo} itemStyles={itemStyles} selectedStyle={selectedStyle} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} /></section>
           <section className=""><Cart productID={productID} tester={tester} handleStyleSelect={handleStyleSelect} styles={selectedStyle === undefined ? itemStyles.results[0] : tester()} selectedStyle={selectedStyle} itemStyles={itemStyles} /></section>
