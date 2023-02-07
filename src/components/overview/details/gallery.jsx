@@ -35,7 +35,6 @@ function Gallery({ styles, handleStyleSelect, productID }) {
   }
 
   const mouseHandler = (e) => {
-    console.log(e);
     const loc = e.target.getBoundingClientRect();
     const locx = ((e.pageX - loc.left) / loc.width) * 100;
     const locy = ((e.pageY - loc.top) / loc.height) * 100;

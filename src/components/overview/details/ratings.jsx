@@ -24,7 +24,6 @@ function Ratings({ reviews, ratingRef }) {
     const stars = [];
     let ratingcount = rating;
     for (let i = 0; i < 5; i++) {
-      console.log(i, ratingcount);
       if (ratingcount === 0) {
         stars.push(<span>☆</span>);
       } else if (ratingcount >= 1) {

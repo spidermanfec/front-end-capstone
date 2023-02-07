@@ -31,6 +31,7 @@ function Overview({ productID, ratingRef }) {
       setItemsInfo(resIds.data);
       setItemStyles(resStyles.data);
       setReviews(resRevs.data);
+      setSelectedStyle(resStyles.data.results[0].style_id);
       setLoading(false);
       setSelectedStyle(resStyles.data.results[0].style_id);
     });
