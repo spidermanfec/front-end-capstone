@@ -9,7 +9,8 @@ import Ratings from './components/ratings/ratings.jsx';
 import Related from './components/related/related.jsx';
 
 function App() {
-  const [productID, setProductID] = useState('37316');
+  const [products, setProducts] = useState(sampleData);
+  const [productID, setProductID] = useState('37315');
   const [product, setProduct] = useState({});
 
   useEffect(() => {

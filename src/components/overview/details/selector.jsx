@@ -15,13 +15,18 @@ function Selector({ itemStyles, handleStyleSelect, styles, selectedStyle, produc
     return <div className="cats">Cool cat</div>;
   }
 
+  for (let i = 0; i < itemStyles.results.length; i++) {
+    if (itemStyles.results[i].photos.thumbnail_url === undefined) {
+      itemStyles.results[i].photos.thumbnail_url="https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png";
+    }
+  }
+
   return (
     <div className="styles">
       <div className="styletext">STYLE &#5171; {styles.name}</div>
       <p className="selectorGrid">
         {itemStyles.results?.map((itemStyle, index) => {
-         
-         
+          console.log(itemStyle, index);
           return <button className={itemStyle.photos[currentThumbnail].thumbnail_url === itemStyle.photos[index].thumbnail_url ? 'selecStyleon' : 'selecStyleoff '} onClick={() => setCurrentThumbnail(itemStyle.photos.indexOf(itemStyle.photos[index]))} onClick={(e) => handleStyleSelect(e)}
             type="submit" value={itemStyle.style_id} key={index}>
             <div className='layover'>
