@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Cart({ styles, tester, handleStyleSelect, productID}) {
+function Cart({ styles, tester, handleStyleSelect, productID, selectedStyle}) {
   const [open, setOpen] = useState(false);
   const [sizeSelected, setSizeSelected] = useState(false);
   const [sku, setSku] = useState('');
@@ -9,11 +9,15 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   const [amount, setAmount] = useState('');
   const [skus, setSkus] = useState('');
 
+  let pic = styles.photos[0].thumbnail_url;
+
   useEffect(() => {
     setSizeSelected(false);
   }, [handleStyleSelect, productID])
 
   const infos = Object.keys(styles.skus);
+
+  console.log(styles, selectedStyle);
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -48,6 +52,8 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('/cart', {
+      productID,
+      pic,
       skus,
       size,
       amount,

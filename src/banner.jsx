@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 const Banner = ( {ratingRef, questionsRef, relatedRef }) => {
 
@@ -18,11 +19,11 @@ const Banner = ( {ratingRef, questionsRef, relatedRef }) => {
     relatedRef.current.scrollIntoView( {behavior: "smooth"});
   };
 
-  const cartHandler = () => {
-    e.preventDefault();
+  const cartHandler = (e) => {
     setCardModal(!cartModal);
     axios.get('/cart')
       .then((result) => {
+        console.log(result);
         setCartItems([result.data]);
       });
   };
@@ -35,12 +36,12 @@ const Banner = ( {ratingRef, questionsRef, relatedRef }) => {
       <ul className="cursor" onClick={toggleQA}>QA</ul>
       <ul className="cursor" onClick={toggleRelated}>Related</ul>
       <ul className="cart1" onClick={cartHandler}></ul>
-      {/* <div className="cartmodal">
+        {cartModal && <div className="cartmodal">
+          {cartItems.length === 0 ? <div>Cart is empty</div> : <div>hi there</div>}
           {cartItems.map((item) => {
-            console.log(cartItems);
-            {cartItems.length === 0 ? <div>Cart is empty</div> : <div>{item.sku_id, item.count}</div>}
+            console.log(item);
           })}
-            </div> <<< in progress >>> */}
+        </div>}
     </li>
     </div>
   )
