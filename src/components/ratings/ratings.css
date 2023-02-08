@@ -247,7 +247,7 @@ gap: 100px;
 .flexButtons {
   justify-content: center;
   display:flex;
-  gap: 48px;
+  justify-content: space-between;
 }
 
 .left {

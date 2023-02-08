@@ -4,14 +4,27 @@ import axios from 'axios';
 import RelatedCard from './relatedCard.jsx';
 
 export default function RelatedCarousel({
-  productID, setProduct, setComparison, carRef, onHover
+  productID, setProduct, setComparison, carRef, checkBoundary, scrollLeft, scrollRight
 }) {
   const [relatedProductsDetails, setRelatedProductsDetails] = useState({});
   useEffect(() => {
     const prod = {};
-
     axios.get(`/products/${productID}/related`)
       .then((results) => results.data)
+      .then((results) => results.filter((id) => {
+        const storedIDData = JSON.parse(localStorage.getItem(id));
+        if (storedIDData !== null) {
+          prod[id] = storedIDData;
+          return false;
+        }
+        return true;
+      }))
+      .then((results) => {
+        if (results.length === 0) {
+          throw('rels in storage');
+        }
+        return results;
+      })
       .then((results) => results.map((id) => axios.get(`products/${id}/details`)))
       .then((results) => Promise.all(results))
       .then((results) => results.map((result) => result.data))
@@ -24,15 +37,19 @@ export default function RelatedCarousel({
       .then((results) => results.map((product) => {
         prod[product.product_id].photo = ((product.results)[0].photos)[0].thumbnail_url;
         prod[product.product_id].sale_price = (product.results)[0].sale_price === null ? '' : (results.results).sale_price;
-        return 'hello';// return prod[product.product_id];
+        localStorage.setItem(product.product_id, JSON.stringify(prod[product.product_id]));
       }))
-      .then((/* results */) => setRelatedProductsDetails(prod))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setRelatedProductsDetails(prod));
   }, [productID]);
 
   return (
     <div className="card-carousel related-products"
       ref={carRef}
+      onScroll={() => {
+        scrollLeft(checkBoundary('left', carRef.current));
+        scrollRight(checkBoundary('right', carRef.current));
+      }}
     >
       {(Object.keys(relatedProductsDetails)).map((cID) => (
         <RelatedCard

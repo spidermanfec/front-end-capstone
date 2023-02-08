@@ -4,47 +4,33 @@ import Search from './search.jsx'
 import QEntryModal from './qentrymodal.jsx'
 
 function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, pullQuestions, product_name }) {
-  const loadableQsArray = [];
-  let minimumQListSize = 0;
-  if (qCount > 2) { minimumQListSize = 2; }
-  if (qCount <= 2) { minimumQListSize = qCount; }
-  const [searchTerm, setSearchTerm] = useState(''); // Hold search term state.
-  const [loadableQs, setLoadableQs] = useState(minimumQListSize); // Use state to hold number of questions.
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loadableQs, setLoadableQs] = useState(3);
   const [entryModalState, setEntryModalState] = useState(false);
+  const [scrollHandler, setScrollHandler] = useState(null);
+  const questionListRef = React.useRef(null);
 
   useEffect(() => {
-    setLoadableQs(minimumQListSize);
-  }, [minimumQListSize]);
-
-  useEffect(() => {
-    if (searchTerm.length === 2) {
-      setLoadableQs(2);
+    if (scrollHandler) {
+      questionListRef.current.removeEventListener('scroll', scrollHandler);
     }
-  }, [searchTerm.length]);
-
-  if (qCount > 0 && searchTerm.length < 3) { // Check if questions empty, load # of react comps in an array.
-    for (let i = 0; i < loadableQs; i++) {
-      loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} pullQuestions={pullQuestions} product_name={product_name}/>);
-    }
-  } else if (qCount > 0 && searchTerm.length >= 3) {
-    for (let i = 0; i < qCount; i++) {
-      if (questionList[i].question_body.includes(searchTerm)) {
-        loadableQsArray.push(<Qentry question={questionList[i]} key={questionList[i].question_id} pullQuestions={pullQuestions} product_name={product_name}/>);
+    const handleScroll = () => {
+      if (questionListRef.current.scrollTop + questionListRef.current.clientHeight >= questionListRef.current.scrollHeight) {
+        setLoadableQs(prevState => prevState + 2);
       }
-    }
-    if (loadableQs !== loadableQsArray.length) {
-      setLoadableQs(loadableQsArray.length);
-    }
-  }
+    };
+    questionListRef.current.addEventListener('scroll', handleScroll);
+    setScrollHandler(handleScroll);
+    return () => questionListRef.current.removeEventListener('scroll', handleScroll);
+  }, [questionList]);
 
-  const moreQsOnClick = () => { // On click function for more qs
-    const difference = qCount - loadableQsArray.length;
-    if (difference >= 2) { // Adds 2 at a time, or difference to max.
-      setLoadableQs(loadableQs + 2);
-    } else {
-      setLoadableQs(loadableQs + difference);
-    }
-  };
+  const filteredQuestionList = questionList.filter((question) =>
+    !searchTerm || question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const loadableQsArray = filteredQuestionList.slice(0, loadableQs).map((question) =>
+    <Qentry searchTerm={searchTerm} question={question} key={question.question_id} pullQuestions={pullQuestions} product_name={product_name} />
+  );
 
   const clickAddQuestion = () => {
     setEntryModalState(true);
@@ -57,11 +43,10 @@ function Qlist({ setQCount, qCount, product_id, questionList, setQuestionList, p
         QUESTIONS & ANSWERS
       </h2>
       <Search questionList={questionList} setQuestionList={setQuestionList} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <div className="questionList">
+      <div className="questionList" ref={questionListRef}>
         {loadableQsArray}
       </div>
-      <div>
-        {(loadableQs < questionList.length && searchTerm.length < 3) && <input className="qbutton" type="button" value="MORE QUESTIONS" onClick={moreQsOnClick} />}
+      <div className="qButtonDiv">
         <input className="qbutton" type="button" onClick={clickAddQuestion} value="ADD A QUESTION +" />
       </div>
     </div>
