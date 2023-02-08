@@ -152,3 +152,96 @@ exports.reportQuestion = (id, callback) => {
       callback(results);
     });
 };
+
+
+exports.getReviews = (callback) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37311&count=500`, {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  })
+    .then((results) => {
+      console.log('got them reviews son', results)
+      callback(results.data);
+    }).catch(err => {
+      console.log('err in qanda.js son', err);
+    })
+}
+exports.getSortedReviews = (sortOption, callback) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37311&sort=${sortOption}&count=500`, {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  })
+    .then((results) => {
+      console.log('got them sorted reviews son', results)
+      callback(results.data);
+    }).catch(err => {
+      console.log('err in qanda.js/getsortedReviews son', err);
+    })
+}
+
+exports.getMetadata = (callback) => {
+axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=37311&`, {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  })
+  .then((results) => {
+    console.log('got them metadatas son', results)
+    callback(results.data);
+  }).catch(err => {
+    console.log('err in qanda.js metadata son', err);
+  })
+}
+
+exports.helpfulReview = (id, callback) => {
+  //add ID input functionality later
+
+  // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/1277974/helpful`);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${id}/helpful`, {}, {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  })
+    .then((results) => {
+      callback(results, null);
+    }).catch(err => {
+      callback(null, err);
+    } )
+};
+
+exports.reportReview = (id, callback) => {
+  //add ID input functionality later
+
+  // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/1277974/helpful`);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${id}/report`, {}, {
+    headers: {
+      Authorization: `${process.env.AUTHTOKEN}`,
+    },
+  })
+    .then((results) => {
+      callback(results, null);
+    }).catch(err => {
+      callback(null, err);
+    } )
+};
+
+exports.postReview = (sendObj, callback) => {
+  // console.log('SENDOBJ', sendObj)
+  var id = 37311;
+  var rating = sendObj.rating;
+  var summary = sendObj.summary;
+  var body = sendObj.body;
+
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`, sendObj, apiHeaders).then(results => {
+    console.log('succ post in qanda son', results)
+    // alert('review submitted!')
+    callback(null, results);
+
+  }).catch(err => {
+    callback(err, null);
+    console.log('post err in qanda son', err);
+  })
+
+}
