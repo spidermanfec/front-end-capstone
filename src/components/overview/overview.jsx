@@ -33,6 +33,7 @@ function Overview({ productID, ratingRef }) {
       setReviews(resRevs.data);
       setSelectedStyle(resStyles.data.results[0].style_id);
       setLoading(false);
+      setSelectedStyle(resStyles.data.results[0].style_id);
     });
   }, [productID]);
 
