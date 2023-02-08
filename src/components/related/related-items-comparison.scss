@@ -30,6 +30,7 @@ hr {
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  min-width: 555px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -38,17 +39,6 @@ hr {
   & > * {
     scroll-snap-align: start;
   }
-}
-
-.card-carousel:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  left: 60%;
-  pointer-events: none;
-  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1) 95%);
-  width: 20%;
-  height: 100%;
 }
 
 .carousel-nav {
@@ -69,6 +59,30 @@ hr {
 
 .right-arrow {
   right: 18%;
+}
+
+.right-arrow:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -220px;
+  right: 20px;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1) 95%);
+  width: 250px;
+  height: 450px;
+}
+
+.left-arrow:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -220px;
+  left: 20px;
+  pointer-events: none;
+  background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255, 1) 95%);
+  width: 250px;
+  height: 450px;
 }
 
 .card {
@@ -139,7 +153,7 @@ hr {
 }
 
 .comparison-modal {
-  padding: 0;
+  padding: 0 0 5px 0;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   margin: 150px 150px;
@@ -161,7 +175,6 @@ hr {
 .cmp-mdl-contents {
   height: 80%;
   overflow: auto;
-
 }
 
 .cmp-mdl-grid {
