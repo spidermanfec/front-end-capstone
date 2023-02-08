@@ -15,7 +15,7 @@ describe('prodinfo', () => {
   })
 
   afterEach(() => {
-    jest.mockReset()
+    jest.clearAllMocks();
   })
 
   test('should rendeer item name andd category', () => {
