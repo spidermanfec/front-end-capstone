@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function LeftArrow({ carRef, areVisible }) {
   const buttonPress = () => {
-    // console.log(carRef.current);
     carRef.current.scrollLeft += -200;
   };
 
@@ -16,7 +15,7 @@ export default function LeftArrow({ carRef, areVisible }) {
       className="fa-solid fa-angle-left carousel-nav left-arrow"
       role="button"
       tabIndex="0"
-      alt="scroll left"
+      alt="previous"
       style={style}
       onClick={(e) => {
         e.stopPropagation();

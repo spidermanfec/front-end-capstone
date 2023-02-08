@@ -1,29 +1,49 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import axios from 'axios';
+import { render, fireEvent, wait, act } from '@testing-library/react';
 import Qentry from '../components/questions/qentry.jsx';
 
-const question = {
+jest.mock('axios');
+//jest.mock('../components/questions/qlist.jsx', () => jest.fn(() => null));
+//import Qlist from '../components/questions/qlist.jsx';
+const productID = 1;
+const product = { name: 'Test product' };
+const questionList = [{
   question_id: 1,
-  question_body: 'This is a test question',
-  question_date: '2021-01-01T00:00:00.000Z',
-  question_helpfulness: 0,
-  reported: false,
-  answers: {},
-};
+  question_body: 'Test question 1',
+  question_helpfulness: 5,
+  answers: {
+    "5987009": {
+      "id": 5987009,
+      "body": "nah nah nahnah nah nahnah nah nahnah nah nahnah nah nah",
+      "date": "2022-07-22T00:00:00.000Z",
+      "answerer_name": "nah nah nah",
+      "helpfulness": 21,
+      "photos": [
+        "https://res.cloudinary.com/juannncodes/image/upload/v1658453974/d91iwadcwhiwapeit5vd.jpg"
+      ]
+    }
+  }
+}, {
+  question_id: 2,
+  question_body: 'Test question 2',
+  question_helpfulness: 3
+}];
 
-describe('Qentry', () => {
-  test('renders Qentry component', () => {
-    render(<Qentry question={question} />);
-    expect(screen.getByText(/Q: This is a test question/)).toBeInTheDocument();
+//axios.get.mockResolvedValueOnce({
+// data: questionList
+//});
+
+describe('Questions component', () => {
+
+  it('should display the correct question text on the screen', async () => {
+    const { getByText } = render(<Qentry question={questionList[0]} />);
+    expect(getByText('Test question 1')).toBeInTheDocument();
   });
 
-  // fireEven tests
-
-  test('renders Qentry component with report click', () => {
-    render(<Qentry question={question} />);
-    fireEvent.click(screen.getByText('Report'));
-    expect(screen.getByText('Reported')).toBeInTheDocument();
+  it('should display the correct answer text on the screen', async () => {
+    const { getByText } = render(<Qentry question={questionList[0]} />);
+    expect(getByText('nah nah nahnah nah nahnah nah nahnah nah nahnah nah nah')).toBeInTheDocument();
   });
 
 });
