@@ -17,16 +17,17 @@ function RatingsCard({onClickProgressBars}) {
 
 
   if (getData) {
+    setGetData(false);
     axios.get('/metadata')
     .then(response => {
       console.log('successful metadata get', response.data);
       metaData.ratings = response.data.ratings;
+    }).catch(err => {
+      console.log('err getting metadata son', err);
     })
     var ratingsSum = 0;
     var ratingsCount = 0;
-    // data = SampleData2();
-    setGetData(false);
-    // console.log('metadata ratings', metaData.ratings);
+
     for (var key in metaData.ratings) {
       ratingsSum += metaData.ratings[key] * (key)
       ratingsCount += metaData.ratings[key] * 1;
@@ -37,27 +38,7 @@ function RatingsCard({onClickProgressBars}) {
   }
 
   //render stars
-
-
   var starsArray = starsMap(ratingAvg);
-
-  console.log('stars array', starsArray);
-  // var starMap = [];
-  // for (var i = 1; i < 5; i++) {
-  //   var difference = ratingAvg - i;
-  //   console.log('DIFF', difference)
-  //   if (difference >= 0) {
-  //     starMap.push(<i className="fa-solid fa-star"></i>);
-  //   }
-  //   //  COME BACK and render different classnames, for widths, for .25, .50, and .75
-  //   if (difference < 1 && difference > 0) {
-  //     starMap.push(<i id="mutableStar" className="fa-solid fa-star"></i>);
-  //   }
-  //   if (difference <= 0) {
-
-  //     starMap.push(<i className="fa-regular fa-star"></i>);
-  //   }
-  // }
 
 
   //progress bars to rep review % by stars
@@ -92,13 +73,11 @@ function RatingsCard({onClickProgressBars}) {
     if (index !== -1) {
       var newArr = sliced.splice(index, 1);
       setProgressBarFiltersArray(newArr);
-      // console.log('NEWW ARR', sliced, newArr, index);
       progFilArray = sliced;
     } else {
       setProgressBarFiltersArray(...progressBarFiltersArray, numToToggle);
       progFilArray.push(numToToggle);
     }
-    // console.log('onclickprogbars', progFilArray);
     onClickProgressBars(progFilArray)
   };
 
@@ -114,26 +93,26 @@ function RatingsCard({onClickProgressBars}) {
       sliderText = 'Too narrow  Perfect Too wide'
     }
     if (key === 'Comfort') {
-      sliderText = <div className='flex'><span className='left' >Uncomfortable </span> <span className='middle' >Ok</span>
+      sliderText = <div className='flexDiv'><span className='left' >Uncomfortable </span> <span className='middle' >Ok</span>
       <span className='right'> Perfect </span>
       </div>
     }
     if (key === 'Quality') {
-      sliderText = <div className='flex'><span className='left' >Poor </span> <span className='middle' > Expected </span>
+      sliderText = <div className='flexDiv'><span className='left' >Poor </span> <span className='middle' > Expected </span>
       <span className='right'> Perfect </span>
       </div>
     }
     if (key === 'Length') {
-      sliderText = <div className='flex'><span className='left' >Runs short </span> <span className='middle' >Perfect </span>
+      sliderText = <div className='flexDiv'><span className='left' >Runs short </span> <span className='middle' >Perfect </span>
       <span className='right'> Runs long </span>
       </div>
     }
     if (key === 'Fit') {
-      sliderText = <div className='flex'><span className='left' >Runs tight </span> <span className='middle' >Perfect </span>
+      sliderText = <div className='flexDiv'><span className='left' >Runs tight </span> <span className='middle' >Perfect </span>
        <span className='right'> Runs long </span>
        </div>
     }
-    // console.log('sliderval', value);
+
     slidersArray.push(<div className='sliderBox'>
       <div>{key}</div>
       <input className='slider' type="range" value={value} max='5' name={key} disabled></input><br></br>

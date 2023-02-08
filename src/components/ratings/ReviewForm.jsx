@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 var radioButtonResultsObj = {};
 
@@ -9,6 +10,7 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
   const [starDisplay, setStarDisplay] = useState(starMap);
   const [initialRender, setInitialRender] = useState(true);
   const [starText, setStarText] = useState('');
+  const [imgUrls, setImgUrls] = useState([]);
 
   if (initialRender) {
     var starMap = [];
@@ -27,7 +29,6 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
     } else {
       setDisplay('modal');
     }
-
   }
 
   const reRenderStars = (id) => {
@@ -41,14 +42,13 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
     }
     setStarDisplay(starMap);
     setStars(id);
-  }
-  }
+   }
+  };
+
   const starTextFunc = (id) => {
     var textArray = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
-
    setStarText(textArray[id - 1]);
-
-  }
+  };
 
   //everything else States
   const [stars, setStars] = useState('');
@@ -60,13 +60,11 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
 
   const stateTracker = (e, state) => {
     if (state ===  'revBody') {
-      // console.log('revbody', e.target.value);
       setRevBody(e.target.value)
       if (revBody.length >= 50) {
         setReqChars('Minimum reached')
       } else {
         setReqChars(`Minimum required characters left: ${50 - revBody.length - 1}`);
-        console.log('revbody length', revBody.length)
       }
     }
     if (state === 'nickname') {
@@ -78,32 +76,40 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
       setRevSum(e.target.value);
       // console.log('revSum', e.target.value);
     }
-
   }
 
   const checkSubmit = () => {
-    //check for blanks
     if ((stars || revSum || revBody || nickname || email || rec || size || width || comfort || quality ||length || fit) === '') {
-      //make alert
-      alert('please make sure mandatory fields are filled out')
+      alert('Please make sure all mandatory fields are filled out')
     }
     if (revBody.length < 50) {
-      //alert
-      alert('review must be a least 50 chars');
-    } if (email.indexOf('@') === -1) {
-      alert('email must be in the corerct format')
+      alert('Review must be a least 50 characters');
+    }
+    if (email.indexOf('@') === -1) {
+      alert('Email must be in the correct format')
     }
     //placeholder for error if images are broken
     var objToSend = {};
     objToSend.rating = stars;
     objToSend.summary = revSum;
-    objToSend.revBody = revBody;
+    objToSend.body = revBody;
     objToSend.reviewer_name = nickname;
     objToSend.date = new Date();
     objToSend.recommend = radioButtonResultsObj.Recommend;
     objToSend.email = email;
-    //add photos later
+    objToSend.name = nickname;
+    // objToSend.photos = photoArrForSubmit;
+    objToSend.product_id = 37311
+    objToSend.characteristics = {};
+    //add characteristics later
 
+      axios.post('/postReview', objToSend).then(results => {
+        console.log('successful post son', results)
+        alert('review submitted!');
+
+      }).catch(err => {
+        console.log('err posting son',  err);
+      });
     // console.log('objtosend', objToSend)
   };
 
@@ -171,18 +177,20 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
   const [fileArray, setFileArray] = useState([]);
   const [imgMap, setImgMap] = useState('');
 
-  const fileHandler = (e) => {
-    var length = e.target.files.length;
+  const [photoArrForSubmit, setPhotoArrForSubmit] = useState([]);
 
+  const fileHandler = (e) => {
+    var UrlArray = [];
+    var length = e.target.files.length;
     if (length > 5 || fileArray.length > 5) {
       alert('Maximum of 5 files');
       e.target.value = '';
     } else {
       var img = URL.createObjectURL(e.target.files[length - 1])
+      UrlArray.push(img);
       setFileArray([...fileArray, img]);
       // var test = [fileArray, e.target.files[length - 1]]
-      console.log('EEAAEAEA!!', length, fileArray, e.target.files);
-
+      // console.log('EEAAEAEA!!', length, fileArray, e.target.files);
       var imgDivs = fileArray.map(item => {
         return (
           <img className='imgDivs' src={item}/>
@@ -191,6 +199,21 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
       var newImg = <img className='imgDivs' src={img}/>
       imgDivs.push(newImg)
       setImgMap(imgDivs);
+      // console.log('IMG DIVS', imgDivs)
+      setImgUrls(UrlArray);
+
+      var photoArr = UrlArray.map((item, index) => {
+        var newItem = item.split('blob:');
+
+        // return ( {
+        //   id: index,
+        //   url: newItem[1]
+        // }
+        // )
+        return newItem[1];
+      });
+      console.log('photoArr', photoArr)
+     setPhotoArrForSubmit(...photoArrForSubmit, photoArr);
     }
   };
 

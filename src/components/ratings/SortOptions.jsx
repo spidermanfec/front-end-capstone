@@ -6,10 +6,8 @@ const SortOptions = ({sortFunction}) => {
 return (
 
   <div>
-      <h4>Sort Options</h4>
    <label for="Reviews">Sort By:</label>
-  <select name="sortOptions" id="sortOptions" onChange={(e) => {
-    // console.log('PENISP', e.target.value)
+  <select className='flexButtons' name="sortOptions" id="sortOptions" onChange={(e) => {
     sortFunction(e.target.value);
   }}>
   <option value="Relevance">Relevance</option>

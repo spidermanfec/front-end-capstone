@@ -99,7 +99,7 @@ const updateReviewArray = () => {
       </div>
 
     {/* <ReviewForm/> */}
-      <div className='flex reviewListButtons'>
+      <div className='flexButtons reviewListButtons'>
     <ShowMoreButton totalReviews={totalReviews} renderedReviews={renderedReviews} updateReviewArray={updateReviewArray}/>
      <button className='reviewListButtons buttonboy' type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
      <div className='reviewListButtons'>{showAddReviewForm ? <ReviewForm showAddReviewForm={showAddReviewForm} setShowAddReviewForm={setShowAddReviewForm}/> : ''} </div>

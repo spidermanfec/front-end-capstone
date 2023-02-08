@@ -14,7 +14,6 @@ const starsMap = (ratingAvg) => {
 
       var ratingsSum = 0;
         var ratingsCount = 0;
-        // data = SampleData2();
         setInitialRender(false);
         console.log('metadata ratings', metaData.ratings);
         for (var key in metaData.ratings) {
@@ -31,11 +30,12 @@ const starsMap = (ratingAvg) => {
 
   }
 
-  ratingAvg = 3.5;
+  // ratingAvg = 4;
 
   var endsInZero;
   var stringAvg = JSON.stringify(ratingAvg);
   var splitAtDecimal = stringAvg.split('.');
+  var numAfterDecimal = parseInt(splitAtDecimal[1]);
   var cssWidth = (ratingAvg - splitAtDecimal[0]);
 
   var halfStarWidth = 34;
@@ -43,17 +43,17 @@ const starsMap = (ratingAvg) => {
   var threeQuarterStarWidth = 38;
 
   //shift() extra star if avg ends in 0
-  if (splitAtDecimal[1] === 0 || splitAtDecimal[1] === undefined) {
+  if (numAfterDecimal === 0 || splitAtDecimal[1] === undefined) {
     var endsInZero = true;
   } else {
     var endsInZero = false;
   }
+  // console.log('im in boss', ratingAvg, endsInZero, splitAtDecimal, numAfterDecimal);
 
   var mutableStarWidth;
   if (!endsInZero) {
-    console.log('im in boss', cssWidth, endsInZero);
+    // console.log('im in boss', ratingAvg, endsInZero, splitAtDecimal, numAfterDecimal);
     if (cssWidth < 1 && cssWidth >= 0.75) {
-      console.log('HEEH')
       mutableStarWidth = threeQuarterStarWidth;
     }
     if (cssWidth < 0.75 && cssWidth >= 0.5) {
@@ -64,14 +64,12 @@ const starsMap = (ratingAvg) => {
     }
   }
 
-  console.log('heheheheheheh', ratingAvg, mutableStarWidth)
-
   var starMapArray = [];
   for (var i = 1; i <= 5; i++) {
     var difference = ratingAvg - i;
 
     if (difference < 0 && difference > -1) {
-      console.log('im in mutable boss', i, cssWidth, mutableStarWidth);
+      // console.log('im in mutable boss', i, cssWidth, mutableStarWidth);
       starMapArray.push(<i style={{width: mutableStarWidth}} id="mutableStar" className="fa-solid fa-star"></i>);
     }
 
@@ -84,7 +82,7 @@ const starsMap = (ratingAvg) => {
     }
   }
 
-  if (endsInZero === false) {
+  if (!endsInZero) {
     starMapArray.shift();
   }
   return starMapArray;
