@@ -21,8 +21,11 @@ const getProductInfo = (productID) => axios.get(`https://app-hrsei-api.herokuapp
 
 const getCardStyle = (productID) => axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productID}/styles`, apiHeaders);
 
+const getReviewMetadata = (productID) => axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=${productID}`, apiHeaders);
+
 exports.getRelatedInfo = getRelatedInfo;
 exports.getRelatedProductIDs = getRelatedProductIDs;
 exports.getProductInfo = getProductInfo;
 exports.getProductsInfo = getProductsInfo;
 exports.getCardStyle = getCardStyle;
+exports.getReviewMetadata = getReviewMetadata;
