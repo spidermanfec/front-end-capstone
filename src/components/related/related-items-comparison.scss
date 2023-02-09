@@ -37,7 +37,7 @@ hr {
   }
 
   & > * {
-    scroll-snap-align: start;
+    scroll-snap-align: card-start;
   }
 }
 
@@ -150,6 +150,52 @@ hr {
 
 .prod-price {
   font-size: small;
+}
+
+.card-star-row {
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction:row;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.card-star {
+  float: left;
+  display: flex;
+  font-size: 100px;
+  color: #ddd;
+  justify-content: space-around;
+}
+
+.card-star:after {
+  flex-basis: 50px;
+  flex: none;
+  float: left;
+  font-family: FontAwesome;
+  content: "\f005";
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+}
+
+#mutable-card-star {
+  flex-basis: 15px;
+  float:left;
+  display: flex;
+
+}
+
+ #mutable-card-star:after {
+  font-family: FontAwesome;
+  content: "\f005";
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  color: rgb(0, 0, 0);
 }
 
 .comparison-modal {
