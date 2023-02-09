@@ -31,7 +31,7 @@ function App() {
         <Banner ratingRef={ratingRef} relatedRef={relatedRef} questionsRef={questionsRef}/>
         <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
         <div className="maxWidth" ref={relatedRef}><Related productID={productID} setProduct={setProductID} /></div>
-        <div className="maxWidth" ref={questionsRef}><Questions productID={productID} product={product} /></div>
+        <div className="maxWidthQA" ref={questionsRef}><Questions productID={productID} product={product} /></div>
         <div className="maxWidth" ref={ratingRef}><Ratings /></div>
       </div>
     </CookiesProvider>

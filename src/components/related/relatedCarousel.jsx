@@ -37,7 +37,7 @@ export default function RelatedCarousel({
       }))
       .then((results) => {
         if (results.length === 0) {
-          throw('lsik');
+          throw('');
         }
         return results;
       })
@@ -64,7 +64,8 @@ export default function RelatedCarousel({
   }, [productID]);
 
   return (
-    <div className="card-carousel related-products"
+    <div
+      className="card-carousel related-products"
       ref={carRef}
       onScroll={() => {
         scrollLeft(checkBoundary('left', carRef.current));
