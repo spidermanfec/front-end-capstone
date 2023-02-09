@@ -165,12 +165,12 @@ h2 {
   position: fixed;
   z-index: 1;
   padding-top: 100px;
+  margin-left: 5%;
   display: flex;
   justify-content: center;
-  left: 0;
-  top: 7%;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
+  top: 15%;
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.8);
@@ -179,19 +179,19 @@ h2 {
 }
 
 .addAnswerEntry {
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 50%;
+  height: 100%;
 }
 
 .addQuestionEntry {
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 35%;
+  height: 100%;
 }
 
 .warningInputText {
