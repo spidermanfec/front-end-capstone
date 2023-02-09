@@ -37,7 +37,7 @@ export default function OutfitCarousel({
     }))
       .then((results) => {
         if (results.length === 0) {
-          throw('lsik');
+          throw('');
         }
         return results;
       })
@@ -61,7 +61,7 @@ export default function OutfitCarousel({
       })
       .catch((err) => console.log(err))
       .finally(() => setOutfitProducts(prod));
-    }, [outfitProductsIDs]);
+  }, [outfitProductsIDs]);
 
   const notInList = (id) => (
     outfitProductsIDs.indexOf(id)
