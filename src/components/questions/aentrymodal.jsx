@@ -52,7 +52,7 @@ function Modal({ question, show, setEntryModalState, pullQuestions, product_name
       !email || !isValidEmail(email) ? setEmailAlert(true) : setEmailAlert(false)
       !answer ? setAnswerAlert(true) : setAnswerAlert(false)
     } else {
-      axios.post(`http://localhost:1100/answer/?question_id=${question.question_id}`, {
+      axios.post(`/answer/?question_id=${question.question_id}`, {
         nickname,
         answer,
         email,

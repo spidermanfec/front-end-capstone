@@ -35,7 +35,6 @@
   flex-basis: 15px;
   float:left;
   display: flex;
-
 }
 
  #mutableStar:after {
@@ -64,7 +63,8 @@
 }
 .reviewSummary {
   font-style: bold;
-  /* font-size: large; */
+  font-weight:700;
+  font-size: large;
 }
 .reviewBox {
   border: rgb(0, 0, 0);
@@ -90,7 +90,7 @@
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  /* padding-top: 100px; Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -99,7 +99,21 @@
   /* background-color: rgb(255, 255, 255); Fallback color */
   background-color: rgba(232, 232, 232, 0.867); /* Black w/ opacity */
 }
+.reviewModal {
+  text-align: center;
+  display: block; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  /* padding-top: 100px; Location of the box */
+  left: 400px;
+  top: 200px;
+  width: 50%; /* Full width */
+  height: 50%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(255, 255, 255); Fallback color */
+  background-color: rgba(232, 232, 232, 0.867); /* Black w/ opacity */
 
+}
 .modal-content {
   /* text-align: center; */
   background-color: #000000;
@@ -126,7 +140,21 @@
 } */
 
 .slider {
- width:max-content;
+  /* appearance: none; */
+  /* fill: red; */
+  stroke: none;
+  /* accent-color: red;
+  background-color: red; */
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #15cd71; /* Grey background */
+  /* outline: none; */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  shape-rendering: crispEdges;
+  width:max-content;
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
 }
 .sliderBox {
   width: 400px;
@@ -159,7 +187,6 @@
   accent-color: #7bd6a9;
   /* background: #016bff; */
 }
-
 
 .recAvg {
   margin-top: 5px;
@@ -194,12 +221,35 @@
 .reviewListButtons {
 display:inline-table;
 position: relative;
+background-color: #ffffff;
+/* border: solid; */
+border-width: 1px;
+border-color: #3f3f3f;
+color: #3f3f3f;
+padding: 10px 10px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 14px;
+margin-right: 0px;
+margin-top: 0px;
+cursor: pointer;
+align-items: baseline;
+gap: 100px;
 }
 
-.flex {
+.flexDiv {
+  justify-content: center;
   display:flex;
   gap: 48px;
 }
+
+.flexButtons {
+  justify-content: center;
+  display:flex;
+  justify-content: space-between;
+}
+
 .left {
   text-align: left;
   justify-content: left;
@@ -210,5 +260,60 @@ position: relative;
 }
 .right {
   text-align: right;
+  justify-content: right;
+}
+
+/* .qbutton {
+  background-color: #ffffff;
+  border: solid;
+  border-width: 1px;
+  border-color: #3f3f3f;
+  color: #3f3f3f;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 30px;
+  margin-top: 15px;
+  cursor: pointer;
+} */
+
+.buttonboy:hover {
+  background-color: #3f3f3f;
+  border: solid;
+  border-width: 1px;
+  /* border-color: #3f3f3f; */
+  color: #ffffff;
+  /* padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 30px;
+  margin-top: 15px; */
+  cursor: pointer;
+}
+
+.flexboys {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.bigboy {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.imgDivs {
+  width: 100px;
+  height: 100px;
+
+}
+
+.reportReview {
+  display: flex;
   justify-content: right;
 }

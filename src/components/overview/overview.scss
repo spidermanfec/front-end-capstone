@@ -3,7 +3,7 @@ $widthSpacer: percentage($number: 3);
 $widthProdInfo: percentage($number: 30);
 
 .overviewContainer {
-  max-width: 1180px;
+  width: 63%;
   margin: 0 auto;
   padding: 15px;
   display: flex;
@@ -12,16 +12,33 @@ $widthProdInfo: percentage($number: 30);
 
 .gallery {
   width: $widthProd;
-  height: 650px;
+  height: 800px;
   position:relative;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .reviews {
   font-size: 12px;
 }
 
-.reviews:hover {
+.mainphoto {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+    width: 100%;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.reviews1 {
+  font-size: 12px;
+}
+
+.stars {
+  height: 9px;
+    scale: 1.3;
+    margin-left: 1px;
+}
+
+.reviews1:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -82,28 +99,6 @@ $widthProdInfo: percentage($number: 30);
   filter: brightness(0.85);
 }
 
-.cart1 {
-  text-align: right;
-  margin-left: auto;
-  margin-right: 0;
-  content: url(https://img.icons8.com/material-outlined/24/null/shopping-cart.png);
-  cursor:pointer;
-}
-
-.cartmodal {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.52);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
 .wrapperfeatures {
   margin-left: 50px;
   width: 3000%;
@@ -159,6 +154,19 @@ $widthProdInfo: percentage($number: 30);
   overflow: hidden,
 }
 
+.urlpicoos {
+  height: 100%;
+  width: 100%;
+  object-fit:contain;
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+    border-color: lightgrey;
+  align-items: center;
+  overflow: hidden;
+  cursor:not-allowed;
+}
+
 .urlpic:hover{
   box-shadow: 0 0 11px rgba(33,33,33,.2)
 }
@@ -178,7 +186,7 @@ $widthProdInfo: percentage($number: 30);
 }
 
 .modal-lg{
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   top: 0;
   left: 0;
@@ -321,7 +329,7 @@ $widthProdInfo: percentage($number: 30);
   margin-top: -625px;
   margin-left: -185px;
   overflow-y:auto;
-  max-height: 510px;
+  max-height: 500px;
 }
 
 #imagelist::-webkit-scrollbar {
@@ -362,7 +370,7 @@ $widthProdInfo: percentage($number: 30);
 }
 
 .image {
-  // z-index: -1;
+
   position: relative;
   cursor: pointer;
   width: 50px;
@@ -428,7 +436,7 @@ $widthProdInfo: percentage($number: 30);
 .image:hover {
   border: solid;
   border-color: black;
-  border-width: 1px;
+  border-width: 2px;
   opacity: 0.5;
 }
 
@@ -436,6 +444,10 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   justify-content: space-evenly;
   margin-top: 30px;
+}
+
+.modalButton {
+  margin-top: 50px;
 }
 
 .category {
@@ -471,25 +483,25 @@ $widthProdInfo: percentage($number: 30);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 50%;
+  border: none;
+  background-color: white;
   width: 23%;
   margin: 1px;
   padding: 0;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
 }
+
+
 
 .selecStyleoff {
   cursor:pointer;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 50%;
+  border: none;
+  background-color: white;
   width: 23%;
   margin: 1px;
   padding: 0;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .layover {
@@ -529,7 +541,7 @@ $widthProdInfo: percentage($number: 30);
 #sizeList {
   font-weight: bold;
   height: 60px;
-  width: 229px;
+  width: 219px;
   border: solid;
   border-width: .5px;
   // border-radius: 8px;
@@ -550,7 +562,7 @@ $widthProdInfo: percentage($number: 30);
 #quantityList {
     font-weight: bold;
     height: 60px;
-    width: 100px;
+    width: 116px;
     border: solid;
     border-width: .5px;
     // border-radius: 8px;

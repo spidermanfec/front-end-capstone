@@ -1,6 +1,5 @@
-/* eslint-disable max-len */
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Qlist from './qlist.jsx'
 import './questions.scss';
 
@@ -10,25 +9,25 @@ function Questions({ productID, product }) {
   const product_id = productID;
   const product_name = product.name;
 
-  const pullQuestions = () => { // Used to rerender questions when internal stuff changes, passed as prop.
-    axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`)
+  useEffect(() => {
+    axios.get(`/questions/?product_id=${product_id}&count=999`)
       .then((results) => {
         const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
         setQCount(results.data.length);
-        setQuestionList(sortedByHelpfulness); // Set question list to the result of the axios.
+        setQuestionList(sortedByHelpfulness);
+      });
+  }, [product_id]);
+
+  const pullQuestions = () => {
+    axios.get(`/questions/?product_id=${product_id}&count=999`)
+      .then((results) => {
+        const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+        setQCount(results.data.length);
+        setQuestionList(sortedByHelpfulness);
       });
   };
 
-  axios.get(`http://localhost:1100/questions/?product_id=${product_id}&count=999`) //  Axios get on render. Pass id later.
-    .then((results) => {
-      if (results.data.length > questionList.length) { // Ensure it doesn't loop. vvvv sort by helpful
-        const sortedByHelpfulness = results.data.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
-        setQCount(results.data.length);
-        setQuestionList(sortedByHelpfulness); // Set question list to the result of the axios.
-      }
-    });
-
-  return ( // Pass resulting questionList as prop to questionList component.
+  return (
     <div className="outerWrap">
       <Qlist questionList={questionList} product_id={product_id} product_name={product_name} pullQuestions={pullQuestions} setQCount={setQCount} qCount={qCount} />
     </div>
