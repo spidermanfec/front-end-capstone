@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CardStars from './cardStars.jsx';
 
 export default function OutfitCard({
   id, category, name, defaultPrice, salePrice, photo, rating, setProduct, removeProduct,
 }) {
+  const [photoUrl, setPhotoUrl] = useState('');
+
   const displayPrice = () => {
     if (salePrice.length > 0) {
       return (
@@ -21,6 +23,14 @@ export default function OutfitCard({
     );
   };
 
+  useEffect(() => {
+    if (photo === null) {
+      setPhotoUrl("https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png");
+    } else {
+      setPhotoUrl(photo);
+    }
+  }, [photo]);
+
   return (
     <div
       className="card"
@@ -29,7 +39,7 @@ export default function OutfitCard({
       role="button"
       tabIndex="0"
     >
-      <div className="card-img" style={{backgroundImage: `url('${photo}')`}} />
+      <div className="card-img" style={{backgroundImage: `url('${photoUrl}')`}} />
       <i
         className="fa-regular fa-circle-xmark card-btn rm-outfit-btn"
         role="button"

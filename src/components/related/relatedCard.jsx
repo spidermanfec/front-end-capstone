@@ -5,12 +5,22 @@ import CardStars from './cardStars.jsx';
 export default function RelatedCard({
   id, category, name, defaultPrice, salePrice, photo, rating, setProduct, setComparison,
 }) {
+  const [photoUrl, setPhotoUrl] = useState('');
+
   let price = (
     <div className="prod-price">
       <p>{`$${defaultPrice}`}</p>
       <p />
     </div>
   );
+
+  useEffect(() => {
+    if (photo === null) {
+      setPhotoUrl("https://www.pngitem.com/pimgs/m/370-3708742_memes-cat-sunglasses-cat-meme-hd-png-download.png");
+    } else {
+      setPhotoUrl(photo);
+    }
+  }, [photo]);
 
   useEffect(() => {
     if (salePrice.length > 0) {
@@ -31,7 +41,7 @@ export default function RelatedCard({
       role="button"
       tabIndex="0"
     >
-      <div className="card-img" style={{ backgroundImage: `url('${photo}')` }} />
+      <div className="card-img" style={{ backgroundImage: `url('${photoUrl}')` }} />
       <i
         className="fa-solid fa-magnifying-glass card-btn rm-outfit-btn"
         role="button"
