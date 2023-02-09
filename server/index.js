@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const qanda = require('./controllers/qanda');
 const {
-  getRelatedProductIDs, getProductInfo, getProductsInfo, getCardStyle,
+  getRelatedProductIDs, getProductInfo, getProductsInfo, getCardStyle, getReviewMetadata,
 } = require('./controllers/related');
 const logger = require('./middleware/logger');
 const axios = require('axios');
@@ -128,6 +128,86 @@ app.get('/products/id', (req, res) => {
     .then((results) => results.map((result) => result.data))
     .then((results) => res.status(200).send(results))
     .catch(() => res.status(500));
+});
+
+app.get('/reviews/:product_id/meta', (req, res) => {
+  getReviewMetadata(req.params.product_id)
+    .then((results) => (results.data.ratings))
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
+});
+
+app.get('/reviews', (req, res) => {
+  console.log('get reviews', req);
+  qanda.getReviews(results => {
+    console.log('successful get from server/index.js', results);
+    res.send(results);
+  })
+});
+
+app.get('/metadata', (req, res) => {
+  // console.log('get reviews', req);
+  qanda.getMetadata(results => {
+    console.log('successful get from metadata/index.js', results);
+    res.send(results);
+  })
+});
+
+app.get('/sortedReviews', (req, res) => {
+
+  var query =  req.query.option.toLowerCase();
+  console.log('reqqqqq', req.query.option, query);
+  //something on req object has to have sort option
+
+  // console.log('get reviews', req);
+  qanda.getSortedReviews(query, (results) => {
+    console.log('successful get from metadata/index.js', results);
+    res.send(results);
+  })
+})
+
+app.put('/helpfulR', (req, res) => {
+  console.log('im in helpful boss!', req.body)
+  qanda.helpfulReview(req.body.review_id, (results, err) => {
+    if (err) {
+      console.log('err in helpfulR index.js', err);
+    } else {
+      console.log('successful put in index.js son', results);
+       res.send(results);
+      //  res.status(204).send();
+    }
+  })
+ });
+
+ app.put('/reportR', (req, res) => {
+  console.log('im in report boss!', req.body)
+  qanda.reportReview(req.body.review_id, (results, err) => {
+    if (err) {
+      console.log('err in reportR index.js', err);
+    } else {
+      console.log('successful put in index.js son', results);
+       res.send(results);
+      //  res.status(204).send();
+    }
+  })
+ });
+
+app.post('/postReview', (req, res) => {
+  req.body.product_id = Number(req.body.product_id);
+  req.body.rating = Number(req.body.rating);
+  // req.body.photos = JSON.stringify(req.body.photos);
+  console.log('reqbody post', req.body)
+
+  qanda.postReview(req.body, (err, results) => {
+    if (err) {
+      console.log('err', err);
+    } else {
+      console.log('successful post review, son', results);
+      // res.send(JSON.stringify(results));
+      res.send(results);
+    }
+
+  })
 });
 
 app.listen(process.env.PORT);

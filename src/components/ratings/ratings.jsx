@@ -76,7 +76,10 @@ const updateReviewArray = () => {
       }
     }).then(results => {
       console.log('successful sort get, son', results);
-      setRenderedReviews(results.data.results);
+      setTotalReviews(results.data.results);
+      var initialSlice = results.data.results.slice(0, 2);
+      setRenderedReviews(initialSlice);
+
     }).catch(err => {
       console.log('fuckin err son', err);
     })
@@ -96,19 +99,16 @@ const updateReviewArray = () => {
       </div>
 
     {/* <ReviewForm/> */}
-      <div className='flex reviewListButtons'>
+      <div className='flexButtons reviewListButtons'>
     <ShowMoreButton totalReviews={totalReviews} renderedReviews={renderedReviews} updateReviewArray={updateReviewArray}/>
-     <button className='reviewListButtons' type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
-     <div className='reviewListButtons'>{showAddReviewForm ? <ReviewForm/> : ''} </div>
+     <button className='reviewListButtons buttonboy' type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
+     <div className='reviewListButtons'>{showAddReviewForm ? <ReviewForm showAddReviewForm={showAddReviewForm} setShowAddReviewForm={setShowAddReviewForm}/> : ''} </div>
 
     </div>
   </div>
   );
 }
 
-//ratings card
-//review list card
-//write a review button toggle
 
 
 export default Ratings;

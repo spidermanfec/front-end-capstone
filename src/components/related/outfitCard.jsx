@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CardStars from './cardStars.jsx';
 
 export default function OutfitCard({
-  id, category, name, defaultPrice, salePrice, photo, setProduct, removeProduct,
+  id, category, name, defaultPrice, salePrice, photo, rating, setProduct, removeProduct,
 }) {
   const displayPrice = () => {
     if (salePrice.length > 0) {
@@ -47,7 +48,7 @@ export default function OutfitCard({
         <p className="prod-category">{category}</p>
         <p className="prod-name">{name}</p>
         {displayPrice()}
-        <p>rating</p>
+        <CardStars rating={rating} />
       </div>
     </div>
   );
