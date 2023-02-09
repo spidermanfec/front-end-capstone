@@ -15,7 +15,7 @@ function App() {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    axios.get(`/products/37311/details`)
+    axios.get(`/products/${productID}/details`)
       .then((results) => results.data)
       .then((results) => setProduct(results))
       .catch((err) => console.log(err));
@@ -27,11 +27,12 @@ function App() {
 
   return (
     <CookiesProvider>
-      <div>
-        {/* <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} /> */}
-        <Questions products={products} />
-        <div ref={ratingRef}><Ratings /></div>
-        {/* <Related productID={productID} setProduct={setProductID} /> */}
+      <div className="wholeAppWrapper">
+        <Banner ratingRef={ratingRef} relatedRef={relatedRef} questionsRef={questionsRef}/>
+        <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
+        <div className="maxWidth" ref={ratingRef}><Ratings /></div>
+        <div className="maxWidth" ref={relatedRef}><Related productID={productID} setProduct={setProductID} /></div>
+        <div className="maxWidth" ref={questionsRef}><Questions productID={productID} product={product} /></div>
       </div>
     </CookiesProvider>
   );
