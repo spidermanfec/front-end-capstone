@@ -1,6 +1,7 @@
 .ratings {
   padding: 0;
 	border: 0;
+  width: 100%;
 	font-size: 100%;
 	font-family: 'Inter';
 	vertical-align: baseline;
@@ -72,7 +73,6 @@
   border-width:thin;
   border-style: none;
   overflow-y: scroll;
-  width: 800px;
   height: 300px;
   float: right;
   /* color: rgb(18, 155, 25); */
@@ -179,7 +179,6 @@
   color: #ddd;
   border-style: dashed;
   margin: 50px; */
-  width: 800px;
 }
 .ratingsCard {
   font-size: 50px;
@@ -222,7 +221,6 @@
 
 .RnR-header {
   height: 10px;
-  margin-left: 200px;
 }
 
 .buttons {
@@ -250,6 +248,7 @@ display: inline-block;
 font-size: 14px;
 margin-right: 0px;
 margin-top: 0px;
+margin-bottom:30px;
 cursor: pointer;
 align-items: baseline;
 gap: 100px;
