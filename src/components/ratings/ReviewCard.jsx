@@ -49,6 +49,7 @@ const ReviewCard = ({review}) => {
     var xButton = <div className='left' onClick={() => {setModalImg('')}}>X</div>
     var modal = <img  src={url}/>
     var realModal = <div className='reviewModal'>{xButton}{modal}</div>
+    console.log('im in modal boss', realModal);
     setModalImg(realModal);
   }
 
@@ -109,7 +110,7 @@ return (
     <div className='balls'>{recText}</div>
     <div className='balls'>{review.response}</div>
     <div className='balls'>{reviewPhotos}</div>
-    <div>{modalImg}</div>
+    <div className='reviewaModal'>{modalImg}</div>
     <div className='helpfulDiv' >Was this review helpful? <u onClick={() => {addHelpfulness(reviewID)}}>Yes,</u> <u>No</u> ({reviewHelpfulness}) <u onClick={() => {reportReview(reviewID)}}>Report</u></div>
 
   </div>

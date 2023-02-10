@@ -125,16 +125,16 @@ body {
   cursor:pointer;
 }
 
-// .cartmodal {
-//   z-index: 1;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background-color: rgba(0, 0, 0, 0.52);
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   flex-direction: column;
-// } place holder
+.cartmodal {
+  z-index: 1;
+  position: absolute;
+	padding: 10px;
+	top: 50px;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
