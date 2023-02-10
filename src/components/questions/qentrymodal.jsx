@@ -56,7 +56,7 @@ function Modal({ product_id, show, setEntryModalState, pullQuestions, product_na
       </div>
       <div className="addQuestionEntry">
         {questionAlert && <span className="errorText"> You must enter the following : </span>}
-        Question: <textarea className="answerEntry" name="answer" onChange={onChange} placeholder="Your answer..." />
+        Question: <textarea className="answerEntry" name="answer" onChange={onChange} placeholder="Your question..." />
         {nicknameAlert && <span className="errorText"> You must enter the following : </span>}
         Nickname : <input className="answerEntry" name="nickname" onChange={onChange} placeholder="Example: jack543!" />
         <p className="warningInputText">For privacy reasons, do not use your full name or email address.</p>

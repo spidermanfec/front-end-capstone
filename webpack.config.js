@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -7,6 +8,12 @@ module.exports = {
     path: path.join(__dirname, 'public'),
     filename: "bundle.js"
   },
+  plugins: [
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
+  ],
   module: {
     rules: [
       {
@@ -31,7 +38,6 @@ module.exports = {
   },
   // [devtool] this is an additional source map that will let the browser know what files are running our code.
   // Helps with error tracing. Without it we will not know where our errors are coming from because it will state that everything inside the bundle file.
-  devtool: "eval-cheap-module-source-map",
   // [devServer] configuration for the live server including port
   devServer: {
     // [static] config for how what to serve
