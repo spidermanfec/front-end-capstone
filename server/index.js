@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const qanda = require('./controllers/qanda');
 const {
-  getRelatedProductIDs, getProductInfo, getProductsInfo, getCardStyle,
+  getRelatedProductIDs, getProductInfo, getProductsInfo, getCardStyle, getReviewMetadata,
 } = require('./controllers/related');
 const logger = require('./middleware/logger');
 const axios = require('axios');
@@ -130,6 +130,13 @@ app.get('/products/id', (req, res) => {
     .catch(() => res.status(500));
 });
 
+app.get('/reviews/:product_id/meta', (req, res) => {
+  getReviewMetadata(req.params.product_id)
+    .then((results) => (results.data.ratings))
+    .then((results) => res.status(200).send(results))
+    .catch(() => res.status(500));
+});
+
 app.get('/reviews', (req, res) => {
   var id = JSON.stringify(req.query.productID);
 
@@ -208,7 +215,6 @@ app.post('/postReview', (req, res) => {
 
   })
 });
-
 
 app.listen(process.env.PORT);
 console.log(`Server listening at http://localhost:${process.env.PORT}`);
