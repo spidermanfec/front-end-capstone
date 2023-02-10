@@ -81,35 +81,41 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
   const checkSubmit = () => {
     if ((stars || revSum || revBody || nickname || email || rec || size || width || comfort || quality ||length || fit) === '') {
       alert('Please make sure all mandatory fields are filled out')
-    }
-    if (revBody.length < 50) {
+          if (revBody.length < 50) {
       alert('Review must be a least 50 characters');
-    }
-    if (email.indexOf('@') === -1) {
+      }
+        if (email.indexOf('@') === -1) {
       alert('Email must be in the correct format')
-    }
-    //placeholder for error if images are broken
-    var objToSend = {};
-    objToSend.rating = stars;
-    objToSend.summary = revSum;
-    objToSend.body = revBody;
-    objToSend.reviewer_name = nickname;
-    objToSend.date = new Date();
-    objToSend.recommend = radioButtonResultsObj.Recommend;
-    objToSend.email = email;
-    objToSend.name = nickname;
-    // objToSend.photos = photoArrForSubmit;
-    objToSend.product_id = 37311
-    objToSend.characteristics = {};
-    //add characteristics later
+      }
+    } else {
+      //placeholder for error if images are broken
+      var objToSend = {};
+      objToSend.rating = stars;
+      objToSend.summary = revSum;
+      objToSend.body = revBody;
+      objToSend.reviewer_name = nickname;
+      objToSend.date = new Date();
+      objToSend.recommend = radioButtonResultsObj.Recommend;
+      objToSend.email = email;
+      objToSend.name = nickname;
+      // objToSend.photos = photoArrForSubmit;
+      objToSend.product_id = 37311
+      objToSend.characteristics = {};
+      //add characteristics later
 
-      axios.post('/postReview', objToSend).then(results => {
-        console.log('successful post son', results)
+        axios.post('/postReview', objToSend).then(results => {
+          console.log('successful post son', results)
+          alert('review submitted!');
+
+        }).catch(err => {
+          console.log('err posting son',  err);
+        });
+
+
         alert('review submitted!');
+    }
 
-      }).catch(err => {
-        console.log('err posting son',  err);
-      });
+
     // console.log('objtosend', objToSend)
   };
 
@@ -212,7 +218,6 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
         // )
         return newItem[1];
       });
-      console.log('photoArr', photoArr)
      setPhotoArrForSubmit(...photoArrForSubmit, photoArr);
     }
   };

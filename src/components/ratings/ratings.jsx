@@ -8,7 +8,7 @@ import SampleData from './SampleData.jsx';
 import ShowMoreButton from './ShowMoreButton.jsx';
 import axios from 'axios';
 
-function Ratings() {
+function Ratings({productID, setProductID}) {
 // console.log('showmorebutton', ShowMoreButton)
 var reviews = SampleData().results;
 
@@ -30,21 +30,47 @@ const updateReviewArray = () => {
   // console.log('reviewsLength', reviewsLength);
 }
 
-  if (reGetData) {
-    axios.get('/reviews')
-      .then(response => {
-      console.log('successful get from ratings.jsx, son', response.data);
-        //for later, find a way to get rid of the duplicate reviews
-      setTotalReviews(response.data.results);
-      // initialReviewList = totalReviews.slice(0, 2);
-      setRenderedReviews(response.data.results.slice(0, 2));
-    })
-    .catch(err => {
-      console.log('unsucc get from ratings.jsx son', err);
-    })
-    setRegetData(false);
-  }
-  console.log('tot revs', totalReviews);
+// console.log('productid', productID);
+
+useEffect(() => {
+  axios.get('/reviews', {
+    params: {
+      productID: productID
+    }})
+    .then(response => {
+    console.log('successful get from ratings.jsx, son', response.data);
+      //for later, find a way to get rid of the duplicate reviews
+    setTotalReviews(response.data.results);
+    // initialReviewList = totalReviews.slice(0, 2);
+    setRenderedReviews(response.data.results.slice(0, 2));
+  })
+  .catch(err => {
+    console.log('unsucc get from ratings.jsx son', err);
+  })
+
+  }, [productID]);
+
+
+  // if (reGetData) {
+  //   console.log('im here in regetdata boss');
+  //   axios.get('/reviews', {
+  //     params: {
+  //       productID: productID
+  //     }})
+  //     .then(response => {
+  //     console.log('successful get from ratings.jsx, son', response.data);
+  //       //for later, find a way to get rid of the duplicate reviews
+  //     setTotalReviews(response.data.results);
+  //     // initialReviewList = totalReviews.slice(0, 2);
+  //     setRenderedReviews(response.data.results.slice(0, 2));
+  //   })
+  //   .catch(err => {
+  //     console.log('unsucc get from ratings.jsx son', err);
+  //   })
+  //   setRegetData(false);
+  // }
+
+  // console.log('tot revs', totalReviews);
 
 
 
@@ -72,7 +98,8 @@ const updateReviewArray = () => {
     // console.log('sort option', sortOption);
     axios.get('/sortedReviews', {
       params: {
-        option: sortOption
+        option: sortOption,
+        productID: productID
       }
     }).then(results => {
       console.log('successful sort get, son', results);
@@ -83,15 +110,15 @@ const updateReviewArray = () => {
     }).catch(err => {
       console.log('fuckin err son', err);
     })
-      }
+    }
 
 
 
   return (
-    <div>
+    <div className='Ratings'>
     <h4 className='RnR-header'>Ratings & Reviews</h4>
     <div className='RnR'>
-    <RatingsCard onClickProgressBars={onClickProgressBars}/>
+    <RatingsCard productID={productID} onClickProgressBars={onClickProgressBars}/>
     <div className='reviewList'>
     <SortOptions sortFunction={sortFunction}/>
     <ReviewList renderedReviews={renderedReviews}/>
@@ -101,7 +128,7 @@ const updateReviewArray = () => {
     {/* <ReviewForm/> */}
       <div className='flexButtons reviewListButtons'>
     <ShowMoreButton totalReviews={totalReviews} renderedReviews={renderedReviews} updateReviewArray={updateReviewArray}/>
-     <button className='reviewListButtons buttonboy' type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
+     <button className='reviewListButtons addReviewBoy' type="button" onClick={() => {setShowAddReviewForm(!showAddReviewForm)}}>Add a Review</button>
      <div className='reviewListButtons'>{showAddReviewForm ? <ReviewForm showAddReviewForm={showAddReviewForm} setShowAddReviewForm={setShowAddReviewForm}/> : ''} </div>
 
     </div>

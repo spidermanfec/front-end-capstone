@@ -1,3 +1,19 @@
+.ratings {
+  padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: 'Inter';
+	vertical-align: baseline;
+  color: rgb(54, 69, 79);
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../questions/inter.ttf') format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 .starContainer {
   margin-top: 5px;
   margin-left: 10px;
@@ -67,10 +83,13 @@
   font-size: large;
 }
 .reviewBox {
+  display: grid;
+  flex-direction: column;
   border: rgb(0, 0, 0);
   border-width:thin;
   border-style:none none double none;
   height: 150px;
+  /* align-items: stretch; */
 }
 
 .reviewStars {
@@ -132,12 +151,6 @@
   /* max-width:max-content;
   border-style: double; */
 }
-/* span{
-  background-color:red;
-  width:100%;
-  height:1em;
-  display:inline-block;
-} */
 
 .slider {
   /* appearance: none; */
@@ -145,19 +158,19 @@
   stroke: none;
   /* accent-color: red;
   background-color: red; */
-  width: 100%; /* Full-width */
+  width: 250px; /* Full-width */
   height: 25px; /* Specified height */
   background: #15cd71; /* Grey background */
   /* outline: none; */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   shape-rendering: crispEdges;
-  width:max-content;
+  /* width:max-content; */
 }
 .slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
 }
 .sliderBox {
-  width: 400px;
+  width: 300px;
 }
 
 .RnR {
@@ -189,6 +202,7 @@
 }
 
 .recAvg {
+  font-size: small;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -196,10 +210,11 @@
 .ratingsBox {
   /* background-color: #ff0000; */
   width: 300px;
+  margin-left: 200px;
 }
-.slider {
+/* .slider {
   width: 240px;
-}
+} */
 
 .reviewList {
   width: 800px;
@@ -207,6 +222,7 @@
 
 .RnR-header {
   height: 10px;
+  margin-left: 200px;
 }
 
 .buttons {
@@ -236,12 +252,15 @@ margin-top: 0px;
 cursor: pointer;
 align-items: baseline;
 gap: 100px;
+align-items: baseline;
 }
 
 .flexDiv {
-  justify-content: center;
+  font-size:x-small;
+  justify-content: space-between;
   display:flex;
-  gap: 48px;
+  flex-direction: row;
+  width: 250px;
 }
 
 .flexButtons {
@@ -251,35 +270,33 @@ gap: 100px;
 }
 
 .left {
-  text-align: left;
-  justify-content: left;
+  flex-basis: auto;
 }
 .middle {
-  text-align: center;
-  justify-content: center;
+  position: absolute;
+  margin-left: 110px;
 }
 .right {
-  text-align: right;
-  justify-content: right;
+  flex-basis: auto;
 }
 
-/* .qbutton {
-  background-color: #ffffff;
+
+.addReviewBoy:hover {
+  background-color: #3f3f3f;
   border: solid;
   border-width: 1px;
-  border-color: #3f3f3f;
-  color: #3f3f3f;
-  padding: 10px 10px;
+  /* border-color: #3f3f3f; */
+  color: #ffffff;
+  /* padding: 10px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
   margin-right: 30px;
-  margin-top: 15px;
+  margin-top: 15px; */
   cursor: pointer;
-} */
-
-.buttonboy:hover {
+}
+.showMoreBoy:hover {
   background-color: #3f3f3f;
   border: solid;
   border-width: 1px;
@@ -316,4 +333,32 @@ gap: 100px;
 .reportReview {
   display: flex;
   justify-content: right;
+}
+
+.addReviewBoy {
+position: absolute;
+margin-left: 700px;
+margin-top: 9px;
+
+
+}
+.showMoreBoy {
+  position: absolute;
+margin-left: 500px  ;
+width: 100px;
+}
+
+.reviewBody {
+  font-size: smaller;
+  /* height:50px; */
+}
+
+.helpfulDiv {
+  justify-self:flex-end;
+  position: relative;
+font-size: small;
+}
+
+.balls {
+  font-size: smaller;
 }
