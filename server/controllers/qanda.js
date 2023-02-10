@@ -232,7 +232,7 @@ exports.reportReview = (id, callback) => {
 };
 
 exports.postReview = (sendObj, callback) => {
-  sendObj.photos = [];
+  // sendObj.photos = [];
   console.log('SENDOBJ', sendObj)
   // var id = 37311;
   // var rating = sendObj.rating;
