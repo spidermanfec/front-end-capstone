@@ -154,41 +154,44 @@ exports.reportQuestion = (id, callback) => {
 };
 
 
-exports.getReviews = (callback) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37311&count=500`, {
+exports.getReviews = (id, callback) => {
+  console.log('ID IN QANDA', JSON.parse(id));
+  var id = JSON.parse(id);
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}&count=500`, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
     },
   })
     .then((results) => {
-      console.log('got them reviews son', results)
+      console.log('got them reviews son')
       callback(results.data);
     }).catch(err => {
       console.log('err in qanda.js son', err);
     })
 }
-exports.getSortedReviews = (sortOption, callback) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37311&sort=${sortOption}&count=500`, {
+exports.getSortedReviews = (sortOption, id, callback) => {
+  console.log('ID IN SORTED', id);
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${id}&sort=${sortOption}&count=500`, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
     },
   })
     .then((results) => {
-      console.log('got them sorted reviews son', results)
+      console.log('got them sorted reviews son')
       callback(results.data);
     }).catch(err => {
       console.log('err in qanda.js/getsortedReviews son', err);
     })
 }
 
-exports.getMetadata = (callback) => {
-axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=37311&`, {
+exports.getMetadata = (id, callback) => {
+axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta/?product_id=${id}&`, {
     headers: {
       Authorization: `${process.env.AUTHTOKEN}`,
     },
   })
   .then((results) => {
-    console.log('got them metadatas son', results)
+    console.log('got them metadatas son')
     callback(results.data);
   }).catch(err => {
     console.log('err in qanda.js metadata son', err);
@@ -205,6 +208,7 @@ exports.helpfulReview = (id, callback) => {
     },
   })
     .then((results) => {
+      console.log('succ put in qanda');
       callback(results, null);
     }).catch(err => {
       callback(null, err);
@@ -228,14 +232,15 @@ exports.reportReview = (id, callback) => {
 };
 
 exports.postReview = (sendObj, callback) => {
-  // console.log('SENDOBJ', sendObj)
-  var id = 37311;
-  var rating = sendObj.rating;
-  var summary = sendObj.summary;
-  var body = sendObj.body;
+  sendObj.photos = [];
+  console.log('SENDOBJ', sendObj)
+  // var id = 37311;
+  // var rating = sendObj.rating;
+  // var summary = sendObj.summary;
+  // var body = sendObj.body;
 
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`, sendObj, apiHeaders).then(results => {
-    console.log('succ post in qanda son', results)
+    console.log('succ post in qanda son')
     // alert('review submitted!')
     callback(null, results);
 

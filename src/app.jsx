@@ -28,10 +28,10 @@ function App() {
   return (
     <CookiesProvider>
       <div>
-        {/* <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} /> */}
-        <Questions products={products} />
-        <div ref={ratingRef}><Ratings /></div>
-        {/* <Related productID={productID} setProduct={setProductID} /> */}
+        <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
+        {/* <Questions products={products} /> */}
+        <div ref={ratingRef}><Ratings productID={productID} setProductID={setProductID}  /></div>
+        <Related productID={productID} setProduct={setProductID} />
       </div>
     </CookiesProvider>
   );

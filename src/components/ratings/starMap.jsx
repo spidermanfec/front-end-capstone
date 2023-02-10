@@ -3,32 +3,34 @@ import axios from 'axios';
 
 const starsMap = (ratingAvg) => {
 
+  console.log('im in starsmap boss', ratingAvg);
+
   const [initialRender, setInitialRender] = useState(true);
   var metaData = {};
 
-  if (initialRender) {
-    axios.get('/metadata')
-    .then(response => {
-      console.log('successful metadata get', response.data);
-      metaData.ratings = response.data.ratings;
+  // if (initialRender) {
+  //   axios.get('/metadata')
+  //   .then(response => {
+  //     console.log('successful metadata get', response.data);
+  //     metaData.ratings = response.data.ratings;
 
-      var ratingsSum = 0;
-        var ratingsCount = 0;
-        setInitialRender(false);
-        console.log('metadata ratings', metaData.ratings);
-        for (var key in metaData.ratings) {
-          ratingsSum += metaData.ratings[key] * (key)
-          ratingsCount += metaData.ratings[key] * 1;
-        }
-          //calc rating avg and review count & average
-        var avg = (ratingsSum / ratingsCount).toFixed(1);
-        ratingAvg = avg;
+  //     var ratingsSum = 0;
+  //       var ratingsCount = 0;
+  //       setInitialRender(false);
+  //       console.log('metadata ratings', metaData.ratings);
+  //       for (var key in metaData.ratings) {
+  //         ratingsSum += metaData.ratings[key] * (key)
+  //         ratingsCount += metaData.ratings[key] * 1;
+  //       }
+  //         //calc rating avg and review count & average
+  //       var avg = (ratingsSum / ratingsCount).toFixed(1);
+  //       ratingAvg = avg;
 
-    }).catch(err => {
-      console.log('err son', err);
-    })
+  //   }).catch(err => {
+  //     console.log('err son', err);
+  //   })
 
-  }
+  // }
 
   // ratingAvg = 4;
 
@@ -36,11 +38,11 @@ const starsMap = (ratingAvg) => {
   var stringAvg = JSON.stringify(ratingAvg);
   var splitAtDecimal = stringAvg.split('.');
   var numAfterDecimal = parseInt(splitAtDecimal[1]);
-  var cssWidth = (ratingAvg - splitAtDecimal[0]);
+  var cssWidth = numAfterDecimal / 10;
 
-  var halfStarWidth = 34;
+  var halfStarWidth = 35;
   var quarterStarWidth = 31;
-  var threeQuarterStarWidth = 38;
+  var threeQuarterStarWidth = 39;
 
   //shift() extra star if avg ends in 0
   if (numAfterDecimal === 0 || splitAtDecimal[1] === undefined) {
@@ -85,6 +87,7 @@ const starsMap = (ratingAvg) => {
   if (!endsInZero) {
     starMapArray.shift();
   }
+
   return starMapArray;
 }
 
