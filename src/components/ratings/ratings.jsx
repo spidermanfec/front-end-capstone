@@ -38,14 +38,14 @@ useEffect(() => {
       productID: productID
     }})
     .then(response => {
-    console.log('successful get from ratings.jsx, son', response.data);
+    // console.log('successful get from ratings.jsx, son', response.data);
       //for later, find a way to get rid of the duplicate reviews
     setTotalReviews(response.data.results);
     // initialReviewList = totalReviews.slice(0, 2);
     setRenderedReviews(response.data.results.slice(0, 2));
   })
   .catch(err => {
-    console.log('unsucc get from ratings.jsx son', err);
+    // console.log('unsucc get from ratings.jsx son', err);
   })
 
   }, [productID]);
@@ -95,20 +95,20 @@ useEffect(() => {
 
 
   const sortFunction = (sortOption) => {
-    // console.log('sort option', sortOption);
+    console.log('sort option', sortOption);
     axios.get('/sortedReviews', {
       params: {
         option: sortOption,
         productID: productID
       }
     }).then(results => {
-      console.log('successful sort get, son', results);
+      // console.log('successful sort get, son', results);
       setTotalReviews(results.data.results);
       var initialSlice = results.data.results.slice(0, 2);
       setRenderedReviews(initialSlice);
 
     }).catch(err => {
-      console.log('fuckin err son', err);
+      console.log('err in ratings.jsx son', err);
     })
     }
 

@@ -177,7 +177,7 @@ exports.getSortedReviews = (sortOption, id, callback) => {
     },
   })
     .then((results) => {
-      console.log('got them sorted reviews son')
+      console.log('got them sorted reviews son', results.data)
       callback(results.data);
     }).catch(err => {
       console.log('err in qanda.js/getsortedReviews son', err);

@@ -12,12 +12,12 @@ const ReviewCard = ({review}) => {
   var joinDate = secondSplitDate.join('-');
   date = joinDate;
 
-  console.log('im in review card boss');
+  // console.log('im in review card boss');
 
 
-  // useEffect(() => {
-  //   SetreviewHelpfulness(review.helpfulness);
-  // })
+  useEffect(() => {
+    SetreviewHelpfulness(review.helpfulness);
+  })
 
 
   // const [reviewHelpfulness, SetreviewHelpfulness] = useState('');
@@ -49,7 +49,7 @@ const ReviewCard = ({review}) => {
     var xButton = <div className='left' onClick={() => {setModalImg('')}}>X</div>
     var modal = <img  src={url}/>
     var realModal = <div className='reviewModal'>{xButton}{modal}</div>
-    console.log('im in modal boss', realModal);
+    // console.log('im in modal boss', realModal);
     setModalImg(realModal);
   }
 
@@ -93,7 +93,7 @@ const ReviewCard = ({review}) => {
         alert('successful report, son', results);
 
       }).catch(err => {
-        console.log('god damn err in report reviewCard son', err);
+        console.log('err in report reviewCard son', err);
       });
       setAlreadyReported(true);
     }
