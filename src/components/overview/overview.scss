@@ -246,40 +246,6 @@ $widthProdInfo: percentage($number: 30);
   border: none;
 }
 
-// .nextvertical {
-//   cursor: pointer;
-//   position: absolute;
-//   // top: 48%;
-//   width: auto;
-//   margin-left: 45px;
-//   // padding: 16px;
-//   margin-top: -22px;
-//   background: rgba(0, 0, 0, .01);
-//   color: rgba($color: #000000, $alpha: 1.0);
-//   font-weight: bold;
-//   font-size: 30px;
-//   transition: 0.6s ease;
-//   border: none;
-//   scroll-behavior: smooth;
-// }
-
-// .previousvertical {
-//   cursor: pointer;
-//   position: absolute;
-//   // top: 48%;
-//   width: auto;
-//   // padding: 16px;
-//   // margin-top: -22px;
-//   display: flex;
-//   justify-content: flex-start;
-//   background: rgba(0, 0, 0, .01);
-//   color: rgba($color: #000000, $alpha: 1.0);
-//   font-weight: bold;
-//   font-size: 30px;
-//   transition: 0.6s ease;
-//   border: none;
-// }
-
 .next:hover,
 .previous:hover {
   background-color: rgba(0, 0, 0, 0.3);
@@ -467,11 +433,6 @@ $widthProdInfo: percentage($number: 30);
   list-style-type: none;
 }
 
-// .stylesSelector {
-//   width: "200px";
-//   height: "125px"
-// }
-
 .sale{
   &--on {
     color: red;
@@ -489,8 +450,6 @@ $widthProdInfo: percentage($number: 30);
   margin: 1px;
   padding: 0;
 }
-
-
 
 .selecStyleoff {
   cursor:pointer;
@@ -524,8 +483,14 @@ $widthProdInfo: percentage($number: 30);
   height: 75px;
 }
 
-.cheka {
+.emptybag {
+  color: red;
+  text-align: center;
+}
 
+.added {
+  color: green;
+  text-align:center;
 }
 
 .check {

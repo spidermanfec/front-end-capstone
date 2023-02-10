@@ -8,6 +8,7 @@ const {
 } = require('./controllers/related');
 const logger = require('./middleware/logger');
 const axios = require('axios');
+const compression = require('compression');
 
 const app = express();
 
@@ -15,6 +16,7 @@ const app = express();
 app.use(cors());
 app.use(logger);
 app.use(express.json());
+app.use(compression());
 // app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, '../public')));
 

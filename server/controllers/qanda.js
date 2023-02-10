@@ -46,6 +46,7 @@ exports.getProductsStyle = (id, callback) => {
 exports.postCart = (info, callback) => {
   console.log(info);
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', {
+    pic: info.pic,
     sku_id: info.skus,
     count: info.amount,
     size: info.size,
@@ -58,6 +59,7 @@ exports.postCart = (info, callback) => {
 exports.getCart = (callback) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/cart', apiHeaders)
     .then(result => {
+      console.log(result.data);
       callback(result.data);
     });
 };

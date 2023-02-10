@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Cart({ styles, tester, handleStyleSelect, productID}) {
+function Cart({ styles, tester, handleStyleSelect, productID, selectedStyle}) {
   const [open, setOpen] = useState(false);
   const [sizeSelected, setSizeSelected] = useState(false);
   const [sku, setSku] = useState('');
   const [size, setSize] = useState('');
   const [amount, setAmount] = useState('');
   const [skus, setSkus] = useState('');
+  const [empty, setEmpty] = useState(false);
+  const [added, setAdded] = useState(false);
+
+  let pic = styles.photos[0].thumbnail_url;
 
   useEffect(() => {
     setSizeSelected(false);
+    setSize('');
+    setAmount('');
   }, [handleStyleSelect, productID])
 
   const infos = Object.keys(styles.skus);
@@ -47,11 +53,17 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
   // handle submitting to cart here
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/cart', {
-      skus,
-      size,
-      amount,
-    });
+    if (!size && !amount) {
+      setEmpty(true);
+      setTimeout(() => {
+        setEmpty(false)
+      }, 2000)
+    } else if (size && amount) {
+      setAdded(true);
+      setTimeout(() => {
+        setAdded(false);
+      }, 2000)
+    }
   };
 
   return (
@@ -69,6 +81,8 @@ function Cart({ styles, tester, handleStyleSelect, productID}) {
       </select>}
       {infos[0] === 'null' && null}
       {infos[0] !== 'null' && <button id="addToBag" type="submit" onClick={((e) => {handleSubmit(e)})}>ADD TO BAG</button>}
+      {empty && <div className="emptybag">Please select size and quantity!</div>}
+      {added && <div className="added">Added to cart!</div>}
     </form>
   );
 }

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Ratings from './ratings.jsx'
 
-function Prodinfo({ items, itemsInfo, styles, reviews, ratingRef }) {
+function Prodinfo({ itemsInfo, styles, reviews, ratingRef }) {
   return (
     <aside>
       <p><Ratings reviews={reviews} ratingRef={ratingRef}/></p>
