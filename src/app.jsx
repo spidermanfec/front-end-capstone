@@ -32,7 +32,7 @@ function App() {
         <Overview productID={productID} setProductID={setProductID} ratingRef={ratingRef} />
         <div className="maxWidth" ref={relatedRef}><Related productID={productID} setProduct={setProductID} /></div>
         <div className="maxWidthQA" ref={questionsRef}><Questions productID={productID} product={product} /></div>
-        <div className="maxWidth" ref={ratingRef}><Ratings productID={productID} setProductID={setProductID} /></div>
+        <div className="maxWidth" ref={ratingRef}><Ratings productID={productID} setProductID={setProductID}  /></div>
       </div>
     </CookiesProvider>
   );
