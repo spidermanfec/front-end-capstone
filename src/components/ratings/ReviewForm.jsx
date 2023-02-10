@@ -104,7 +104,7 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
       //add characteristics later
 
         axios.post('/postReview', objToSend).then(results => {
-          console.log('successful post son', results)
+          // console.log('successful post son', results)
           alert('review submitted!');
 
         }).catch(err => {
@@ -265,7 +265,7 @@ function ReviewForm({toggleAddReviewForm, showAddReviewForm, setShowAddReviewFor
     </label>
     </div>
   <input onClick={() => {checkSubmit()}} type="submit" value="Submit" />
-  <input onClick={() => {toggleDisplay()}}type="submit" value="Cancel" />
+  <input onClick={() => {toggleDisplay()}}type="submit" value="Exit" />
   </div>
       )
 }

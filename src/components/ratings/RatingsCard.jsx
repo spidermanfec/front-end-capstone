@@ -31,7 +31,7 @@ function RatingsCard({onClickProgressBars, productID}) {
       productID: productID
     }})
     .then(response => {
-      console.log('successful metadata get', response.data);
+      // console.log('successful metadata get', response.data);
       metaData.ratings = response.data.ratings;
       setMetadataRatings(response.data.ratings);
       metaData.recommended = response.data.recommended;
@@ -49,7 +49,7 @@ function RatingsCard({onClickProgressBars, productID}) {
         var recTotal = (metaData.recommended.false * 1 + metaData.recommended.true * 1)
         let recAverage = ((metaData.recommended.true / recTotal) * 100).toFixed();
         setRecAvg(recAverage);
-        console.log('metadata ratings', metaData.ratings, recAverage);
+        // console.log('metadata ratings', metaData.ratings, recAverage);
         setMetadataChars(response.data.characteristics);
 
     }).catch(err => {

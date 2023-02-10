@@ -8,31 +8,7 @@ const starsMap = (ratingAvg) => {
   const [initialRender, setInitialRender] = useState(true);
   var metaData = {};
 
-  // if (initialRender) {
-  //   axios.get('/metadata')
-  //   .then(response => {
-  //     console.log('successful metadata get', response.data);
-  //     metaData.ratings = response.data.ratings;
 
-  //     var ratingsSum = 0;
-  //       var ratingsCount = 0;
-  //       setInitialRender(false);
-  //       console.log('metadata ratings', metaData.ratings);
-  //       for (var key in metaData.ratings) {
-  //         ratingsSum += metaData.ratings[key] * (key)
-  //         ratingsCount += metaData.ratings[key] * 1;
-  //       }
-  //         //calc rating avg and review count & average
-  //       var avg = (ratingsSum / ratingsCount).toFixed(1);
-  //       ratingAvg = avg;
-
-  //   }).catch(err => {
-  //     console.log('err son', err);
-  //   })
-
-  // }
-
-  // ratingAvg = 4;
 
   var endsInZero;
   var stringAvg = JSON.stringify(ratingAvg);
@@ -79,9 +55,9 @@ const starsMap = (ratingAvg) => {
       starMapArray.push(<i className="fa-solid fa-star"></i>);
     }
 
-    if (difference <= -1) {
-      starMapArray.push(<i className="fa-regular fa-star"></i>);
-    }
+    // if (difference <= -1) {
+    //   starMapArray.push(<i className="fa-regular fa-star"></i>);
+    // }
   }
 
   if (!endsInZero) {
